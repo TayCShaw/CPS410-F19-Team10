@@ -16,4 +16,4 @@ Search all tutors on the website
 Search tutors based on criteria (location, degree, etc.)
 Look for tutors signed up at a specific school
 Possible tutor matching
-Discussion board
+Discussion board.
