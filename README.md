@@ -18,7 +18,7 @@ Look for tutors signed up at a specific school
 Possible tutor matching.
 Discussion board.
 ```
-
+```
 Pages:
 home
 login
@@ -26,8 +26,9 @@ registration
 account management
 Discussion board pages (inidivudal thread pages, thread subject pages)
 Search results
-
-
+```
+```
 --Potentially non-functional goals
 chat page for chatting w/ tutor or students
 School pages (look for a specific college, like your own college)
+```
