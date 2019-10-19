@@ -123,6 +123,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="style.css" />
+    <Content Include="TODO.txt" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -136,6 +137,7 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Security.cs" />
     <Compile Include="DBSubject.aspx.cs">
       <DependentUpon>DBSubject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
