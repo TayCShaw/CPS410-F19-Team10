@@ -247,7 +247,7 @@ ServiceFabricBackup/
 
 # SQL Server files
 # THESE HAVE BEEN CLEARED BY TAYLOR, THEY WERE: *.mdf, *.ldf, *.ndf
-
+*.ldf
 
 # Business Intelligence projects
 *.rdl.data
