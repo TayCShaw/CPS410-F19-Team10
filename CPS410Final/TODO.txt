@@ -1,0 +1,34 @@
+﻿Security.cs Class
+-----------------
+1) Create a way to generate a salt, append that to the user's password, and hash it.
+1a) Can that same method be used to authenticate when logging in? If not, create another method
+2) Handle some sort of password requirements (length, character requirements, etc.)
+3) Handle changing passwords, forgotten passwords, forgotten usernames, etc.
+
+
+Registration.aspx
+-----------------
+1) Handle the page elements depending on if the user will be a student or a tutor.
+	I.E., show/hide different elements depending on the user selection (methods based on the first selection of a tutor or student that only show specific elements)
+2) Handle calls to creating an account, checking password validation, CHECKING IF EMAIL ACCOUNT ALREADY REGISTERED, adding to database, etc.
+
+
+Login.aspx
+----------
+1) Display an option for forgotten username or password
+2) Display an error message based on invalid username and/or password
+3) Button that leads to the registration page
+
+
+DBSubject.aspx
+--------------
+**Refer to iFinal**
+1) Display a list of threads
+2)
+
+
+DBThread.aspx
+-------------
+**Refer to iFinal**
+1) Display the posts in order based on time
+2) 
