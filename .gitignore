@@ -246,9 +246,8 @@ ServiceFabricBackup/
 *.rptproj.bak
 
 # SQL Server files
-*.mdf
-*.ldf
-*.ndf
+# THESE HAVE BEEN CLEARED BY TAYLOR, THEY WERE: *.mdf, *.ldf, *.ndf
+
 
 # Business Intelligence projects
 *.rdl.data
