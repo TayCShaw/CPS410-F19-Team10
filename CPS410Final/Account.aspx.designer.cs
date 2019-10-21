@@ -11,7 +11,7 @@ namespace CPS410Final
 {
 
 
-    public partial class DBSubject
+    public partial class WebForm2
     {
     }
 }

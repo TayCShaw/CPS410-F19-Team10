@@ -7,13 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace CPS410Final
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class WebForm2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {
 
