@@ -21,6 +21,8 @@
         .menu{
             width: 100% !important;
             text-align: center;
+            font-size: 12px;
+            background-color: black;
             
         }
         
@@ -42,7 +44,8 @@
                 <asp:MenuItem Text="ACCOUNT" Value="ACCOUNT" NavigateUrl="~/Account.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="LOGIN/REGISTER" Value="LOGIN/REGISTER" NavigateUrl="~/Login.aspx"></asp:MenuItem>
             </Items>
-            <StaticMenuItemStyle BackColor="Black" ForeColor="White" HorizontalPadding="75px" VerticalPadding="10px" CssClass="menu" />
+            <StaticMenuItemStyle BackColor="Black" ForeColor="White" HorizontalPadding="75px" VerticalPadding="10px" CssClass="menu" Width="20%" />
+            <StaticMenuStyle Width="100%" />
         </asp:Menu>
 
     </div>
