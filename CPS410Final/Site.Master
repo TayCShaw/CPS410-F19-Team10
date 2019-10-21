@@ -19,12 +19,11 @@
         }
 
         .menu{
-            width: 100%;
-            margin: 0 auto 0 auto;
-            padding-left: 15px;
-            padding-right: 15px;
+            width: 100% !important;
             text-align: center;
+            
         }
+        
     </style>
 </head>
 <body>
@@ -35,7 +34,7 @@
 
     <div class="menu">
 
-        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" OnMenuItemClick="Menu1_MenuItemClick">
+        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" OnMenuItemClick="Menu1_MenuItemClick" CssClass="menu">
             <Items>
                 <asp:MenuItem Text="HOME" Value="HOME" NavigateUrl ="~/Home.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="DISCUSSION BOARD" Value="DISCUSSION BOARD" NavigateUrl="~/DBSubject.aspx"></asp:MenuItem>
@@ -43,7 +42,7 @@
                 <asp:MenuItem Text="ACCOUNT" Value="ACCOUNT" NavigateUrl="~/Account.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="LOGIN/REGISTER" Value="LOGIN/REGISTER" NavigateUrl="~/Login.aspx"></asp:MenuItem>
             </Items>
-            <StaticMenuItemStyle BackColor="Black" ForeColor="White" HorizontalPadding="75px" VerticalPadding="10px" />
+            <StaticMenuItemStyle BackColor="Black" ForeColor="White" HorizontalPadding="75px" VerticalPadding="10px" CssClass="menu" />
         </asp:Menu>
 
     </div>
