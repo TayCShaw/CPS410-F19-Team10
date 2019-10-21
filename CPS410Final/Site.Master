@@ -17,13 +17,31 @@
             height: 138px;
             margin-top: 0px;
         }
+        .static{
+            width: 20%;
+        }
 
         .menu{
             width: 100% !important;
             text-align: center;
-            font-size: 12px;
-            background-color: black;
+            background-color:black;
             
+        }
+        .menu1{
+            width: 100% !important;
+            text-align:center;
+            background-color:aqua;
+        }
+
+        .nav a{
+            float: left;
+            color: white;
+            width:20%;
+            background-color: black;
+            text-align: center;
+            padding: 14px 0px;
+            text-decoration: none;
+            font-size: 17px;
         }
         
     </style>
@@ -32,23 +50,20 @@
     <form id="form1" runat="server">
         <div>
            <p>
-        <img alt="" class="auto-style2" src="images/original-3201215-2.jpg" /><img alt="" class="auto-style3" src="images/cooltext339069065291136.png" /></p>
+        <img alt="" class="auto-style2" src="images/original-3201215-2.jpg" /><img alt="" class="auto-style3" src="images/cooltext339069065291136.png" />
+           </p>
+        
+        <div class="nav">
+            <a href="Home.aspx">Home</a>
+            <a href="DBSubject.aspx">Discussion Board</a>
+             <a href="Tutor.aspx">Find Tutor</a>
+            <a href="Account.aspx">Account</a>
+            <a href="Login.aspx">Login/ Register</a>
+        </div>
 
-    <div class="menu">
+           
 
-        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" OnMenuItemClick="Menu1_MenuItemClick" CssClass="menu">
-            <Items>
-                <asp:MenuItem Text="HOME" Value="HOME" NavigateUrl ="~/Home.aspx"></asp:MenuItem>
-                <asp:MenuItem Text="DISCUSSION BOARD" Value="DISCUSSION BOARD" NavigateUrl="~/DBSubject.aspx"></asp:MenuItem>
-                <asp:MenuItem Text="FIND TUTOR" Value="FIND TUTOR" NavigateUrl ="~/Tutor.aspx"></asp:MenuItem>
-                <asp:MenuItem Text="ACCOUNT" Value="ACCOUNT" NavigateUrl="~/Account.aspx"></asp:MenuItem>
-                <asp:MenuItem Text="LOGIN/REGISTER" Value="LOGIN/REGISTER" NavigateUrl="~/Login.aspx"></asp:MenuItem>
-            </Items>
-            <StaticMenuItemStyle BackColor="Black" ForeColor="White" HorizontalPadding="75px" VerticalPadding="10px" CssClass="menu" Width="20%" />
-            <StaticMenuStyle Width="100%" />
-        </asp:Menu>
-
-    </div>
+ 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 
             </asp:ContentPlaceHolder>
