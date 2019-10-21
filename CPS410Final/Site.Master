@@ -7,11 +7,48 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style2 {
+            width: 20%;
+            height: 144px;
+        }
+        .auto-style3 {
+            width: 80%;
+            height: 138px;
+            margin-top: 0px;
+        }
+
+        .menu{
+            width: 100%;
+            margin: 0 auto 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
+           <p>
+        <img alt="" class="auto-style2" src="images/original-3201215-2.jpg" /><img alt="" class="auto-style3" src="images/cooltext339069065291136.png" /></p>
+
+    <div class="menu">
+
+        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" OnMenuItemClick="Menu1_MenuItemClick">
+            <Items>
+                <asp:MenuItem Text="HOME" Value="HOME" NavigateUrl ="~/Home.aspx"></asp:MenuItem>
+                <asp:MenuItem Text="DISCUSSION BOARD" Value="DISCUSSION BOARD" NavigateUrl="~/DBSubject.aspx"></asp:MenuItem>
+                <asp:MenuItem Text="FIND TUTOR" Value="FIND TUTOR" NavigateUrl ="~/Tutor.aspx"></asp:MenuItem>
+                <asp:MenuItem Text="ACCOUNT" Value="ACCOUNT" NavigateUrl="~/Account.aspx"></asp:MenuItem>
+                <asp:MenuItem Text="LOGIN/REGISTER" Value="LOGIN/REGISTER" NavigateUrl="~/Login.aspx"></asp:MenuItem>
+            </Items>
+            <StaticMenuItemStyle BackColor="Black" ForeColor="White" HorizontalPadding="75px" VerticalPadding="10px" />
+        </asp:Menu>
+
+    </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                
             </asp:ContentPlaceHolder>
         </div>
     </form>
