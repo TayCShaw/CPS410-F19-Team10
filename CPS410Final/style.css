@@ -62,4 +62,5 @@
 
     .form .register-form {
         background-color: black;
+        display: none;
     }
