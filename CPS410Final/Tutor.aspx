@@ -21,9 +21,15 @@
             </div>
         <div class="inputFields">
         <form class="form">
+            <label>
             <input type="text" placeholder="School(Optional)" />
+            </label>
+            <label>
             <input type="text" placeholder="Degree" />
+            </label>
+            <label>
             <input type="text" placeholder="Communication Method Preference" />
+             </label>
         </form>
         </div>
 
