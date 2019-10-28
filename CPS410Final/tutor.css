@@ -70,11 +70,11 @@
 
 .inputFields {
     position: relative;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 15%;
+    margin-right: 15%;
     margin-top: 45px;
     text-align: center;
-    padding: 15px;
+    
 }
 .form {
     position: relative;
@@ -87,6 +87,7 @@
 }
     .form input {
         font-family: "Times New Roman", sans-serif;
+        position: center;
         outline: 1px;
         background: #f2f2f2;
         width: 100%;
@@ -100,10 +101,21 @@
 label, input {
     display: block;
     height: 35px;
+    width: 100%;
 }
 
 label {
     margin-bottom: 20px;
-    
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+nav ul li {
+    position: relative;
+}
+
+nav ul ul {
+    position: absolute;
+    width: 100%;
 }
 
