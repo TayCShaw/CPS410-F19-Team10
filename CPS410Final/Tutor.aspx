@@ -2,4 +2,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="tutor.css" />
+    <h1 class="title">Tutor Search</h1>
+    <div class="tutorsearch">
+        <div class="dropdown">
+
+        
+        <button class="dropbtn">Subject
+        </button>
+        
+            <div class="dropdown-content">
+                <a href ="#">Math</a>
+                <a href ="#">Chemistry</a>
+                <a href ="#">Physics</a>
+                <a href ="#">Computer Science</a>
+                <a href ="#">English</a>
+            </div>
+            </div>
+        <div class="inputFields">
+        <form class="form">
+            <input type="text" placeholder="School(Optional)" />
+            <input type="text" placeholder="Degree" />
+            <input type="text" placeholder="Communication Method Preference" />
+        </form>
+        </div>
+
+
+    </div>
 </asp:Content>

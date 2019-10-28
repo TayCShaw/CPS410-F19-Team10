@@ -85,6 +85,7 @@
     <Content Include="DBThread.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="home.css" />
     <Content Include="images\cooltext339069065291136.png" />
     <Content Include="images\original-3201215-2.jpg" />
     <Content Include="Login.aspx" />
@@ -128,6 +129,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="style.css" />
     <Content Include="TODO.txt" />
+    <Content Include="tutor.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
