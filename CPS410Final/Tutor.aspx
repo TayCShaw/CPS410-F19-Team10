@@ -20,22 +20,10 @@
             <label>
             <input type="text" placeholder="Communication Method Preference" />
              </label>
+            <button>Find Tutor<a onclick="buttonClicked()"></button>
         </form>
         </div>
-        <div class="dropdown">
-
         
-        <button class="dropbtn">Subject
-        </button>
-        
-            <div class="dropdown-content">
-                <a href ="#">Math</a>
-                <a href ="#">Chemistry</a>
-                <a href ="#">Physics</a>
-                <a href ="#">Computer Science</a>
-                <a href ="#">English</a>
-            </div>
-            </div>
 
 
     </div>
