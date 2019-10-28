@@ -5,6 +5,23 @@
     <link rel="stylesheet" href="tutor.css" />
     <h1 class="title">Tutor Search</h1>
     <div class="tutorsearch">
+      
+        <div class="inputFields">
+        <form class="form">
+            <label>
+            <input type="text" placeholder="Subject" />
+            </label>
+            <label>
+            <input type="text" placeholder="School(Optional)" />
+            </label>
+            <label>
+            <input type="text" placeholder="Degree" />
+            </label>
+            <label>
+            <input type="text" placeholder="Communication Method Preference" />
+             </label>
+        </form>
+        </div>
         <div class="dropdown">
 
         
@@ -19,19 +36,6 @@
                 <a href ="#">English</a>
             </div>
             </div>
-        <div class="inputFields">
-        <form class="form">
-            <label>
-            <input type="text" placeholder="School(Optional)" />
-            </label>
-            <label>
-            <input type="text" placeholder="Degree" />
-            </label>
-            <label>
-            <input type="text" placeholder="Communication Method Preference" />
-             </label>
-        </form>
-        </div>
 
 
     </div>

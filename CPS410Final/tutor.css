@@ -17,6 +17,7 @@
 
 .dropdown {
     text-align: center;
+    overflow: visible;
 }
 .dropdown .dropbtn {
     font-size: 16px;
@@ -24,14 +25,16 @@
     outline: none;
     color: white;
     padding: 14px 16px;
-    background-color: inherit;
+    background-color: deepskyblue;
     font-family: inherit;
-    margin: 0;
+   
+    margin-top: 10%;
     text-align: center;
 }
 
 .dropbtn{
     text-align: center;
+    width: 70%;
     position: center;
     margin: 0 auto;
     display: inline-block;
@@ -42,7 +45,7 @@
     display: none;
     margin-right: 20%;
     margin-left: 20%;
-    position: relative;
+    position: absolute;
     background-color: gray;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -108,14 +111,10 @@ label {
     margin-bottom: 20px;
     margin-left: 10%;
     margin-right: 10%;
+    margin-top: 10%;
     width: 80%;
 }
 nav ul li {
     position: relative;
-}
-
-nav ul ul {
-    position: absolute;
-    width: 100%;
 }
 
