@@ -94,19 +94,19 @@ label {
     margin-top: 10%;
     width: 80%;
 }
-.form button:hover, .form button:active {
+.fTutor:hover, .fTutor:active {
     background: #43A047;
 }
 
-.form button {
+.fTutor {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0px;
-    background: deepskyblue;
-    width: 100%;
+    background: deepskyblue !important;
+    width: 100% !important;
     border: 0px;
     padding: 15px;
-    color: white;
+    color: white !important;
     font-size: 14px;
     cursor: pointer;
     margin-top: 30px;

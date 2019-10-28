@@ -20,7 +20,7 @@
             <label>
             <input type="text" placeholder="Communication Method Preference" />
              </label>
-            <button>Find Tutor<a onclick="buttonClicked()"></button>
+            <button class="fTutor">Find Tutor<a onclick="buttonClicked()"></button>
         </form>
         </div>
         
