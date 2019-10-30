@@ -15,10 +15,10 @@
                 <div class="errors">
                     <p class="errorMSG">this is where it is. this is whewew all the errors will be desplayed</p>
                 </div>
-                <input type="text" placeholder="name" />
-                <input type="text" placeholder="password" />
-                <input type="text" placeholder="email" />
-                <button>Create <a onclick="buttonClicked()"></a></button>
+                <asp:TextBox ID="txtboxUsername" placeholder="Username" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtboxPassword" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtboxEmail" placeholder="Email" runat="server" TextMode="Email"></asp:TextBox>
+                <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Register" BackColor="#009933" Font-Size="X-Large" ForeColor="White" />
                 <p class="message">Already Registered? <a href="Login.aspx">Login</a></p>
             </form>
         </div>
