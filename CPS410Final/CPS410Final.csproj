@@ -88,6 +88,7 @@
     <Content Include="DBThread.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="home.css" />
     <Content Include="images\cooltext339069065291136.png" />
     <Content Include="images\original-3201215-2.jpg" />
     <Content Include="Login.aspx" />
@@ -116,6 +117,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Tutor.aspx" />
     <Content Include="Account.aspx" />
+    <Content Include="Ed.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -131,6 +133,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="style.css" />
     <Content Include="TODO.txt" />
+    <Content Include="tutor.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -205,6 +208,13 @@
     </Compile>
     <Compile Include="Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ed.aspx.cs">
+      <DependentUpon>Ed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ed.aspx.designer.cs">
+      <DependentUpon>Ed.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

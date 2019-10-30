@@ -7,13 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace CPS410Final
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class WebForm3 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-        protected void buttonClicked(object sender, MenuEventArgs e)
         {
 
         }

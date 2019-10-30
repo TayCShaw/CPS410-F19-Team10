@@ -17,5 +17,10 @@ namespace CPS410Final
         {
 
         }
+
+        protected void Menu1_MenuItemClick1(object sender, MenuEventArgs e)
+        {
+
+        }
     }
 }

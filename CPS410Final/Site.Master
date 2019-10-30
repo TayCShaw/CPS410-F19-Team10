@@ -8,6 +8,9 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
+        body{
+            background-color: gray;
+        }
         .auto-style2 {
             width: 20%;
             height: 144px;
@@ -42,7 +45,10 @@
             padding: 14px 0px;
             text-decoration: none;
             font-size: 17px;
+            
         }
+
+
         
     </style>
 </head>

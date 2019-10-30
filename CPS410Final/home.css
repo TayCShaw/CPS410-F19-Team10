@@ -1,0 +1,17 @@
+﻿body {
+    background-color: gray;
+}
+.everything{
+    background-color: gray;
+}
+.title{
+    text-align: center;
+    color: deepskyblue;
+}
+
+.about{
+    padding-left: 10%;
+    padding-right: 10%;
+    color: white;
+    font-size: 45px;
+}

@@ -4,6 +4,10 @@
     height: 100vh;
 }
 
+.errors {
+    color: red;
+}
+
 .login-page {
     width: 360px;
     padding: 10% 0 0;
@@ -64,3 +68,7 @@
         background-color: black;
         display: none;
     }
+
+accounttable{
+    width: 75%
+}
