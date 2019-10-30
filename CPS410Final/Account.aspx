@@ -4,9 +4,15 @@
         .auto-style4 {
             width: 247px;
         }
+
+        .all{
+            position: center;
+            align-content: center;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="all">
     <table style="width:100%;">
         <tr>
             <td class="auto-style4">School Year</td>
@@ -61,4 +67,5 @@
             <td>&nbsp;</td>
         </tr>
     </table>
+        </div>
 </asp:Content>
