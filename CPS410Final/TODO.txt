@@ -1,6 +1,6 @@
 ﻿Security.cs Class
 -----------------
-1) Create a way to generate a salt, append that to the user's password, and hash it.
+DONE -- 1) Create a way to generate a salt, append that to the user's password, and hash it.
 1a) Can that same method be used to authenticate when logging in? If not, create another method
 2) Handle some sort of password requirements (length, character requirements, etc.)
 3) Handle changing passwords, forgotten passwords, forgotten usernames, etc.
