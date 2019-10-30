@@ -32,3 +32,9 @@ DBThread.aspx
 **Refer to iFinal**
 1) Display the posts in order based on time
 2) 
+
+
+Account.cs
+------------
+1) Allow for changing of outward facing username (have to implement database actions that changes the username everywhere)
+2) Allow for differentiation of high school students and college students. Probably have to have that upon registration initially.
