@@ -12,18 +12,24 @@ namespace CPS410Final
     {
         private static string connectionString = WebConfigurationManager.ConnectionStrings["UserConnectionString"].ConnectionString;
 
+        public static String genSalt()
+        {
+
+            string salt = "";
+            // 48-122
+            Random r = new Random();
+            for (int i = 0; i < 32; i++)
+            {
+                salt = char.ToString((char)r.Next(48, 122));
+            }
+            return salt;
+        }
+
         //https://stackoverflow.com/questions/50399685/c-sharp-login-system-need-help-hashing-password-before-inserting-them-to-the-da
         public static string Sha256(string value)
         {
             if (!string.IsNullOrEmpty(value))
             {
-                /*
-                 * Generate, configure/add the salt HERE
-                 */
-
-
-
-
                 // Making the SHA-256 Version
                 using (var sha = SHA256.Create())
                 {
