@@ -15,8 +15,8 @@
                  <div class="errors">
                     <p class="errorMSG">this is where it is. this is whewew all the errors will be desplayed</p>
                 </div>
-                <input type="text" placeholder="username" />
-                <input type="text" placeholder="password" />
+                 <input id="txtUsername" type="text" />
+                 <input id="txtPassword" type="text" />
                 <button>Login <a onclick="buttonClicked()"></button>
                 <p class="message">Not Registered? <a href="Registration.aspx">Register</a></p>
             </form>

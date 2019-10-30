@@ -9,6 +9,9 @@
             position: center;
             align-content: center;
         }
+        #Submit1 {
+            width: 188px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -57,7 +60,7 @@
         <tr>
             <td class="auto-style4">&nbsp;</td>
             <td>
-                &nbsp;</td>
+                <input id="Submit1" type="submit" value="Edit Profile" /></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
