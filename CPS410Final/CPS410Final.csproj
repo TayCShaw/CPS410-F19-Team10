@@ -117,7 +117,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Tutor.aspx" />
     <Content Include="Account.aspx" />
-    <Content Include="WebForm3.aspx" />
+    <Content Include="Ed.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -209,12 +209,12 @@
     <Compile Include="Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm3.aspx.cs">
-      <DependentUpon>WebForm3.aspx</DependentUpon>
+    <Compile Include="Ed.aspx.cs">
+      <DependentUpon>Ed.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm3.aspx.designer.cs">
-      <DependentUpon>WebForm3.aspx</DependentUpon>
+    <Compile Include="Ed.aspx.designer.cs">
+      <DependentUpon>Ed.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
