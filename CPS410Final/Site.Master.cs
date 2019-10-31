@@ -13,24 +13,54 @@ namespace CPS410Final
         {
             
             if(Session["UserID"] != null){
-                lblLogin.Text = "Logout";
+                Login.Text = "Logout";
             }
             else
             {
-                lblLogin.Text = "Login / Register";
+              Login.Text = "Login / Register";
             }
         }
-        protected void btnClick(object sender, MenuEventArgs e)
+
+
+        protected void Home_Click(object sender, EventArgs e)
         {
-            if (!lblLogin.Text.Equals("Logout"))
-            {
-                Session["UserID"] = null;
-                Response.Redirect("tutor.aspx");
-            }
-            else
+            Response.Redirect("Home.aspx");
+        }
+
+        protected void account_Click(object sender, EventArgs e)
+        {
+            if (Session["UserID"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
+            else
+            {
+                Response.Redirect("Account.aspx");
+            }
+        }
+
+        protected void DiscussionBoard_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Subject.aspx");
+        }
+
+        protected void FindTutor_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Tutor.aspx");
+        }
+
+        protected void Login_Click(object sender, EventArgs e)
+        {
+            if (Session["UserID"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Session["UserID"] = null;
+                Response.Redirect(Request.RawUrl);
+            }
+           
         }
     }
 }
