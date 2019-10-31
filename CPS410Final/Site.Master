@@ -60,11 +60,20 @@
            </p>
         
         <div class="nav">
-            <a href="Home.aspx">Home</a>
-            <a href="DBSubject.aspx">Discussion Board</a>
-             <a href="Tutor.aspx">Find Tutor</a>
-            <a href="Account.aspx">Account</a>
-            <a href="Login.aspx">Login/ Register</a>
+            <a href="Home.aspx">
+                <asp:Label ID="lblHome" runat="server" Text="Home"></asp:Label></a>
+
+            <a href="Account.aspx">
+                <asp:Label ID="lblAccount" runat="server" Text="Account"></asp:Label></a>
+
+             <a href="DBSubject.aspx">
+                 <asp:Label ID="lblDiscussionBoard" runat="server" Text="Discussion Board"></asp:Label></a>
+
+            <a href="Tutor.aspx">
+                <asp:Label ID="lblFindTutor" runat="server" Text="Find Tutor"></asp:Label></a>
+
+            <a href="Login.aspx">
+                <asp:Label ID="lblLogin" runat="server" Text="Login / Register"></asp:Label></a>
         </div>
 
            
