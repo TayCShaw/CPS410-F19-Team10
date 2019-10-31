@@ -75,9 +75,9 @@
     
    <div class="vertical-menu">
   <a href="Account.aspx">Account Overview</a>
-  <a href="ChangeUsername.aspx"class="active">Change Username</a>
+  <a href="ChangeUsername.aspx">Change Username</a>
   <a href="ChangePassword.aspx">Change Password</a>
-  <a href="#">Edit Information</a>
+  <a href="EditAccount.aspx" class="active">Edit Information</a>
 </div>
 
     <div class="content">
