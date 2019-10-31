@@ -84,8 +84,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DBSubject.aspx" />
-    <Content Include="DBThread.aspx" />
+    <Content Include="Subject.aspx" />
+    <Content Include="Thread.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="home.css" />
@@ -115,6 +115,7 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Topic.aspx" />
     <Content Include="Tutor.aspx" />
     <Content Include="Account.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -148,19 +149,19 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="Security.cs" />
-    <Compile Include="DBSubject.aspx.cs">
-      <DependentUpon>DBSubject.aspx</DependentUpon>
+    <Compile Include="Subject.aspx.cs">
+      <DependentUpon>Subject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DBSubject.aspx.designer.cs">
-      <DependentUpon>DBSubject.aspx</DependentUpon>
+    <Compile Include="Subject.aspx.designer.cs">
+      <DependentUpon>Subject.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DBThread.aspx.cs">
-      <DependentUpon>DBThread.aspx</DependentUpon>
+    <Compile Include="Thread.aspx.cs">
+      <DependentUpon>Thread.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DBThread.aspx.designer.cs">
-      <DependentUpon>DBThread.aspx</DependentUpon>
+    <Compile Include="Thread.aspx.designer.cs">
+      <DependentUpon>Thread.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,6 +194,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Topic.aspx.cs">
+      <DependentUpon>Topic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Topic.aspx.designer.cs">
+      <DependentUpon>Topic.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tutor.aspx.cs">
       <DependentUpon>Tutor.aspx</DependentUpon>

@@ -36,14 +36,15 @@ namespace CPS410Final
             reader = search.ExecuteReader();
             reader.Read();
 
-            if (!reader.HasRows)
+            if (reader.HasRows)
             {
-                // Username doesn't exist
-                return false;
+                
+                return true;
             }
             else
             {
-                return true;
+                // Username doesn't exist
+                return false;
             }
 
 
@@ -118,7 +119,7 @@ namespace CPS410Final
 
                 if (!reader.HasRows)
                 { // No user found
-                    return null;
+                    return "";
                 }
                 else
                 {
@@ -131,14 +132,14 @@ namespace CPS410Final
                     }
                     else
                     { // Incorrect password
-                       return null;
+                       return "";
                     }
                 }
             
             }
             else
             { // Not registered
-                return null;
+                return "";
             }
 
 

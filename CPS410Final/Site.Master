@@ -59,15 +59,13 @@
         <img alt="" class="auto-style2" src="images/original-3201215-2.jpg" /><img alt="" class="auto-style3" src="images/cooltext339069065291136.png" />
            </p>
         
-        <div class="nav">
+       <div class="nav">
             <a href="Home.aspx">Home</a>
             <a href="DBSubject.aspx">Discussion Board</a>
              <a href="Tutor.aspx">Find Tutor</a>
             <a href="Account.aspx">Account</a>
             <a href="Login.aspx">Login/ Register</a>
-        </div>
-
-           
+        </div>           
 
  
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
