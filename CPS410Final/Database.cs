@@ -36,14 +36,15 @@ namespace CPS410Final
             reader = search.ExecuteReader();
             reader.Read();
 
-            if (!reader.HasRows)
+            if (reader.HasRows)
             {
-                // Username doesn't exist
-                return false;
+                
+                return true;
             }
             else
             {
-                return true;
+                // Username doesn't exist
+                return false;
             }
 
 
