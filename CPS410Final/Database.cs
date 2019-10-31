@@ -61,7 +61,7 @@ namespace CPS410Final
             else
             {
                 // Username does not already exist
-                SqlCommand insertUser = new SqlCommand("INSERT INTO Users (UserID, Username, UserPassword, UserSalt, UserEmail) values (@userid, @username, @userpassword, @usersalt, @email)", connection);
+                SqlCommand insertUser = new SqlCommand("INSERT INTO Users (UserID, Username, UserPassword, UserSalt, UserEmail, TimeCreated) values (@userid, @username, @userpassword, @usersalt, @email, @time)", connection);
                 SqlCommand count = new SqlCommand("Select max(UserID) from Users", connection);
                 String userSalt;
                 // Should we have them confirm their password?
@@ -83,9 +83,10 @@ namespace CPS410Final
                 }
 
                 // Generate a salt for the new user and generate the hashed/salted password
-                Security sclass = new Security();
                 userSalt = Security.genSalt();
                 String hashedPass = Security.Sha256((password + userSalt));
+
+                
 
                 // Assign parameters to SQL INSERT command
                 insertUser.Parameters.AddWithValue("@userid", newuserID);
@@ -93,6 +94,7 @@ namespace CPS410Final
                 insertUser.Parameters.AddWithValue("@userpassword", hashedPass);
                 insertUser.Parameters.AddWithValue("@usersalt", userSalt);
                 insertUser.Parameters.AddWithValue("@email", email);
+                insertUser.Parameters.AddWithValue("@time", DateTime.Now);
 
                 // Adds the user to the database. (OPTIONAL: Returns an int signifying how many rows were affected. Should only be 1?)
                 insertUser.ExecuteNonQuery();

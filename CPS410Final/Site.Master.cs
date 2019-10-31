@@ -11,6 +11,18 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
+       /*     if (!Session["UserID"].Equals(""))
+            { // User is logged in, change login/register to logout
+
+                Console.WriteLine("logged the fuck in bitch");
+            }
+            else
+            {
+                Console.WriteLine("log in bitch");
+            }
+            */
 
         }
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)

@@ -13,7 +13,6 @@ namespace CPS410Final
 
         public static String genSalt()
         {
-
             StringBuilder salt = new StringBuilder();
             // 48-122
             Random r = new Random();

@@ -36,6 +36,10 @@
             text-align: center;
         }
 
+        .bio {
+            height: 60px;
+        }
+
         
 
 .vertical-menu a {
