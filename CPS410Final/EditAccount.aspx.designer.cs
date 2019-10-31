@@ -11,7 +11,7 @@ namespace CPS410Final
 {
 
 
-    public partial class WebForm3
+    public partial class EditAccount
     {
     }
 }

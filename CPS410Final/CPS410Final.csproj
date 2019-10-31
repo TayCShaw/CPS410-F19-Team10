@@ -78,6 +78,7 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="ChangePassword.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -86,6 +87,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DBSubject.aspx" />
     <Content Include="DBThread.aspx" />
+    <Content Include="EditAccount.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="home.css" />
@@ -117,6 +119,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Tutor.aspx" />
     <Content Include="Account.aspx" />
+    <Content Include="ChangeUsername.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -146,7 +149,21 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="EditAccount.aspx.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditAccount.aspx.designer.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Security.cs" />
     <Compile Include="DBSubject.aspx.cs">
       <DependentUpon>DBSubject.aspx</DependentUpon>
@@ -207,6 +224,13 @@
     </Compile>
     <Compile Include="Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeUsername.aspx.cs">
+      <DependentUpon>ChangeUsername.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeUsername.aspx.designer.cs">
+      <DependentUpon>ChangeUsername.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
