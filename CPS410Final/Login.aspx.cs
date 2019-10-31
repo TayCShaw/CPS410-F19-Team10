@@ -11,7 +11,8 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtboxUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
+            txtboxPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
