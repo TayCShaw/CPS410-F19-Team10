@@ -16,12 +16,19 @@ namespace CPS410Final
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            // TRUE if user was added, FALSE otherwise
-            bool userAdded = Database.addNewUser(txtboxEmail.Text, txtboxUsername.Text, txtboxPassword.Text);
-
-            if (userAdded)
+            if (txtboxPassword.Text.Equals(TextBoxConfirmPass.Text))
             {
-                Response.Redirect("Home.aspx");
+                // TRUE if user was added, FALSE otherwise
+                bool userAdded = Database.addNewUser(txtboxEmail.Text, txtboxUsername.Text, txtboxPassword.Text);
+
+                if (userAdded)
+                {
+                    Response.Redirect("Home.aspx");
+                }
+            }
+            else
+            {
+
             }
 
         }
