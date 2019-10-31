@@ -83,7 +83,6 @@ namespace CPS410Final
                 }
 
                 // Generate a salt for the new user and generate the hashed/salted password
-                Security sclass = new Security();
                 userSalt = Security.genSalt();
                 String hashedPass = Security.Sha256((password + userSalt));
 
