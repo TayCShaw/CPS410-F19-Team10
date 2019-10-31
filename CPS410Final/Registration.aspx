@@ -13,7 +13,7 @@
         <div class="form">
             <form class="register-form">
                 <div class="errors">
-                    <asp:Label CssClass="errors" runat="server" Text="Label">this is the errors spot</asp:Label>
+                    <asp:Label CssClass="errors" ID="lblError" runat="server" Text=""></asp:Label>
                 </div>
                 
                 <asp:TextBox ID="txtboxUsername" placeholder="Username" runat="server"></asp:TextBox>

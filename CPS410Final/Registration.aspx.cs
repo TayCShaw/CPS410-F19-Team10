@@ -16,19 +16,34 @@ namespace CPS410Final
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            if (txtboxPassword.Text.Equals(TextBoxConfirmPass.Text))
+            if (txtboxPassword.Text.Equals(TextBoxConfirmPass.Text) && !txtboxEmail.Text.Equals("") && !txtboxUsername.Text.Equals(""))
             {
                 // TRUE if user was added, FALSE otherwise
                 bool userAdded = Database.addNewUser(txtboxEmail.Text, txtboxUsername.Text, txtboxPassword.Text);
 
                 if (userAdded)
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("Account.aspx");
+                }
+                else
+                {
+                    lblError.Text = "User Name is Unabailable";
                 }
             }
             else
             {
-
+                if (txtboxEmail.Text.Equals(""))
+                {
+                    lblError.Text = "please enter a email";
+                }
+                else if(txtboxUsername.Text.Equals(""))
+                {
+                    lblError.Text = "Please enter a User Name";
+                }
+                else
+                {
+                    lblError.Text = "Passwords do not match";
+                }
             }
 
         }
