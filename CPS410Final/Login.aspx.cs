@@ -13,9 +13,16 @@ namespace CPS410Final
         {
 
         }
-        protected void buttonClicked(object sender, MenuEventArgs e)
-        {
 
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            String validUser = Database.validCredentials(txtboxUsername.Text, txtboxPassword.Text);
+
+            if (!validUser.Equals(null))
+            { // User was found, information correctly entered, returning UserID
+                Session["UserID"] = validUser;
+                Response.Redirect("Home.aspx");
+            }
         }
     }
 }

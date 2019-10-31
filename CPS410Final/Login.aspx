@@ -15,9 +15,9 @@
                  <div class="errors">
                     <p class="errorMSG">this is where it is. this is whewew all the errors will be desplayed</p>
                 </div>
-                 <input id="txtUsername" type="text" />
-                 <input id="txtPassword" type="text" />
-                <button>Login <a onclick="buttonClicked()"></button>
+                 <asp:TextBox ID="txtboxUsername" placeholder="Username" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtboxPassword" placeholder="Password" runat="server"></asp:TextBox>
+                <asp:Button ID="btnLogin" runat="server" Text="Login" BackColor="#009900" Font-Size="X-Large" OnClick="btnLogin_Click" />
                 <p class="message">Not Registered? <a href="Registration.aspx">Register</a></p>
             </form>
         </div>
