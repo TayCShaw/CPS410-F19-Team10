@@ -5,7 +5,8 @@
 }
 
 .errors {
-    color: red;
+    color: green;
+    margin: 0 0 15px;
 }
 
 .login-page {

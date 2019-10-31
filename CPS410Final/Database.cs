@@ -118,7 +118,7 @@ namespace CPS410Final
 
                 if (!reader.HasRows)
                 { // No user found
-                    return null;
+                    return "";
                 }
                 else
                 {
@@ -131,14 +131,14 @@ namespace CPS410Final
                     }
                     else
                     { // Incorrect password
-                       return null;
+                       return "";
                     }
                 }
             
             }
             else
             { // Not registered
-                return null;
+                return "";
             }
 
 

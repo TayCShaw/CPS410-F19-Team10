@@ -13,7 +13,7 @@
         <div class="form">
             <form class="login-form">
                  <div class="errors">
-                    <p class="errorMSG">this is where it is. this is whewew all the errors will be desplayed</p>
+                     <asp:Label CssClass="errors" ID="lblError" runat="server" Text=""></asp:Label>
                 </div>
                  <asp:TextBox ID="txtboxUsername" placeholder="Username" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtboxPassword" placeholder="Password" runat="server"></asp:TextBox>

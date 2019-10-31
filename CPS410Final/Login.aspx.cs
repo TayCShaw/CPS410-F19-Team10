@@ -18,10 +18,14 @@ namespace CPS410Final
         {
             String validUser = Database.validCredentials(txtboxUsername.Text, txtboxPassword.Text);
 
-            if (!validUser.Equals(null))
+            if (!validUser.Equals(""))
             { // User was found, information correctly entered, returning UserID
                 Session["UserID"] = validUser;
                 Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                lblError.Text = "Invalid user name or password";
             }
         }
     }
