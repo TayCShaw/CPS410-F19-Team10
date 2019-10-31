@@ -76,7 +76,7 @@
             <a href="Login.aspx">
                 <asp:Label ID="lblLogin" runat="server" Text="Login / Register"></asp:Label></a>
         </div>
-
+            <%--  %>
            
 =======
        <div class="nav">
