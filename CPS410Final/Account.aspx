@@ -13,6 +13,11 @@
             border-color: deepskyblue;
         }
 
+        p {
+            border-bottom: solid;
+            border-color: black;
+        }
+
         .menuu a{
             margin-bottom: 20px;
             position: center;
@@ -80,7 +85,7 @@
         <p>Account Type: (Student or Tutor)</p>
         <p>Major</p>
         <p>Expected Graduation Date</p>
-        <p>Biography and entire life story</p>
+        <p style="height: 90px;">Biography and entire life story</p>
 
     </div>
     

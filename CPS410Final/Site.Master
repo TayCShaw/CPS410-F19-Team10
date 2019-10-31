@@ -48,6 +48,8 @@
             
         }
 
+        
+
 
         
     </style>
@@ -64,7 +66,7 @@
             <a href="DBSubject.aspx">Discussion Board</a>
              <a href="Tutor.aspx">Find Tutor</a>
             <a href="Account.aspx">Account</a>
-            <a href="Login.aspx">Login/ Register</a>
+            <a href="Login.aspx" class="LoginOut">Login/Register</a>
         </div>
 
            
