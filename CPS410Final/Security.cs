@@ -14,14 +14,14 @@ namespace CPS410Final
         public static String genSalt()
         {
 
-            string salt = "";
+            StringBuilder salt = new StringBuilder();
             // 48-122
             Random r = new Random();
             for (int i = 0; i < 32; i++)
             {
-                salt = char.ToString((char)r.Next(48, 122));
+                salt.Append(char.ToString((char)r.Next(48, 122)));
             }
-            return salt;
+            return salt.ToString();
         }
 
         //https://stackoverflow.com/questions/50399685/c-sharp-login-system-need-help-hashing-password-before-inserting-them-to-the-da
