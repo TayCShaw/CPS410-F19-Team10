@@ -12,22 +12,25 @@ namespace CPS410Final
         protected void Page_Load(object sender, EventArgs e)
         {
             
-
-       /*     if (!Session["UserID"].Equals(""))
-            { // User is logged in, change login/register to logout
-
-                Console.WriteLine("logged the fuck in bitch");
+            if(Session["UserID"] != null){
+                lblLogin.Text = "Logout";
             }
             else
             {
-                Console.WriteLine("log in bitch");
+                lblLogin.Text = "Login / Register";
             }
-            */
-
         }
-        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+        protected void btnClick(object sender, MenuEventArgs e)
         {
-
+            if (!lblLogin.Text.Equals("Logout"))
+            {
+                Session["UserID"] = null;
+                Response.Redirect("tutor.aspx");
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
     }
 }

@@ -66,13 +66,13 @@
             <a href="Account.aspx">
                 <asp:Label ID="lblAccount" runat="server" Text="Account"></asp:Label></a>
 
-             <a href="DBSubject.aspx">
+             <a href="Subject.aspx">
                  <asp:Label ID="lblDiscussionBoard" runat="server" Text="Discussion Board"></asp:Label></a>
 
             <a href="Tutor.aspx">
                 <asp:Label ID="lblFindTutor" runat="server" Text="Find Tutor"></asp:Label></a>
 
-            <a href="Login.aspx">
+            <a onclick="btnClick" href="Login.aspx" >
                 <asp:Label ID="lblLogin" runat="server" Text="Login / Register"></asp:Label></a>
         </div>
 
