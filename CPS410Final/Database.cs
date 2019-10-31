@@ -102,40 +102,46 @@ namespace CPS410Final
 
         }
 
-        static void checkCredentials(String username, String password)
+        public static String validCredentials(String username, String password)
         {
- /*           openDB();
-            SqlConnection connect = new SqlConnection(connectionstring);
-            SqlCommand search = new SqlCommand("SELECT * FROM Users WHERE userName = @username", connect);
-
-            search.Parameters.AddWithValue("@username", username);
-            try
+            if (nameExists(username))
             {
-                connect.Open();
-                SqlDataReader reader = search.ExecuteReader();
+                SqlConnection connection = new SqlConnection(connectionstring);
+                SqlCommand grabInfo = new SqlCommand("SELECT * FROM Users WHERE Username = @username", connection);
+                SqlDataReader reader;
+
+                grabInfo.Parameters.AddWithValue("@username", username);
+
+                connection.Open();
+                reader = grabInfo.ExecuteReader();
                 reader.Read();
 
                 if (!reader.HasRows)
-                {
-                    
+                { // No user found
+                    return null;
                 }
                 else
                 {
-                    pass = Security.Sha256(password);
-                }
-            }
-            catch (Exception er)
-            {
-                lblErrorMessages.Text = er.ToString();
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
+                    String userSalt = (String)reader["UserSalt"];
+                    String inputBased = Security.Sha256(password + userSalt);
 
-        search.ExecuteReader();
-        */
+                    if (inputBased.Equals(reader["UserPassword"]))
+                    { // Correct login information
+                        return reader["userID"].ToString();
+                    }
+                    else
+                    { // Incorrect password
+                       return null;
+                    }
+                }
+            
+            }
+            else
+            { // Not registered
+                return null;
+            }
+
+
         }
 
         /************** END DATABASE OPERATIONS **************/
@@ -154,6 +160,8 @@ namespace CPS410Final
             return builder;
 
         } */
+
+
     }
 }
  

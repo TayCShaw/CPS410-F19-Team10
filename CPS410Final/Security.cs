@@ -24,8 +24,6 @@ namespace CPS410Final
             return salt;
         }
 
-        
-
         //https://stackoverflow.com/questions/50399685/c-sharp-login-system-need-help-hashing-password-before-inserting-them-to-the-da
         public static string Sha256(String value)
         {

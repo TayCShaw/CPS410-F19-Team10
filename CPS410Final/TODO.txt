@@ -38,3 +38,13 @@ Account.cs
 ------------
 1) Allow for changing of outward facing username (have to implement database actions that changes the username everywhere)
 2) Allow for differentiation of high school students and college students. Probably have to have that upon registration initially.
+
+
+Database.cs/Login.aspx
+----------------------
+1) Set an error message when, upon login attempt, no user with that information is found
+
+General
+-------
+1) Store account status in session state object or cookie (I.E., "logged in/out", "role", etc.)
+2) Log out button
