@@ -1,17 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="CPS410Final.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ChangeUsername.aspx.cs" Inherits="CPS410Final.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         
-        #Menu1{
-            margin-left:10%;
-            width: 15%;
+        
+        form input{
+            width: 55%;
+            margin-bottom: 30px;
+            vertical-align: middle;
             
-            height: 230px;
-            font-size: 30px;
-            justify-content: center;
-            border-style: solid;
-            border-color: deepskyblue;
+
         }
+
 
         .menuu a{
             margin-bottom: 20px;
@@ -32,10 +31,12 @@
             margin-top: 30px;
             float: left;
             margin-left: 2%;
-            background-color: white;
+            align-content: center;
             width: 82%;
             text-align: center;
         }
+
+        
 
 .vertical-menu a {
   background-color: white;
@@ -61,7 +62,11 @@
             width: 1452px;
             height: 499px;
         }
-
+        .button {
+            width: 30%;
+            
+            margin-left: 34%;
+        }
 
 
     </style>
@@ -69,20 +74,31 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
    <div class="vertical-menu">
-  <a href="#" class="active">Account Overview</a>
-  <a href="ChangeUsername.aspx">Change Username</a>
-  <a href="ChangePassword">Change Password</a>
+  <a href="Account.aspx">Account Overview</a>
+  <a href="ChangeUsername.aspx"class="active">Change Username</a>
+  <a href="ChangePassword.aspx">Change Password</a>
   <a href="EditAccount.aspx">Edit Information</a>
 </div>
 
     <div class="content">
-        <p>Username: (username placeholder)</p>
-        <p>Account Type: (Student or Tutor)</p>
-        <p>Major</p>
-        <p>Expected Graduation Date</p>
-        <p>Biography and entire life story</p>
+        <form>
+            
+            <input type="text" placeholder="Current Username" />
+            <input type="text" placeholder="Current Password" />
+            <input type="text" placeholder="New Password" />
+            <input type="text" placeholder="Confirm New Password" />
 
+            <div class="button">
+
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit Changes" BackColor="DeepSkyBlue" />
+
+        </div>
+            
+
+        </form>
+        
     </div>
+    
     
         
 </asp:Content>
