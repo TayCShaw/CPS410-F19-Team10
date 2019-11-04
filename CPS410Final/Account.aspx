@@ -30,7 +30,7 @@
             width: 12%;
             float: left;
         }
-        .content{
+        .overview{
             margin-top: 30px;
             float: left;
             margin-left: 2%;
@@ -56,6 +56,26 @@
   color: white;
 }
 
+.Buttons {
+    background-color: lightgray;
+    color: black;
+    width: 100%;
+    height: 35px;
+    border: none;
+}
+
+.buttonActive{
+    background-color: deepskyblue;
+    color: black;
+    width: 100%;
+    height: 35px;
+    border: none;
+}
+
+.inactive {
+    display: none;
+}
+
 
 
         .auto-style4 {
@@ -71,19 +91,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
    <div class="vertical-menu">
-  <a href="#" class="active">Account Overview</a>
-  <a href="ChangeUsername.aspx">Change Username</a>
-  <a href="ChangePassword.aspx">Change Password</a>
-  <a href="EditAccount.aspx">Edit Information</a>
-</div>
+       <asp:Button ID="btnOverview" runat="server" Text="Account Overview" CssClass="buttonActive" OnClick="btnOverview_Click" />
+       <asp:Button ID="btnUsername" runat="server" Text="Change Username" CssClass="Buttons" OnClick="btnUsername_Click" />
+       <asp:Button ID="btnPassword" runat="server" Text="Change Password" CssClass="Buttons" OnClick="btnPassword_Click" />
+       <asp:Button ID="btnInfo" runat="server" Text="Edit Information" CssClass="Buttons" OnClick="btnInfo_Click" />
+       
+   </div>
 
-    <div class="content">
+    <div class="overview" id="overview" runat="server">
         <p>Username: (username placeholder)</p>
         <p>Account Type: (Student or Tutor)</p>
         <p>Major</p>
         <p>Expected Graduation Date</p>
         <p style="height: 90px;">Biography and entire life story</p>
 
+    </div>
+
+    <div class="username" id="username" runat="server">
+        <p>There is shit here</p>
+    </div>
+
+    <div class="password" id="password" runat="server">
+        <p>There is doodoo here</p>
+    </div>
+
+    <div class="info" id="info" runat="server">
+        <p>There is feces here</p>
     </div>
     
         
