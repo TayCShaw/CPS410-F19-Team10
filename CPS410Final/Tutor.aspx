@@ -9,22 +9,37 @@
         <div class="inputFields">
         <form class="form">
             <label>
-            <input type="text" placeholder="Subject" />
+            <asp:TextBox ID="txtboxSubject" placeholder="Subject" runat="server"></asp:TextBox>
             </label>
             <label>
-            <input type="text" placeholder="School(Optional)" />
+            <asp:TextBox ID="txtboxSchool" placeholder="School (Optional)" runat="server"></asp:TextBox>
             </label>
             <label>
-            <input type="text" placeholder="Degree" />
+            <asp:TextBox ID="txtboxDegree" placeholder="Degree" runat="server"></asp:TextBox>
             </label>
             <label>
-            <input type="text" placeholder="Communication Method Preference" />
+            <asp:TextBox ID="txtboxCommunication" placeholder="Communication Method" runat="server"></asp:TextBox>
              </label>
-            <button class="fTutor">Find Tutor<a onclick="buttonClicked()"></button>
+            
+                <asp:Button ID="btnTutor" runat="server" Text="Find Tutor" CssClass="fTutor" />
+            
         </form>
         </div>
         
 
 
     </div>
+
+    <script type="text/javascript">
+        function clickButton(e, btnTutor) {
+            var evt = e ? e : window.event;
+            var bt = document.getElementById(btnTutor);
+            if (bt) {
+                if (evt.keyCode == 13) {
+                    bt.click();
+                    return false;
+                }
+            }
+        }
+    </script>
 </asp:Content>

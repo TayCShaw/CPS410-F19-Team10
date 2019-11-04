@@ -13,10 +13,7 @@
             border-color: deepskyblue;
         }
 
-        p {
-            border-bottom: solid;
-            border-color: black;
-        }
+       
 
         .menuu a{
             margin-bottom: 20px;
@@ -76,7 +73,7 @@
    <div class="vertical-menu">
   <a href="#" class="active">Account Overview</a>
   <a href="ChangeUsername.aspx">Change Username</a>
-  <a href="ChangePassword">Change Password</a>
+  <a href="ChangePassword.aspx">Change Password</a>
   <a href="EditAccount.aspx">Edit Information</a>
 </div>
 
