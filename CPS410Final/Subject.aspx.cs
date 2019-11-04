@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,11 +12,36 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserID"] != null && Session["Role"].Equals("Administrator"))
+            {
+                btnAddSubject.Visible = true;
+                chkboxVisibility.Visible = true;
+                txtboxSubjectName.Visible = true;
+            }
+            else
+            {
+                btnAddSubject.Visible = false;
+                chkboxVisibility.Visible = false;
+                txtboxSubjectName.Visible = false;
+            }
         }
-        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+
+
+        protected void btnAddSubject_Click(object sender, EventArgs e)
         {
 
+
+            Boolean subjectAdded = Database.addNewSubject(Session["UserID"].ToString(), txtboxSubjectName.Text, chkboxVisibility.Checked);
+            if (subjectAdded)
+            {
+
+            }
+            else
+            {
+
+            }
+
+            
         }
     }
 }

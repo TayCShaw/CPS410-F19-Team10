@@ -22,10 +22,12 @@ namespace CPS410Final
             if (!validUser.Equals(""))
             { // User was found, information correctly entered, returning UserID
                 Session["UserID"] = validUser;
+                Session["Role"] = Database.grabRole(validUser);
                 Response.Redirect("Home.aspx");
             }
             else
             {
+                Session["UserID"] = null;
                 lblError.Text = "Invalid user name or password";
             }
         }

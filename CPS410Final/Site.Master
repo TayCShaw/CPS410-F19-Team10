@@ -70,6 +70,17 @@
            </p>
 
         <div class="nav">
+            <a href="Home.aspx">
+                <asp:Label ID="lblHome" runat="server" Text="Home"></asp:Label></a>
+
+            <a href="Account.aspx">
+                <asp:Label ID="lblAccount" runat="server" Text="Account"></asp:Label></a>
+
+             <a href="Subject.aspx">
+                 <asp:Label ID="lblDiscussionBoard" runat="server" Text="Discussion Board"></asp:Label></a>
+
+            <a href="Tutor.aspx">
+                <asp:Label ID="lblFindTutor" runat="server" Text="Find Tutor"></asp:Label></a>
 
             <asp:Button ID="Home" runat="server" Text="Home" CssClass="button" OnClick="Home_Click" />
             <asp:Button ID="account" runat="server" Text="Account" CssClass="button" OnClick="account_Click" />

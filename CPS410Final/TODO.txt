@@ -20,14 +20,15 @@ Login.aspx
 3) Button that leads to the registration page
 
 
-DBSubject.aspx
+Subject.aspx
 --------------
 **Refer to iFinal**
 1) Display a list of threads
-2)
+2) If a new subject is being created with a name as an already existing Subject, prompt user to confirm that they wish to create
+	a subject with the same name.
 
 
-DBThread.aspx
+Thread.aspx
 -------------
 **Refer to iFinal**
 1) Display the posts in order based on time
@@ -48,3 +49,10 @@ General
 -------
 1) Store account status in session state object or cookie (I.E., "logged in/out", "role", etc.)
 2) Log out button
+
+
+Admin Console
+-------------
+1) Assign users new roles
+2) Create new Subjects (all users can create posts, only admins can create subjects)
+3) Delete/Ban users, delete/rename Subjects
