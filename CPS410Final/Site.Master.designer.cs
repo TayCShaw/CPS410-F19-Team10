@@ -33,49 +33,49 @@ namespace CPS410Final
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblHome control.
+        /// Home control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHome;
+        protected global::System.Web.UI.WebControls.Button Home;
 
         /// <summary>
-        /// lblAccount control.
+        /// account control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAccount;
+        protected global::System.Web.UI.WebControls.Button account;
 
         /// <summary>
-        /// lblDiscussionBoard control.
+        /// DiscussionBoard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiscussionBoard;
+        protected global::System.Web.UI.WebControls.Button DiscussionBoard;
 
         /// <summary>
-        /// lblFindTutor control.
+        /// FindTutor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFindTutor;
+        protected global::System.Web.UI.WebControls.Button FindTutor;
 
         /// <summary>
-        /// lblLogin control.
+        /// Login control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLogin;
+        protected global::System.Web.UI.WebControls.Button Login;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

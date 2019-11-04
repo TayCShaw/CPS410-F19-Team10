@@ -48,6 +48,16 @@
             
         }
 
+        .button{
+            width: 20%;
+            background-color:black;
+            color: white;
+            padding: 0,0,0px;
+            height: 35px;
+            float: left;
+            border-width: 0px;
+        }
+
 
         
     </style>
@@ -72,8 +82,11 @@
             <a href="Tutor.aspx">
                 <asp:Label ID="lblFindTutor" runat="server" Text="Find Tutor"></asp:Label></a>
 
-            <a href="Login.aspx">
-                <asp:Label ID="lblLogin" runat="server" Text="Login / Register"></asp:Label></a>
+            <asp:Button ID="Home" runat="server" Text="Home" CssClass="button" OnClick="Home_Click" />
+            <asp:Button ID="account" runat="server" Text="Account" CssClass="button" OnClick="account_Click" />
+            <asp:Button ID="DiscussionBoard" runat="server" Text="Discussion Board"  CssClass="button" OnClick="DiscussionBoard_Click"/>
+            <asp:Button ID="FindTutor" runat="server" Text="Find Tutor"  CssClass="button" OnClick="FindTutor_Click"/>
+            <asp:Button ID="Login" runat="server" Text="Login / Register"  CssClass="button" OnClick="Login_Click"/>
         </div>
 
  

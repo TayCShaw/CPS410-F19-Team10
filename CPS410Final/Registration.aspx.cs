@@ -11,7 +11,10 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.TextBoxConfirmPass.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+            this.txtboxUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+            this.txtboxPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+            this.txtboxEmail.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)

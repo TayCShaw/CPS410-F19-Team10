@@ -23,6 +23,18 @@
         </div>
     </div>
 </body>
+    <script type="text/javascript">
+        function clickButton(e, btnLogin) {
+            var evt = e ? e : window.event;
+            var bt = document.getElementById(btnLogin);
+            if (bt) {
+                if (evt.keyCode == 13) {
+                    bt.click();
+                    return false;
+                }
+            }
+        }
+    </script>
 </asp:Content>
 
 
