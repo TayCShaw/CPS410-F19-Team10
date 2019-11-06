@@ -11,7 +11,10 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtboxSubject.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutor.ClientID + "')");
+            txtboxSchool.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutor.ClientID + "')");
+            txtboxCommunication.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutor.ClientID + "')");
+            txtboxDegree.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutor.ClientID + "')");
         }
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {

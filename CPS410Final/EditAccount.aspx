@@ -1,15 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ChangeUsername.aspx.cs" Inherits="CPS410Final.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        
-        
-        form input{
-            width: 55%;
-            margin-bottom: 30px;
-            vertical-align: middle;
-            
 
-        }
 
 
         .menuu a{
@@ -27,18 +19,9 @@
             width: 12%;
             float: left;
         }
-        .content{
-            margin-top: 30px;
-            float: left;
-            margin-left: 2%;
-            align-content: center;
-            width: 82%;
-            text-align: center;
-        }
 
-        .bio {
-            height: 60px;
-        }
+
+     
 
         
 
@@ -60,19 +43,6 @@
 }
 
 
-
-        .auto-style4 {
-            float: left;
-            width: 1452px;
-            height: 499px;
-        }
-        .button {
-            width: 30%;
-            
-            margin-left: 34%;
-        }
-
-
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -84,24 +54,7 @@
   <a href="EditAccount.aspx" class="active">Edit Information</a>
 </div>
 
-    <div class="content">
-        <form>
             
-            <input type="text" placeholder="Major" />
-            <input type="text" placeholder="Expected Graduation Date" />
-            <input class="bio" type="text" placeholder="Bio" />
-            <input type="text" placeholder="Confirm Password" />
-
-            <div class="button">
-
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit Changes" BackColor="DeepSkyBlue" />
-
-        </div>
-            
-
-        </form>
-        
-    </div>
     
     
         
