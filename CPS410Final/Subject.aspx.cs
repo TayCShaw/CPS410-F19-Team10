@@ -35,9 +35,13 @@ namespace CPS410Final
         protected void btnAddSubject_Click(object sender, EventArgs e)
         {
             Boolean subjectAdded = Database.addNewSubject(Session["UserID"].ToString(), txtboxSubjectName.Text, chkboxVisibility.Checked);
+            //Session["redirect"] = HttpContext.Current.Request.Url.AbsoluteUri;
+            //Response.Redirect("Redirect.aspx");
+            
             if (subjectAdded)
             {
                 // If visibility is T, reload the page and show it on the page
+                GridView1.DataBind();
             }
             else
             {

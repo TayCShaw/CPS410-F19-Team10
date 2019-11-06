@@ -33,7 +33,11 @@ namespace CPS410Final
                 txtboxTopicName.Visible = false;
             }
 
-
+            Response.Cache.SetExpires(DateTime.UtcNow.AddYears(-4));
+            Response.Cache.SetValidUntilExpires(false);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+            Response.Cache.SetNoStore();
         }
 
         protected void btnAddNewTopic_Click(object sender, EventArgs e)
@@ -41,7 +45,8 @@ namespace CPS410Final
             Boolean topicAdded = Database.addNewTopic(Session["UserID"].ToString(), Request.QueryString["SubjectID"], txtboxTopicName.Text, chkboxVisibility.Checked);
             if (topicAdded)
             {
-                // If visibility is T, reload the page and show it on the page
+                // If visibility is T, reload the page and show it on the page 
+                GridView1.DataBind();
             }
             else
             {
