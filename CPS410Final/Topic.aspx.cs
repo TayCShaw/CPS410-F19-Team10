@@ -42,8 +42,8 @@ namespace CPS410Final
 
         protected void btnAddNewTopic_Click(object sender, EventArgs e)
         {
-            Boolean topicAdded = Database.addNewTopic(Session["UserID"].ToString(), Request.QueryString["SubjectID"], txtboxTopicName.Text, chkboxVisibility.Checked);
-            if (topicAdded)
+//            Boolean topicAdded = Database.addNewTopic(Session["UserID"].ToString(), Request.QueryString["SubjectID"], txtboxTopicName.Text, chkboxVisibility.Checked);
+            if (false)
             {
                 // If visibility is T, reload the page and show it on the page 
                 GridView1.DataBind();
