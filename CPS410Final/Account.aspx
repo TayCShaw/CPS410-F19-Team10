@@ -39,6 +39,40 @@
             text-align: center;
         }
 
+        .username{
+            margin-top: 30px;
+            float: left;
+            margin-left: 2%;
+            background-color: white;
+            width: 82%;
+            text-align: center;
+            padding-bottom: 45px;
+        }
+
+        .password{
+            margin-top: 30px;
+            float: left;
+            margin-left: 2%;
+            background-color: white;
+            width: 82%;
+            text-align: center;
+            padding-bottom: 45px;
+        }
+
+        .info{
+            margin-top: 30px;
+            float: left;
+            margin-left: 2%;
+            background-color: white;
+            width: 82%;
+            text-align: center;
+            padding-bottom: 45px;
+        }
+
+        .about{
+            white-space: pre-wrap;
+        }
+
 .vertical-menu a {
   background-color: white;
   color: black; 
@@ -84,6 +118,36 @@
             height: 499px;
         }
 
+       /* .password {
+            margin-right: auto;
+            margin-left: auto;
+            width: 35%;
+            vertical-align: middle;
+
+        } */
+
+        h1 {
+            text-align: center;
+            color: deepskyblue;
+            position: center;
+        }
+
+        .buttonSubmit{
+            
+            background-color: deepskyblue;
+            color: black;
+            position: center;
+            height: 50px;
+        }
+        .buttonSubmit:hover{
+            color: white;
+            font-style: oblique;
+            border: none;
+           
+           
+        }
+        
+
 
 
     </style>
@@ -97,27 +161,48 @@
        <asp:Button ID="btnInfo" runat="server" Text="Edit Information" CssClass="Buttons" OnClick="btnInfo_Click" />
        
    </div>
-
+    <div class="content" id="content" runat="server">
     <div class="overview" id="overview" runat="server">
-        <p>Username: (username placeholder)</p>
-        <p>Account Type: (Student or Tutor)</p>
-        <p>Major</p>
-        <p>Expected Graduation Date</p>
-        <p style="height: 90px;">Biography and entire life story</p>
+        <h1>Account Overview</h1>
+        <p>
+         Account Type:  <asp:Label ID="Label1" runat="server" Text="Student/Tutor"></asp:Label></p>
+        <p>Major:    <asp:Label ID="Label2" runat="server" Text="Major"></asp:Label></p>
+        <p>Expected Graduation Date:    <asp:Label ID="Label3" runat="server" Text="Graduation Date"></asp:Label></p>
+        <p>Biography and entire life story:     <asp:Label ID="Label4" runat="server" Text="Biography"></asp:Label></p>
 
     </div>
 
     <div class="username" id="username" runat="server">
-        <p>There is shit here</p>
+        <h1>Change Username</h1>
+       <p> <asp:TextBox ID="newUsername" placeholder="New username" runat="server"></asp:TextBox></p>
+       <p> <asp:TextBox ID="confirmNewUsername" placeholder="Confirm new username"  runat="server"></asp:TextBox></p>
+        <p><asp:TextBox ID="typePassword" placeholder="Password" runat="server"></asp:TextBox></p>
+        
     </div>
 
     <div class="password" id="password" runat="server">
-        <p>There is doodoo here</p>
+        <h1>Create New Password</h1>
+       <p> <asp:TextBox ID="oldPassword" placeholder="Current Password" runat="server"></asp:TextBox></p>
+        <p><asp:TextBox ID="newPass" placeholder="New Password"  runat="server"></asp:TextBox></P>
+       <p> <asp:TextBox ID="confirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox></p>
     </div>
 
     <div class="info" id="info" runat="server">
-        <p>There is feces here</p>
+        <h1>Edit Account Information</h1>
+        <p> <asp:TextBox ID="TextBox1" placeholder="Major" runat="server" Width="20%"></asp:TextBox></p>
+        <asp:DropDownList ID="dropDownList" runat="server" Width="20%">
+            <asp:ListItem>2019</asp:ListItem>
+            <asp:ListItem>2020</asp:ListItem>
+            <asp:ListItem>2021</asp:ListItem>
+            <asp:ListItem>2022</asp:ListItem>
+            <asp:ListItem>2023</asp:ListItem>
+            <asp:ListItem>2024</asp:ListItem>
+          
+        </asp:DropDownList>
+        <p> <asp:TextBox CssClass="about" TextMode="MultiLine" ID="about" placeholder="About" runat="server" Width="45%" Height="100px" style="resize:none"></asp:TextBox></p>
+        <p>
+            <asp:Button ID="Button1" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Submit Changes" BackColor="DeepSkyBlue" Width="30%" /></p>
     </div>
-    
+    </div>
         
 </asp:Content>
