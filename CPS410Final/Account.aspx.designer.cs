@@ -141,6 +141,15 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox typePassword;
 
         /// <summary>
+        /// btnUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUser;
+
+        /// <summary>
         /// password control.
         /// </summary>
         /// <remarks>
@@ -177,6 +186,15 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox confirmNewPass;
 
         /// <summary>
+        /// btnPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPass;
+
+        /// <summary>
         /// info control.
         /// </summary>
         /// <remarks>
@@ -186,13 +204,13 @@ namespace CPS410Final
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl info;
 
         /// <summary>
-        /// TextBox1 control.
+        /// major control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox major;
 
         /// <summary>
         /// dropDownList control.
@@ -213,12 +231,12 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox about;
 
         /// <summary>
-        /// Button1 control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

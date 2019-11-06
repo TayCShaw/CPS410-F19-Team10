@@ -15,6 +15,14 @@ namespace CPS410Final
             password.Visible = false;
             info.Visible = false;
             overview.Visible = true;
+
+            newUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUser.ClientID + "')");
+            confirmNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUser.ClientID + "')");
+            typePassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUser.ClientID + "')");
+            oldPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnPass.ClientID + "')");
+            newPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnPass.ClientID + "')");
+            confirmNewPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnPass.ClientID + "')");
+            major.Attributes.Add("onkeypress", "return clickButton(event,'" + btnSubmit.ClientID + "')");
         }
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {

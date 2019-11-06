@@ -177,7 +177,8 @@
        <p> <asp:TextBox ID="newUsername" placeholder="New username" runat="server"></asp:TextBox></p>
        <p> <asp:TextBox ID="confirmNewUsername" placeholder="Confirm new username"  runat="server"></asp:TextBox></p>
         <p><asp:TextBox ID="typePassword" placeholder="Password" runat="server"></asp:TextBox></p>
-        
+        <asp:Button ID="btnUser" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Username" BackColor="DeepSkyBlue" Width="30%" /></p>
+       
     </div>
 
     <div class="password" id="password" runat="server">
@@ -185,12 +186,14 @@
        <p> <asp:TextBox ID="oldPassword" placeholder="Current Password" runat="server"></asp:TextBox></p>
         <p><asp:TextBox ID="newPass" placeholder="New Password"  runat="server"></asp:TextBox></P>
        <p> <asp:TextBox ID="confirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox></p>
+       <asp:Button ID="btnPass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" /></p>
+
     </div>
 
     <div class="info" id="info" runat="server">
         <h1>Edit Account Information</h1>
-        <p> <asp:TextBox ID="TextBox1" placeholder="Major" runat="server" Width="20%"></asp:TextBox></p>
-        <asp:DropDownList ID="dropDownList" runat="server" Width="20%">
+        <p> <asp:TextBox ID="major" placeholder="Major" runat="server" Width="20%"></asp:TextBox></p>
+        Graduation Date: <asp:DropDownList ID="dropDownList" runat="server" Width="20%">
             <asp:ListItem>2019</asp:ListItem>
             <asp:ListItem>2020</asp:ListItem>
             <asp:ListItem>2021</asp:ListItem>
@@ -201,8 +204,47 @@
         </asp:DropDownList>
         <p> <asp:TextBox CssClass="about" TextMode="MultiLine" ID="about" placeholder="About" runat="server" Width="45%" Height="100px" style="resize:none"></asp:TextBox></p>
         <p>
-            <asp:Button ID="Button1" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Submit Changes" BackColor="DeepSkyBlue" Width="30%" /></p>
+            <asp:Button ID="btnSubmit" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Submit Changes" BackColor="DeepSkyBlue" Width="30%" /></p>
     </div>
     </div>
+    <script type="text/javascript">
+        function clickButton(e, btnUser) {
+            var evt = e ? e : window.event;
+            var bt = document.getElementById(btnUser);
+            if (bt) {
+                if (evt.keyCode == 13) {
+                    bt.click();
+                    return false;
+                }
+            }
+        }
+    </script>
+
+     <script type="text/javascript">
+         function clickButton(e, btnPass) {
+             var evt = e ? e : window.event;
+             var bt = document.getElementById(btnPass);
+             if (bt) {
+                 if (evt.keyCode == 13) {
+                     bt.click();
+                     return false;
+                 }
+             }
+         }
+    </script>
+
+
+     <script type="text/javascript">
+         function clickButton(e, btnEdit) {
+             var evt = e ? e : window.event;
+             var bt = document.getElementById(btnEdit);
+             if (bt) {
+                 if (evt.keyCode == 13) {
+                     bt.click();
+                     return false;
+                 }
+             }
+         }
+    </script>
         
 </asp:Content>
