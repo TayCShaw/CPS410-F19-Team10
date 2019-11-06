@@ -23,11 +23,11 @@ namespace CPS410Final
             connection.Close();
         }
 
-        protected static Boolean insertDB(SqlCommand command)
-        {
-            openDB();
-            command.ExecuteNonQuery();
-        }
+//        protected static Boolean insertDB(SqlCommand command)
+  //      {
+ //           openDB();
+   //         command.ExecuteNonQuery();
+     //   }
 
         protected static int getNewID(String tableName)
         {
@@ -193,7 +193,7 @@ namespace CPS410Final
             int intID = getNewID("Subjects");
             if (intID == -99)
             {
-                lblErrorMessage.Text = "Error adding new subject: SubjectID -99";
+ //               lblErrorMessage.Text = "Error adding new subject: SubjectID -99";
                 return false;
             }
             else
@@ -228,16 +228,16 @@ namespace CPS410Final
             }
         }
 
-        public static Boolean addNewTopic(String UserID, String SubjectID, String TopicName, Boolean chkbox)
+ /*       public static Boolean addNewTopic(String UserID, String SubjectID, String TopicName, Boolean chkbox)
         {
             SqlCommand createTopic = new SqlCommand("INSERT into Topics (TopicID, TopicName, TopicSubject, TopicCreator) " +
                 "values(@ID, @name, @subj, @creator)");
-
+            <%-- >
             int topicID = getNewID("Topics");
 
             if (topicID == -99)
             {
-                lblErrorMessage.Text = "Error adding new topic: TopicID -99";
+//                lblErrorMessage.Text = "Error adding new topic: TopicID -99";
                 return false;
             }
             else
@@ -255,13 +255,12 @@ namespace CPS410Final
                 createTopic.Parameters.AddWithValue("@visible", visible);
 
                 openDB();
-                if (insertDB(createTopic))
-                {
+//                if (insertDB(createTopic))
+//                {
 
-                }
             }
         }
-
+        */
 
         public static String validCredentials(String username, String password)
         {
