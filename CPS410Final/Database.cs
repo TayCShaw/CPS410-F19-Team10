@@ -18,13 +18,62 @@ namespace CPS410Final
            connection.Open();
         }
 
-        static void closeDB()
+        public static void closeDB()
         {
             connection.Close();
         }
 
+        protected static Boolean insertDB(SqlCommand command)
+        {
+            openDB();
+            command.ExecuteNonQuery();
+        }
 
-        static Boolean nameExists(String username)
+        protected static int getNewID(String tableName)
+        {
+            SqlCommand getcount = new SqlCommand("SELECT max(@column) from @table", connection);
+            int maxVal;
+            String columnName;
+            switch (tableName)
+            {
+                case "Subjects":
+                    columnName = "SubjectID";
+                    break;
+                case "Topics":
+                    columnName = "TopicID";
+                    break;
+                case "Threads":
+                    columnName = "ThreadID";
+                    break;
+                case "Posts":
+                    columnName = "PostID";
+                    break;
+                case "Users":
+                    columnName = "UserID";
+                    break;
+                default:
+                    // Will ONLY return this if the table entered is not a table in the database (specified above)
+                    return -99;
+            }
+
+            getcount.Parameters.AddWithValue("@column", columnName);
+            getcount.Parameters.AddWithValue("@table", tableName);
+
+            try
+            {
+                openDB();
+                maxVal = (Int32)getcount.ExecuteScalar() + 1;
+            }
+            catch (InvalidCastException)
+            {
+                maxVal = 0;
+            }
+            closeDB();
+
+            return maxVal;
+        }
+
+        public static Boolean nameExists(String username)
         {
             SqlDataReader reader;
             SqlCommand search = new SqlCommand("SELECT * FROM Users WHERE userName = @username", connection);
@@ -139,61 +188,78 @@ namespace CPS410Final
 
             // Once created, take to a page OR Show something that will let the user create a new Subject
             SqlCommand createSubject = new SqlCommand("INSERT INTO Subjects (SubjectID, SubjectName, SubjectCreator, SubjectVisibility) values(@SubjectID, @SubjectName, @SubjectCreator, @SubjectVisibility)", Database.connection);
-            SqlCommand count = new SqlCommand("Select max(SubjectID) from Subjects", Database.connection);
-            String SubjectID;
-
-
-            // Catches if the maxID number is nonexistent and assigns the SubjectID
-            int intID;
-            openDB();
-            try
+            SqlCommand count = new SqlCommand("Select max(SubjectID) from Subjects", connection);
+            
+            int intID = getNewID("Subjects");
+            if (intID == -99)
             {
-
-
-                // Try to find the maximum ID (highest ID number so far) and add one to it to make new SubjectID
-                intID = (Int32)count.ExecuteScalar() + 1;
-
-                SubjectID = intID.ToString();
-            }
-            catch (InvalidCastException)
-            {
-                int id = 0;
-                SubjectID = id.ToString();
-            }
-            closeDB();
-
-            // Assigning Subject visibility
-            String visible;
-            if (chkbox)
-            {
-                visible = "T";
-            }
-            else
-            {
-                visible = "F";
-            }
-
-
-            // Set INSERT parameters
-            createSubject.Parameters.AddWithValue("@SubjectID", SubjectID);
-            createSubject.Parameters.AddWithValue("@SubjectName", SubjName);
-            createSubject.Parameters.AddWithValue("@SubjectCreator", UserID);
-            createSubject.Parameters.AddWithValue("@SubjectVisibility", visible);
-
-
-            // Execute INSERT command
-            openDB();
-            if (createSubject.ExecuteNonQuery() == 0)
-            {
-                closeDB();
-                return true;
-            }
-            else
-            {
-                closeDB();
+                lblErrorMessage.Text = "Error adding new subject: SubjectID -99";
                 return false;
             }
-            ;
+            else
+            {
+                // Assigning Subject visibility
+                String visible = "F";
+                if (chkbox)
+                {
+                    visible = "T";
+                }
+
+
+                // Set INSERT parameters
+                createSubject.Parameters.AddWithValue("@SubjectID", intID);
+                createSubject.Parameters.AddWithValue("@SubjectName", SubjName);
+                createSubject.Parameters.AddWithValue("@SubjectCreator", UserID);
+                createSubject.Parameters.AddWithValue("@SubjectVisibility", visible);
+
+
+                // Execute INSERT command
+                openDB();
+                if (createSubject.ExecuteNonQuery() == 0)
+                {
+                    closeDB();
+                    return true;
+                }
+                else
+                {
+                    closeDB();
+                    return false;
+                }
+            }
+        }
+
+        public static Boolean addNewTopic(String UserID, String SubjectID, String TopicName, Boolean chkbox)
+        {
+            SqlCommand createTopic = new SqlCommand("INSERT into Topics (TopicID, TopicName, TopicSubject, TopicCreator) " +
+                "values(@ID, @name, @subj, @creator)");
+
+            int topicID = getNewID("Topics");
+
+            if (topicID == -99)
+            {
+                lblErrorMessage.Text = "Error adding new topic: TopicID -99";
+                return false;
+            }
+            else
+            {
+                String visible = "F";
+                if (chkbox)
+                {
+                    visible = "T";
+                }
+
+                createTopic.Parameters.AddWithValue("@ID", topicID);
+                createTopic.Parameters.AddWithValue("@name", TopicName);
+                createTopic.Parameters.AddWithValue("@subj", SubjectID);
+                createTopic.Parameters.AddWithValue("@creator", UserID);
+                createTopic.Parameters.AddWithValue("@visible", visible);
+
+                openDB();
+                if (insertDB(createTopic))
+                {
+
+                }
+            }
         }
 
 
