@@ -112,13 +112,7 @@
 
 
 
-        .auto-style4 {
-            float: left;
-            width: 1452px;
-            height: 499px;
-        }
-
-       /* .password {
+        /* .password {
             margin-right: auto;
             margin-left: auto;
             width: 35%;
@@ -146,7 +140,18 @@
            
            
         }
-        
+        .tbalign{
+            
+        }
+
+
+
+        .auto-style4 {
+            width: 100%;
+        }
+        .auto-style5 {
+            margin-bottom: 0px;
+        }
 
 
 
@@ -174,19 +179,44 @@
 
     <div class="username" id="username" runat="server">
         <h1>Change Username</h1>
-       <p> <asp:TextBox ID="newUsername" placeholder="New username" runat="server"></asp:TextBox></p>
-       <p> <asp:TextBox ID="confirmNewUsername" placeholder="Confirm new username"  runat="server"></asp:TextBox></p>
-        <p><asp:TextBox ID="typePassword" placeholder="Password" runat="server"></asp:TextBox></p>
-        <asp:Button ID="btnUser" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Username" BackColor="DeepSkyBlue" Width="30%" OnClick="btnUser_Click" /></p>
-       
+       <p> <asp:TextBox ID="txtboxNewUsername" placeholder="New username" runat="server"></asp:TextBox></p>
+       <p> <asp:TextBox ID="txtboxConfirmNewUsername" placeholder="Confirm new username"  runat="server"></asp:TextBox></p>
+        <p><asp:TextBox ID="txtboxTypePassword" placeholder="Password" runat="server"></asp:TextBox></p>
+        <asp:Button ID="btnChangeUsername" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Username" BackColor="DeepSkyBlue" Width="30%" OnClick="btnUser_Click" />&nbsp;</p>
+       <p>
+           <asp:Label ID="lblUsernameStatus" runat="server"></asp:Label>
+        </p>
     </div>
 
     <div class="password" id="password" runat="server">
         <h1>Create New Password</h1>
-       <p> <asp:TextBox ID="oldPassword" placeholder="Current Password" runat="server"></asp:TextBox></p>
-        <p><asp:TextBox ID="newPass" placeholder="New Password"  runat="server"></asp:TextBox></P>
-       <p> <asp:TextBox ID="confirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox></p>
-       <asp:Button ID="btnPass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" OnClick="btnPass_Click" /></p>
+        <p>
+            <table class="auto-style4">
+                <tr>
+                    <td><asp:TextBox ID="txtboxCurrentPassword" placeholder="Current Password" runat="server" CssClass="auto-style5"></asp:TextBox>
+                    </td>
+                    <td>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" display="Dynamic" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtboxCurrentPassword"></asp:RequiredFieldValidator></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </p>
+        <p><asp:TextBox ID="txtboxNewPassword" placeholder="New Password"  runat="server"></asp:TextBox></P>
+       <p> <asp:TextBox ID="txtboxConfirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox>
+           <asp:CompareValidator ID="cvPasswords" runat="server" ControlToCompare="txtboxNewPassword" ControlToValidate="txtboxConfirmNewPass" ErrorMessage="Passwords do not match!" BackColor="#FF3737" Font-Names="Tahoma" ForeColor="White" Display="Dynamic"></asp:CompareValidator>
+        </p>
+       <asp:Button ID="btnChangePass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" OnClick="btnPass_Click" />
+           
+        <p>
+            <asp:Label ID="lblPasswordStatus" runat="server"></asp:Label>
+        </p>
 
     </div>
 

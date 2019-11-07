@@ -114,40 +114,49 @@ namespace CPS410Final
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl username;
 
         /// <summary>
-        /// newUsername control.
+        /// txtboxNewUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newUsername;
+        protected global::System.Web.UI.WebControls.TextBox txtboxNewUsername;
 
         /// <summary>
-        /// confirmNewUsername control.
+        /// txtboxConfirmNewUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmNewUsername;
+        protected global::System.Web.UI.WebControls.TextBox txtboxConfirmNewUsername;
 
         /// <summary>
-        /// typePassword control.
+        /// txtboxTypePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox typePassword;
+        protected global::System.Web.UI.WebControls.TextBox txtboxTypePassword;
 
         /// <summary>
-        /// btnUser control.
+        /// btnChangeUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUser;
+        protected global::System.Web.UI.WebControls.Button btnChangeUsername;
+
+        /// <summary>
+        /// lblUsernameStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsernameStatus;
 
         /// <summary>
         /// password control.
@@ -159,40 +168,67 @@ namespace CPS410Final
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl password;
 
         /// <summary>
-        /// oldPassword control.
+        /// txtboxCurrentPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox oldPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtboxCurrentPassword;
 
         /// <summary>
-        /// newPass control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newPass;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// confirmNewPass control.
+        /// txtboxNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmNewPass;
+        protected global::System.Web.UI.WebControls.TextBox txtboxNewPassword;
 
         /// <summary>
-        /// btnPass control.
+        /// txtboxConfirmNewPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPass;
+        protected global::System.Web.UI.WebControls.TextBox txtboxConfirmNewPass;
+
+        /// <summary>
+        /// cvPasswords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvPasswords;
+
+        /// <summary>
+        /// btnChangePass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChangePass;
+
+        /// <summary>
+        /// lblPasswordStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPasswordStatus;
 
         /// <summary>
         /// info control.
