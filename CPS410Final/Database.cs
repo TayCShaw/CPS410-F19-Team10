@@ -61,14 +61,14 @@ namespace CPS410Final
 
             if (reader.HasRows)
             {
-                role = reader["Role"].ToString();
+                role = reader["UserRole"].ToString();
             }
             closeDB();
             return role;
         }
 
 
-        public static String addNewUser(String email, String username, String password)
+        public static String addNewUser(String email, String username, String password, String role)
         {
             if (nameExists(username))
             {
@@ -78,7 +78,7 @@ namespace CPS410Final
             else
             {
                 // Username does not already exist
-                SqlCommand insertUser = new SqlCommand("INSERT INTO Users (UserID, Username, UserPassword, UserSalt, UserEmail, TimeCreated) values (@userid, @username, @userpassword, @usersalt, @email, @time)", connection);
+                SqlCommand insertUser = new SqlCommand("INSERT INTO Users (UserID, Username, UserPassword, UserSalt, UserEmail, TimeCreated, UserRole) values (@userid, @username, @userpassword, @usersalt, @email, @time, @role)", connection);
                 SqlCommand count = new SqlCommand("Select max(UserID) from Users", connection);
                 String userSalt;
 
@@ -111,7 +111,7 @@ namespace CPS410Final
                 insertUser.Parameters.AddWithValue("@usersalt", userSalt);
                 insertUser.Parameters.AddWithValue("@email", email);
                 insertUser.Parameters.AddWithValue("@time", DateTime.Now);
-
+                insertUser.Parameters.AddWithValue("@role", role);
 
                 /*
                  * Attempts to add the new user account to the database. If the addition is

@@ -69,6 +69,16 @@
             padding-bottom: 45px;
         }
 
+        .tutorInfo{
+            margin-top: 30px;
+            float: left;
+            margin-left: 2%;
+            background-color: white;
+            width: 82%;
+            text-align: center;
+            padding-bottom: 45px;
+        }
+
         .about{
             white-space: pre-wrap;
         }
@@ -159,7 +169,9 @@
        <asp:Button ID="btnUsername" runat="server" Text="Change Username" CssClass="Buttons" OnClick="btnUsername_Click" />
        <asp:Button ID="btnPassword" runat="server" Text="Change Password" CssClass="Buttons" OnClick="btnPassword_Click" />
        <asp:Button ID="btnInfo" runat="server" Text="Edit Information" CssClass="Buttons" OnClick="btnInfo_Click" />
-       
+       <asp:Button ID="btnTutor" runat="server" Text="Edit Tutor Information" CssClass="Buttons" OnClick="btnTutor_Click" />
+
+
    </div>
     <div class="content" id="content" runat="server">
     <div class="overview" id="overview" runat="server">
@@ -186,7 +198,7 @@
        <p> <asp:TextBox ID="oldPassword" placeholder="Current Password" runat="server"></asp:TextBox></p>
         <p><asp:TextBox ID="newPass" placeholder="New Password"  runat="server"></asp:TextBox></P>
        <p> <asp:TextBox ID="confirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox></p>
-       <asp:Button ID="btnPass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" /></p>
+       <asp:Button ID="btnPass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" OnClick="btnPass_Click" /></p>
 
     </div>
 
@@ -204,7 +216,18 @@
         </asp:DropDownList>
         <p> <asp:TextBox CssClass="about" TextMode="MultiLine" ID="about" placeholder="About" runat="server" Width="45%" Height="100px" style="resize:none"></asp:TextBox></p>
         <p>
-            <asp:Button ID="btnSubmit" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Submit Changes" BackColor="DeepSkyBlue" Width="30%" /></p>
+            <asp:Button ID="btnSubmit" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Submit Changes" BackColor="DeepSkyBlue" Width="30%" OnClick="btnSubmit_Click" /></p>
+    </div>
+
+    <div class="tutorInfo" id ="tutorInfo" runat="server">
+        <h1>Tutor Information</h1>
+        <p> <asp:TextBox ID="gradDate" placeholder="Graduation Date" runat="server" Width="20%"></asp:TextBox></p>
+        <p> <asp:TextBox ID="degree" placeholder="Degree Received" runat="server" Width="20%"></asp:TextBox></p>
+        <p> <asp:TextBox ID="experience" TextMode="MultiLine" placeholder="Work Experience" runat="server" Width="45%" Height="75px" style="resize:none"></asp:TextBox></p>
+        <p> <asp:TextBox ID="contact" TextMode="MultiLine" placeholder="Ways to contact you" runat="server" Width="45%" Height="75px" style="resize:none"></asp:TextBox></p>
+      <p> <asp:Button ID="btnTutorInfo" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Submit Changes" BackColor="DeepSkyBlue" Width="30%" OnClick="btnTutorInfo_Click" /></p>
+
+
     </div>
     </div>
     <script type="text/javascript">
@@ -245,6 +268,19 @@
                  }
              }
          }
+    </script>
+
+    <script type="text/javascript">
+        function clickButton(e, btnTutorInfo) {
+            var evt = e ? e : window.event;
+            var bt = document.getElementById(btnTutorInfo);
+            if (bt) {
+                if (evt.keyCode == 13) {
+                    bt.click();
+                    return false;
+                }
+            }
+        }
     </script>
         
 </asp:Content>

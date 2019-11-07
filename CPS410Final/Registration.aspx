@@ -20,7 +20,7 @@
                 <asp:TextBox ID="txtboxPassword" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:TextBox ID="TextBoxConfirmPass" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:TextBox ID="txtboxEmail" placeholder="Email" runat="server" TextMode="Email"></asp:TextBox>
-                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" Width="250px">
+                <asp:RadioButtonList ID="rblRole" runat="server" RepeatDirection="Horizontal" Width="250px" OnSelectedIndexChanged="rblRole_SelectedIndexChanged">
                     <asp:ListItem style="color:white" Text="Student">Student</asp:ListItem>
                     <asp:ListItem style="color:white" Text="Tutor" Value="Tutor">Tutor</asp:ListItem>
                 </asp:RadioButtonList>
