@@ -11,6 +11,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             username.Visible = false;
             password.Visible = false;
             info.Visible = false;
@@ -39,14 +40,30 @@ namespace CPS410Final
                 btnTutor.Visible = false;
             }
         }
-        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
-        {
-
-        }
 
         protected void Menu1_MenuItemClick1(object sender, MenuEventArgs e)
         {
 
+            if (Session["UserID"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                username.Visible = false;
+                password.Visible = false;
+                info.Visible = false;
+                overview.Visible = true;
+
+                txtboxNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangeUsername.ClientID + "')");
+                txtboxConfirmNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangeUsername.ClientID + "')");
+                txtboxTypePassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangeUsername.ClientID + "')");
+                txtboxCurrentPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
+                txtboxNewPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
+                txtboxConfirmNewPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
+                major.Attributes.Add("onkeypress", "return clickButton(event,'" + btnSubmit.ClientID + "')");
+            }
+            
         }
 
         protected void btnUsername_Click(object sender, EventArgs e)
@@ -109,6 +126,7 @@ namespace CPS410Final
 
         protected void btnUser_Click(object sender, EventArgs e)
         {
+
             btnUsername.CssClass = "buttonActive";
             btnPassword.CssClass = "Buttons";
             btnOverview.CssClass = "Buttons";
@@ -176,6 +194,55 @@ namespace CPS410Final
             password.Visible = false;
             info.Visible = false;
             tutorInfo.Visible = true;
+
+/*           if ()
+           {
+                String changed = Database.changeUsername(txtboxNewUsername.Text, Session["UserID"].ToString());
+                lblUserStatus.Text = changed;
+            }
+            */
+
         }
+
+        protected void btnPass_Click(object sender, EventArgs e)
+        {
+            /*
+             * 1) Check if all fields are filled in 
+             * 2) Check if the newPassword and confirmNewPass textfields are the same thing
+             * 3) Check if currentPassword entered is actually their password
+             * 4) If an error, print out the specific one
+             */
+            if (!passwordFieldsEmpty())
+            {
+                if (txtboxNewPassword.Text.Equals(txtboxConfirmNewPass.Text))
+                {
+                    String changed = Database.changePassword(txtboxCurrentPassword.Text, txtboxNewPassword.Text, Session["UserID"].ToString());
+
+                    lblPasswordStatus.Text = changed;
+
+                    overview.Visible = false;
+                    username.Visible = false;
+                    info.Visible = false;
+                    password.Visible = true;
+                }
+            }
+            else
+            {
+                lblPasswordStatus.Text = "ERROR: All fields are required!";
+            }
+
+        }
+
+        /********* HELPER METHODS ********/
+
+        protected Boolean passwordFieldsEmpty()
+        {
+            if ((txtboxCurrentPassword.Text.Length != 0) && (txtboxNewPassword.Text.Length != 0) && (txtboxConfirmNewPass.Text.Length != 0))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

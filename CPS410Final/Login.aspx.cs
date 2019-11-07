@@ -11,8 +11,15 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtboxUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
-            txtboxPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
+            if (Session["UserID"] != null)
+            {
+                Response.Redirect("Account.aspx");
+            }
+            else
+            {
+                txtboxUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
+                txtboxPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -22,8 +29,18 @@ namespace CPS410Final
             if (!validUser.Equals(""))
             { // User was found, information correctly entered, returning UserID
                 Session["UserID"] = validUser;
-                Session["Role"] = Database.grabRole(validUser);
-                Response.Redirect("Home.aspx");
+                Session["Role"] = Database.getRole(validUser);
+
+                if (Session["Redirect"] != null)
+                {
+                    Response.Redirect(Session["Redirect"].ToString());
+                    Session["Redirect"] = null;
+                }
+                else
+                {
+                    Response.Redirect("Home.aspx");
+                }
+                
             }
             else
             {
