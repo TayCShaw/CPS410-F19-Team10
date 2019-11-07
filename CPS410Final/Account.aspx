@@ -203,28 +203,15 @@
     <div class="password" id="password" runat="server">
         <h1>Create New Password</h1>
         <p>
-            <table class="auto-style4">
-                <tr>
-                    <td><asp:TextBox ID="txtboxCurrentPassword" placeholder="Current Password" runat="server" CssClass="auto-style5"></asp:TextBox>
-                    </td>
-                    <td>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" display="Dynamic" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtboxCurrentPassword"></asp:RequiredFieldValidator></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
+            <asp:TextBox ID="txtboxCurrentPassword" placeholder="Current Password" runat="server" CssClass="auto-style5"></asp:TextBox>
         </p>
-        <p><asp:TextBox ID="txtboxNewPassword" placeholder="New Password"  runat="server"></asp:TextBox></P>
-       <p> <asp:TextBox ID="txtboxConfirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox>
-           <asp:CompareValidator ID="cvPasswords" runat="server" ControlToCompare="txtboxNewPassword" ControlToValidate="txtboxConfirmNewPass" ErrorMessage="Passwords do not match!" BackColor="#FF3737" Font-Names="Tahoma" ForeColor="White" Display="Dynamic"></asp:CompareValidator>
+        <p>
+            <asp:TextBox ID="txtboxNewPassword" placeholder="New Password"  runat="server"></asp:TextBox>
         </p>
-       <asp:Button ID="btnChangePass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" OnClick="btnPass_Click" />
+       <p> 
+           <asp:TextBox ID="txtboxConfirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox>
+       </p>
+       <asp:Button ID="btnChangePass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" OnClick="btnChangePass_Click" />
            
         <p>
             <asp:Label ID="lblPasswordStatus" runat="server"></asp:Label>

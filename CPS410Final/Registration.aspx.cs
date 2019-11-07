@@ -35,7 +35,7 @@ namespace CPS410Final
                 {
                     String[] args = userAdded.Split(',');
                     Session["UserID"] = args[1];
-                    Session["Role"] = role;
+                    Session["UserRole"] = rblRole.SelectedValue;
 
                     Response.Redirect("Account.aspx");
                 }

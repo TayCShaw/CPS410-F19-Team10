@@ -29,7 +29,7 @@ namespace CPS410Final
             if (!validUser.Equals(""))
             { // User was found, information correctly entered, returning UserID
                 Session["UserID"] = validUser;
-                Session["Role"] = Database.getRole(validUser);
+                Session["UserRole"] = Database.getRole(validUser);
 
                 if (Session["Redirect"] != null)
                 {

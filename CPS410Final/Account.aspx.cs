@@ -11,58 +11,44 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            username.Visible = false;
-            password.Visible = false;
-            info.Visible = false;
-            overview.Visible = true;
-            tutorInfo.Visible = false;
-
-            newUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUser.ClientID + "')");
-            confirmNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUser.ClientID + "')");
-            typePassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUser.ClientID + "')");
-            oldPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnPass.ClientID + "')");
-            newPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnPass.ClientID + "')");
-            confirmNewPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnPass.ClientID + "')");
-            major.Attributes.Add("onkeypress", "return clickButton(event,'" + btnSubmit.ClientID + "')");
-            gradDate.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
-            degree.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
-            experience.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
-            contact.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
-
-            //hide tutorInfo edit button if user is a student, show if tutor
-            if(Session["UserRole"].ToString().Equals("Tutor"))
-            {
-                btnTutor.Visible = true;
-            }
-            else //student account, hide tutor button
-            {
-                btnTutor.Visible = false;
-            }
-        }
-
-        protected void Menu1_MenuItemClick1(object sender, MenuEventArgs e)
-        {
-
-            if (Session["UserID"] == null)
-            {
-                Response.Redirect("Login.aspx");
-            }
-            else
+            if (Session["UserID"] != null)
             {
                 username.Visible = false;
                 password.Visible = false;
                 info.Visible = false;
                 overview.Visible = true;
+                tutorInfo.Visible = false;
 
-                txtboxNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangeUsername.ClientID + "')");
-                txtboxConfirmNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangeUsername.ClientID + "')");
-                txtboxTypePassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangeUsername.ClientID + "')");
+                txtboxNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
+                txtboxConfirmNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
+                txtboxTypePassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
                 txtboxCurrentPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
                 txtboxNewPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
                 txtboxConfirmNewPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
                 major.Attributes.Add("onkeypress", "return clickButton(event,'" + btnSubmit.ClientID + "')");
+                gradDate.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
+                degree.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
+                experience.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
+                contact.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
+                
+                if (Session["UserRole"].ToString().Equals("Tutor"))
+                {
+                    btnTutor.Visible = true;
+                }
+                else //student account, hide tutor button
+                {
+                    btnTutor.Visible = false;
+                }
             }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+
+            
+
+            //hide tutorInfo edit button if user is a student, show if tutor
             
         }
 
@@ -204,7 +190,7 @@ namespace CPS410Final
 
         }
 
-        protected void btnPass_Click(object sender, EventArgs e)
+        protected void btnChangePass_Click(object sender, EventArgs e)
         {
             /*
              * 1) Check if all fields are filled in 
@@ -224,6 +210,7 @@ namespace CPS410Final
                     username.Visible = false;
                     info.Visible = false;
                     password.Visible = true;
+                    lblPasswordStatus.Text = "Password changed" ;
                 }
             }
             else

@@ -186,15 +186,6 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox txtboxCurrentPassword;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
         /// txtboxNewPassword control.
         /// </summary>
         /// <remarks>
@@ -211,15 +202,6 @@ namespace CPS410Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtboxConfirmNewPass;
-
-        /// <summary>
-        /// cvPasswords control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cvPasswords;
 
         /// <summary>
         /// btnChangePass control.
