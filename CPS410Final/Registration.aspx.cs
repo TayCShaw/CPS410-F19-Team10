@@ -28,9 +28,8 @@ namespace CPS410Final
         {
             if (txtboxPassword.Text.Equals(TextBoxConfirmPass.Text) && !txtboxEmail.Text.Equals("") && !txtboxUsername.Text.Equals(""))
             {
-                String role = "Student";
                 // TRUE if user was added, FALSE otherwise
-                String userAdded = Database.addNewUser(txtboxEmail.Text, txtboxUsername.Text, txtboxPassword.Text, role);
+                String userAdded = Database.addNewUser(txtboxEmail.Text, txtboxUsername.Text, txtboxPassword.Text, rblRole.SelectedValue);
 
                 if (userAdded.Contains("TRUE"))
                 {
@@ -63,6 +62,11 @@ namespace CPS410Final
                     lblError.Text = "Passwords do not match";
                 }
             }
+
+        }
+
+        protected void rblRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
