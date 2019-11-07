@@ -63,6 +63,26 @@ namespace CPS410Final
             }
         }
 
+        public static String grabRole(String userID)
+        {
+            SqlCommand search = new SqlCommand("SELECT * FROM Users WHERE UserID = @userID", connection);
+            search.Parameters.AddWithValue("@userID", userID);
+            SqlDataReader reader;
+            String role = "";
+
+            openDB();
+            reader = search.ExecuteReader();
+            reader.Read();
+
+            if (reader.HasRows)
+            {
+                role = reader["UserRole"].ToString();
+            }
+            closeDB();
+            return role;
+        }
+
+
         /* Adds a new user to the User table of the database
          * @PARAM: "email": Email address of the User
          *      "username": Username of the User
@@ -117,8 +137,7 @@ namespace CPS410Final
                 insertUser.Parameters.AddWithValue("@email", email);
                 insertUser.Parameters.AddWithValue("@time", DateTime.Now);
                 insertUser.Parameters.AddWithValue("@role", role);
-
-
+              
                 /*
                  * Attempts to add the new user account to the database. If the addition is
                  * successful, the method returns "TRUE". If the addition is unsuccessful
@@ -333,7 +352,8 @@ namespace CPS410Final
             return role;
         }
 
-        /* GETs the salt of a specific user based on UserID
+
+      /* GETs the salt of a specific user based on UserID
          * @PARAM: "userID": UserID used to search the Users table to find specific User
          * @TABLE: Users
          * @RETURNS: String value representing the UserSalt field
@@ -377,12 +397,12 @@ namespace CPS410Final
                     password = reader["UserPassword"].ToString();
                 }
                 closeDB();
+
             }
             return password;
         }
         
         /********** END USER INFORMATION **********/
-
 
 
         /********** ACCOUNT FUNCTIONS **********/
@@ -419,9 +439,9 @@ namespace CPS410Final
                 // Should only be hit if the UPDATE does not work
                 return "ERROR: Could not change username at this time.";
             }
+        } 
 
-        }
-
+      
         /* Changes the UserPassword of an account
          * @PARAM: "desiredPassword": String value representing the newly desired password for a User account
          *                  "userID": UserID of the User account on the receiving end of the password change
