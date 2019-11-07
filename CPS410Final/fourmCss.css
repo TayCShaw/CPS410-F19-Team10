@@ -1,0 +1,20 @@
+﻿.mainDiv{
+    width: 100%;
+    background-color:lightgray;
+}
+
+.subjectDiv{
+    width: 90%;
+    height: 35px;
+    float: right;
+    background-color: deepskyblue;
+    margin-bottom: 20px;
+}
+
+.topics{
+    width: 80%;
+    float: right;
+    height:35px;
+    background-color:blueviolet;
+    margin-bottom: 10px;
+}

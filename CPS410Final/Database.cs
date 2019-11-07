@@ -13,7 +13,7 @@ namespace CPS410Final
 
 
         /************** DATABASE OPERATIONS **************/
-        static void openDB()
+        public static void openDB()
         {
            connection.Open();
         }
