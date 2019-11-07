@@ -19,7 +19,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Determine eligibility to add new Subject
+            // Determine eligibility to add new Topic
             if (Session["UserID"] != null && Session["Role"].Equals("Administrator"))
             {
                 btnAddNewTopic.Visible = true;
@@ -32,26 +32,13 @@ namespace CPS410Final
                 chkboxVisibility.Visible = false;
                 txtboxTopicName.Visible = false;
             }
-
-            Response.Cache.SetExpires(DateTime.UtcNow.AddYears(-4));
-            Response.Cache.SetValidUntilExpires(false);
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
-            Response.Cache.SetNoStore();
         }
 
         protected void btnAddNewTopic_Click(object sender, EventArgs e)
         {
-//            Boolean topicAdded = Database.addNewTopic(Session["UserID"].ToString(), Request.QueryString["SubjectID"], txtboxTopicName.Text, chkboxVisibility.Checked);
-            if (false)
-            {
-                // If visibility is T, reload the page and show it on the page 
-                GridView1.DataBind();
-            }
-            else
-            {
-
-            }      
+            Boolean topicAdded = Database.addNewTopic(Session["UserID"].ToString(), Request.QueryString["SubjectID"], txtboxTopicName.Text, chkboxVisibility.Checked);
+            // If visibility is T, reload the page and show it on the page 
+            GridView1.DataBind();
         }
     }
 }
