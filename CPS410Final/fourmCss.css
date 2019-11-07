@@ -1,20 +1,31 @@
 ﻿.mainDiv{
+    padding-top: 60px;
     width: 100%;
-    background-color:lightgray;
 }
 
 .subjectDiv{
-    width: 90%;
-    height: 35px;
-    float: right;
+    border-radius: 18px;
+    width: 40%;
+    height: 36px;
+    margin:auto;
     background-color: deepskyblue;
+    margin-bottom: 20px;
+    border:ridge;
+}
+
+.topicDiv {
+    border-radius: 18px;
+    width: 36%;
+    margin: auto;
+    height: 35px;
+    background-color: blueviolet;
     margin-bottom: 20px;
 }
 
-.topics{
-    width: 80%;
-    float: right;
-    height:35px;
-    background-color:blueviolet;
-    margin-bottom: 10px;
+.label{
+    text-align:center;
+}
+
+.topicContainer{
+    
 }
