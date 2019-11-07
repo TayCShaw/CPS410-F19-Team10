@@ -86,16 +86,29 @@ namespace CPS410Final
 
         protected void btnUser_Click(object sender, EventArgs e)
         {
-            Boolean changed = Database.changeUsername(newUsername.Text);
+ //           if ()
+ //           {
+//                String changed = Database.changeUsername(newUsername.Text, Session["UserID"].ToString());
+//                lblUserStatus.Text = changed;
+//            }
 
-            if (changed)
+        }
+
+        protected void btnPass_Click(object sender, EventArgs e)
+        {
+            if (newPass.Equals(confirmNewPass) && !newPass.Equals(oldPassword))
             {
-                lblStatus.Text = "Username successfully changed.";
+                String changed = Database.changePassword(newPass.Text, Session["UserID"].ToString());
             }
             else
             {
-                lblStatus.Text = "ERROR: Username not changed.";
+                if (newPass.Equals(oldPassword))
+                { 
+ //                   lblPasswordStatus.Text = "";
+                }
             }
+
+
         }
     }
 }

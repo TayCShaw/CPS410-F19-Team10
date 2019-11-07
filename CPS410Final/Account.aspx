@@ -186,7 +186,7 @@
        <p> <asp:TextBox ID="oldPassword" placeholder="Current Password" runat="server"></asp:TextBox></p>
         <p><asp:TextBox ID="newPass" placeholder="New Password"  runat="server"></asp:TextBox></P>
        <p> <asp:TextBox ID="confirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox></p>
-       <asp:Button ID="btnPass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" /></p>
+       <asp:Button ID="btnPass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" OnClick="btnPass_Click" /></p>
 
     </div>
 
