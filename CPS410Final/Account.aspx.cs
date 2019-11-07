@@ -83,5 +83,19 @@ namespace CPS410Final
             password.Visible = false;
             info.Visible = true;
         }
+
+        protected void btnUser_Click(object sender, EventArgs e)
+        {
+            Boolean changed = Database.changeUsername(newUsername.Text);
+
+            if (changed)
+            {
+                lblStatus.Text = "Username successfully changed.";
+            }
+            else
+            {
+                lblStatus.Text = "ERROR: Username not changed.";
+            }
+        }
     }
 }

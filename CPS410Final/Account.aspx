@@ -177,7 +177,7 @@
        <p> <asp:TextBox ID="newUsername" placeholder="New username" runat="server"></asp:TextBox></p>
        <p> <asp:TextBox ID="confirmNewUsername" placeholder="Confirm new username"  runat="server"></asp:TextBox></p>
         <p><asp:TextBox ID="typePassword" placeholder="Password" runat="server"></asp:TextBox></p>
-        <asp:Button ID="btnUser" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Username" BackColor="DeepSkyBlue" Width="30%" /></p>
+        <asp:Button ID="btnUser" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Username" BackColor="DeepSkyBlue" Width="30%" OnClick="btnUser_Click" /></p>
        
     </div>
 
