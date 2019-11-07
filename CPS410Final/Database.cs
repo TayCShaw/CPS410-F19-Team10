@@ -272,24 +272,43 @@ namespace CPS410Final
 
         }
 
-        public static String changeUsername(String desiredName)
+        public static String changeUsername(String desiredName, String userID)
         {
             SqlCommand updateName = new SqlCommand("UPDATE Users SET Username = @desiredname, WHERE UserID = @id", connection);
 
             if (nameExists(desiredName))
             {
-                return 
+                return "ERROR: Username already taken!";
             }
-
-            updateName.Parameters.AddWithValue("@desiredname", desiredName);
-
-            if (updateName.ExecuteNonQuery() != 0)
+            else
             {
-                return true;
+                updateName.Parameters.AddWithValue("@desiredname", desiredName);
+                updateName.Parameters.AddWithValue("@id",userID);
+
+                if (updateName.ExecuteNonQuery() != 0)
+                {
+                    return "Username successfully changed!";
+                }
+
+                // Should only be hit if the UPDATE does not work
+                return "ERROR: Could not change username at this time.";
             }
 
-            return false;
+        }
 
+        public static String changePassword(String desiredPassword, String userID)
+        {
+            /*
+             * 1) Take their desired password
+             * 2) Take their saved salt, add that to their desired password
+             * 3) Rehash their password with the concatenated pass+salt
+             * 4) UPDATE the user's password field with the rehash
+             */
+
+            SqlCommand grabSalt = new SqlCommand("SELECT UserSalt FROM Users WHERE UserID = @userID",connection);
+            grabSalt.Parameters.AddWithValue("@userID", userID);
+
+            return "fck y";
         }
 
         /************** END DATABASE OPERATIONS **************/
