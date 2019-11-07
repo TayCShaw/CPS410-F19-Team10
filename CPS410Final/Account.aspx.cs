@@ -86,7 +86,7 @@ namespace CPS410Final
 
         protected void btnUser_Click(object sender, EventArgs e)
         {
-            Boolean changed = Database.changeUsername(newUsername.Text);
+         /*   Boolean changed = Database.changeUsername(newUsername.Text);
 
             if (changed)
             {
@@ -96,6 +96,7 @@ namespace CPS410Final
             {
                 lblStatus.Text = "ERROR: Username not changed.";
             }
+            */
         }
     }
 }

@@ -272,25 +272,25 @@ namespace CPS410Final
 
         }
 
-        public static String changeUsername(String desiredName)
+       /* public static String changeUsername(String desiredName)
         {
             SqlCommand updateName = new SqlCommand("UPDATE Users SET Username = @desiredname, WHERE UserID = @id", connection);
 
             if (nameExists(desiredName))
             {
-                return 
+               // return; 
             }
 
             updateName.Parameters.AddWithValue("@desiredname", desiredName);
 
             if (updateName.ExecuteNonQuery() != 0)
             {
-                return true;
+               // return true;
             }
 
-            return false;
+            //return false;
 
-        }
+        } */
 
         /************** END DATABASE OPERATIONS **************/
     }

@@ -60,6 +60,15 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox txtboxEmail;
 
         /// <summary>
+        /// RadioButtonList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
+
+        /// <summary>
         /// btnRegister control.
         /// </summary>
         /// <remarks>
