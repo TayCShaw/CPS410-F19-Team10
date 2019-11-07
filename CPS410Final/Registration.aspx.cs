@@ -11,21 +11,33 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.TextBoxConfirmPass.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
-            this.txtboxUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
-            this.txtboxPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
-            this.txtboxEmail.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+            if (Session["UserID"] != null)
+            {
+                Response.Redirect("Account.aspx");
+            }
+            else
+            {
+                this.TextBoxConfirmPass.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+                this.txtboxUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+                this.txtboxPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+                this.txtboxEmail.Attributes.Add("onkeypress", "return clickButton(event,'" + this.btnRegister.ClientID + "')");
+            }
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             if (txtboxPassword.Text.Equals(TextBoxConfirmPass.Text) && !txtboxEmail.Text.Equals("") && !txtboxUsername.Text.Equals(""))
             {
+                String role = "Student";
                 // TRUE if user was added, FALSE otherwise
-                String userAdded = Database.addNewUser(txtboxEmail.Text, txtboxUsername.Text, txtboxPassword.Text);
+                String userAdded = Database.addNewUser(txtboxEmail.Text, txtboxUsername.Text, txtboxPassword.Text, role);
 
                 if (userAdded.Contains("TRUE"))
                 {
+                    String[] args = userAdded.Split(',');
+                    Session["UserID"] = args[1];
+                    Session["Role"] = role;
+
                     Response.Redirect("Account.aspx");
                 }
                 else if(userAdded.Contains("Username"))
