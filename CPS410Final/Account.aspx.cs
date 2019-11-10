@@ -30,7 +30,8 @@ namespace CPS410Final
                 degree.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
                 experience.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
                 contact.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
-                
+
+                //hide tutorInfo edit button if user is a student, show if tutor
                 if (Session["UserRole"].ToString().Equals("Tutor"))
                 {
                     btnTutor.Visible = true;
@@ -43,13 +44,7 @@ namespace CPS410Final
             else
             {
                 Response.Redirect("Login.aspx");
-            }
-
-
-            
-
-            //hide tutorInfo edit button if user is a student, show if tutor
-            
+            }         
         }
 
         protected void btnUsername_Click(object sender, EventArgs e)
@@ -180,14 +175,6 @@ namespace CPS410Final
             password.Visible = false;
             info.Visible = false;
             tutorInfo.Visible = true;
-
-/*           if ()
-           {
-                String changed = Database.changeUsername(txtboxNewUsername.Text, Session["UserID"].ToString());
-                lblUserStatus.Text = changed;
-            }
-            */
-
         }
 
         protected void btnChangePass_Click(object sender, EventArgs e)
@@ -198,27 +185,26 @@ namespace CPS410Final
              * 3) Check if currentPassword entered is actually their password
              * 4) If an error, print out the specific one
              */
-            if (!passwordFieldsEmpty())
+            if (Security.checkPassword(txtboxCurrentPassword.Text, Session["UserID"].ToString()))
             {
                 if (txtboxNewPassword.Text.Equals(txtboxConfirmNewPass.Text))
                 {
                     String changed = Database.changePassword(txtboxCurrentPassword.Text, txtboxNewPassword.Text, Session["UserID"].ToString());
 
                     lblPasswordStatus.Text = changed;
-
-                    overview.Visible = false;
-                    username.Visible = false;
-                    info.Visible = false;
-                    password.Visible = true;
-                    lblPasswordStatus.Text = "Password changed" ;
                 }
             }
             else
             {
-                lblPasswordStatus.Text = "ERROR: All fields are required!";
+                lblPasswordStatus.ForeColor = System.Drawing.Color.Red;
+                lblPasswordStatus.Text = "Incorrect password.";
             }
 
+            // Keep password page open
+            overview.Visible = false;
+            password.Visible = true;
         }
+
 
         /********* HELPER METHODS ********/
 

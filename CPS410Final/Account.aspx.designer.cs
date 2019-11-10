@@ -186,6 +186,15 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox txtboxCurrentPassword;
 
         /// <summary>
+        /// rfvCurrentPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCurrentPass;
+
+        /// <summary>
         /// txtboxNewPassword control.
         /// </summary>
         /// <remarks>
@@ -195,6 +204,15 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox txtboxNewPassword;
 
         /// <summary>
+        /// rfvNewPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewPass;
+
+        /// <summary>
         /// txtboxConfirmNewPass control.
         /// </summary>
         /// <remarks>
@@ -202,6 +220,15 @@ namespace CPS410Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtboxConfirmNewPass;
+
+        /// <summary>
+        /// rfvConfirmPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvConfirmPass;
 
         /// <summary>
         /// btnChangePass control.

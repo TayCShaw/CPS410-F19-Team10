@@ -150,31 +150,42 @@
            
            
         }
-        .tbalign{
-            
+        .tdalign{
+            text-align: right;
+            width: 65%;
+            height: 40px;
+        }
+        .tdalign2{
+            text-align: left;
+            color: red;
         }
 
 
 
-        .auto-style4 {
-            width: 100%;
-        }
         .auto-style5 {
             margin-bottom: 0px;
         }
 
 
 
-    </style>
+        .auto-style13 {
+            width: 69%;
+            margin-left: 130px;
+            margin-right: 175px;
+        }
+
+
+
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
    <div class="vertical-menu">
-       <asp:Button ID="btnOverview" runat="server" Text="Account Overview" CssClass="buttonActive" OnClick="btnOverview_Click" />
-       <asp:Button ID="btnUsername" runat="server" Text="Change Username" CssClass="Buttons" OnClick="btnUsername_Click" />
-       <asp:Button ID="btnPassword" runat="server" Text="Change Password" CssClass="Buttons" OnClick="btnPassword_Click" />
-       <asp:Button ID="btnInfo" runat="server" Text="Edit Information" CssClass="Buttons" OnClick="btnInfo_Click" />
-       <asp:Button ID="btnTutor" runat="server" Text="Edit Tutor Information" CssClass="Buttons" OnClick="btnTutor_Click" />
+       <asp:Button ID="btnOverview" runat="server" Text="Account Overview" CssClass="buttonActive" OnClick="btnOverview_Click" CausesValidation="False" />
+       <asp:Button ID="btnUsername" runat="server" Text="Change Username" CssClass="Buttons" OnClick="btnUsername_Click" CausesValidation="False" />
+       <asp:Button ID="btnPassword" runat="server" Text="Change Password" CssClass="Buttons" OnClick="btnPassword_Click" CausesValidation="False" />
+       <asp:Button ID="btnInfo" runat="server" Text="Edit Information" CssClass="Buttons" OnClick="btnInfo_Click" CausesValidation="False" />
+       <asp:Button ID="btnTutor" runat="server" Text="Edit Tutor Information" CssClass="Buttons" OnClick="btnTutor_Click" CausesValidation="False" />
 
 
    </div>
@@ -202,15 +213,32 @@
 
     <div class="password" id="password" runat="server">
         <h1>Create New Password</h1>
-        <p>
-            <asp:TextBox ID="txtboxCurrentPassword" placeholder="Current Password" runat="server" CssClass="auto-style5"></asp:TextBox>
-        </p>
-        <p>
+        <table class="auto-style13" style="margin-left: 175px; ">
+            <tr>
+                <td class="tdalign">
+            <asp:TextBox ID="txtboxCurrentPassword"  placeholder="Current Password" runat="server" CssClass="auto-style5"></asp:TextBox>
+                </td>
+                <td class="tdalign2">
+                    <asp:RequiredFieldValidator ID="rfvCurrentPass" runat="server" ControlToValidate="txtboxCurrentPassword" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdalign">
             <asp:TextBox ID="txtboxNewPassword" placeholder="New Password"  runat="server"></asp:TextBox>
-        </p>
-       <p> 
+                </td>
+                <td class="tdalign2">
+                    <asp:RequiredFieldValidator ID="rfvNewPass" runat="server" ControlToValidate="txtboxNewPassword" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdalign"> 
            <asp:TextBox ID="txtboxConfirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox>
-       </p>
+                </td>
+                <td class="tdalign2">
+                    <asp:RequiredFieldValidator class="" ID="rfvConfirmPass" runat="server" ControlToValidate="txtboxConfirmNewPass" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+        </table>
        <asp:Button ID="btnChangePass" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Password" BackColor="DeepSkyBlue" Width="30%" OnClick="btnChangePass_Click" />
            
         <p>
