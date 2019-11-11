@@ -171,7 +171,14 @@
         .auto-style13 {
             width: 69%;
             margin-left: 130px;
-            margin-right: 175px;
+            margin-right: 181px;
+        }
+
+
+
+        .auto-style14 {
+            width: 69%;
+            margin-left: 175px;
         }
 
 
@@ -202,11 +209,30 @@
 
     <div class="username" id="username" runat="server">
         <h1>Change Username</h1>
-       <p> <asp:TextBox ID="txtboxNewUsername" placeholder="New username" runat="server"></asp:TextBox></p>
-       <p> <asp:TextBox ID="txtboxConfirmNewUsername" placeholder="Confirm new username"  runat="server"></asp:TextBox></p>
-        <p><asp:TextBox ID="txtboxTypePassword" placeholder="Password" runat="server"></asp:TextBox></p>
-        <asp:Button ID="btnChangeUsername" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Username" BackColor="DeepSkyBlue" Width="30%" OnClick="btnUser_Click" />&nbsp;</p>
-       <p>
+        <table class="auto-style14">
+            <tr>
+                <td class="tdalign"> 
+                    <asp:TextBox ID="txtboxNewUsername" placeholder="New username" runat="server"></asp:TextBox></td>
+                <td class="tdalign2">
+                    <asp:RequiredFieldValidator ID="rfvNewUsername" runat="server" ErrorMessage="Required Field" ControlToValidate="txtboxNewUsername"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdalign"> 
+                    <asp:TextBox ID="txtboxConfirmNewUsername" placeholder="Confirm new username"  runat="server"></asp:TextBox></td>
+                <td class="tdalign2">
+                    <asp:RequiredFieldValidator ID="rfvConfirmNewUsername" runat="server" ErrorMessage="Required Field" ControlToValidate="txtboxConfirmNewUsername"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdalign">
+                    <asp:TextBox ID="txtboxTypePassword" placeholder="Password" runat="server"></asp:TextBox></td>
+                <td class="tdalign2">
+                    <asp:RequiredFieldValidator ID="rfvTypePassword" runat="server" ErrorMessage="Required Field" ControlToValidate="txtboxTypePassword"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+        </table>
+        <asp:Button ID="btnChangeUsername" padding-left="35%" CssClass="buttonSubmit" runat="server" Text="Change Username" BackColor="DeepSkyBlue" Width="30%" OnClick="btnChangeUsername_Click" />&nbsp;<p>
            <asp:Label ID="lblUsernameStatus" runat="server"></asp:Label>
         </p>
     </div>

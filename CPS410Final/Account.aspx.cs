@@ -105,20 +105,45 @@ namespace CPS410Final
             tutorInfo.Visible = false;
         }
 
-        protected void btnUser_Click(object sender, EventArgs e)
+        protected void btnChangeUsername_Click(object sender, EventArgs e)
         {
+            /*
+             * 1) Check if all fields are filled in 
+             * 2) Check if the password is the correct password
+             * 3) Check if the username desired is already in use
+             * 4) If an error, print out the specific one
+             */
+            if (Security.checkPassword(txtboxTypePassword.Text, Session["UserID"].ToString()))
+            {
+                if (txtboxNewUsername.Text.Equals(txtboxConfirmNewUsername.Text))
+                {
+                    String changed = Database.changeUsername(txtboxConfirmNewUsername.Text, Session["UserID"].ToString());
 
-            btnUsername.CssClass = "buttonActive";
-            btnPassword.CssClass = "Buttons";
-            btnOverview.CssClass = "Buttons";
-            btnInfo.CssClass = "Buttons";
-            btnTutor.CssClass = "Buttons";
+                    if (changed.Contains("ERROR"))
+                    {
+                        lblUsernameStatus.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblUsernameStatus.ForeColor = System.Drawing.Color.Black;
+                    }
+                    lblUsernameStatus.Text = changed;
+                }
+                else
+                {
+                    // Usernames do not match
+                    lblUsernameStatus.ForeColor = System.Drawing.Color.Red;
+                    lblUsernameStatus.Text = "Usernames do not match";
+                }
+            }
+            else
+            {
+                lblUsernameStatus.ForeColor = System.Drawing.Color.Red;
+                lblUsernameStatus.Text = "Incorrect password";
+            }
+
             overview.Visible = false;
             username.Visible = true;
-            password.Visible = false;
-            info.Visible = false;
-            tutorInfo.Visible = false;
-
         }
 
         protected void btnTutor_Click(object sender, EventArgs e)
@@ -191,6 +216,14 @@ namespace CPS410Final
                 {
                     String changed = Database.changePassword(txtboxCurrentPassword.Text, txtboxNewPassword.Text, Session["UserID"].ToString());
 
+                    if (changed.Contains("ERROR"))
+                    {
+                        lblPasswordStatus.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblPasswordStatus.ForeColor = System.Drawing.Color.Black;
+                    }
                     lblPasswordStatus.Text = changed;
                 }
             }
@@ -206,11 +239,21 @@ namespace CPS410Final
         }
 
 
+
         /********* HELPER METHODS ********/
 
         protected Boolean passwordFieldsEmpty()
         {
             if ((txtboxCurrentPassword.Text.Length != 0) && (txtboxNewPassword.Text.Length != 0) && (txtboxConfirmNewPass.Text.Length != 0))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        protected Boolean userFieldsEmpty()
+        {
+            if ((txtboxNewUsername.Text.Length != 0) && (txtboxConfirmNewUsername.Text.Length != 0) && (txtboxTypePassword.Text.Length != 0))
             {
                 return false;
             }

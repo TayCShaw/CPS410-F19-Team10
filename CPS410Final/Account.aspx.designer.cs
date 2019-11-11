@@ -132,6 +132,15 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox txtboxNewUsername;
 
         /// <summary>
+        /// rfvNewUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewUsername;
+
+        /// <summary>
         /// txtboxConfirmNewUsername control.
         /// </summary>
         /// <remarks>
@@ -141,6 +150,15 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.TextBox txtboxConfirmNewUsername;
 
         /// <summary>
+        /// rfvConfirmNewUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvConfirmNewUsername;
+
+        /// <summary>
         /// txtboxTypePassword control.
         /// </summary>
         /// <remarks>
@@ -148,6 +166,15 @@ namespace CPS410Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtboxTypePassword;
+
+        /// <summary>
+        /// rfvTypePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTypePassword;
 
         /// <summary>
         /// btnChangeUsername control.
