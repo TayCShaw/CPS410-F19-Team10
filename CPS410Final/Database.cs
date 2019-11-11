@@ -34,6 +34,7 @@ namespace CPS410Final
             connection.Close();
         }
 
+
         /* Checks to see if a username already exists in the Users table
          * @PARAM: "username": Username to search Users table for 
          * @TABLE: Users
@@ -61,25 +62,6 @@ namespace CPS410Final
                 closeDB();
                 return false;
             }
-        }
-
-        public static String grabRole(String userID)
-        {
-            SqlCommand search = new SqlCommand("SELECT * FROM Users WHERE UserID = @userID", connection);
-            search.Parameters.AddWithValue("@userID", userID);
-            SqlDataReader reader;
-            String role = "";
-
-            openDB();
-            reader = search.ExecuteReader();
-            reader.Read();
-
-            if (reader.HasRows)
-            {
-                role = reader["UserRole"].ToString();
-            }
-            closeDB();
-            return role;
         }
 
 
@@ -157,6 +139,7 @@ namespace CPS410Final
             }
         }
 
+
         /* Adds a new subject to the Subjects table of the database
          * @PARAM: "UserID": UserID of the user creating the Subject, typically should be the UserID stored in session state
          *       "SubjName": Name to be set for the Subject. Will be outward facing and be the name users know the Subject by
@@ -213,6 +196,7 @@ namespace CPS410Final
             }
         }
 
+
         /* Adds a new topic to the Topics table of the database
          * @PARAM: "UserID": UserID of the User creating the Topic, typically should be the UserID stored in session state 
          *      "SubjectID": SubjectID of the Subject the Topic is being created under (e.g., the topic Geometry could have 
@@ -262,6 +246,7 @@ namespace CPS410Final
             return false;
         }
 
+
         /*
          */
         public static Boolean addNewThread(String UserID, String TopicID)
@@ -270,6 +255,7 @@ namespace CPS410Final
 
             return false;
         }
+
 
         /* Primarily used for logging in to the website. Determines if the login credentials match an account AND are valid
          * @PARAM: "username": Username to be searched for in the Users database table
@@ -353,11 +339,11 @@ namespace CPS410Final
         }
 
 
-      /* GETs the salt of a specific user based on UserID
-         * @PARAM: "userID": UserID used to search the Users table to find specific User
-         * @TABLE: Users
-         * @RETURNS: String value representing the UserSalt field
-         */
+        /* GETs the salt of a specific user based on UserID
+           * @PARAM: "userID": UserID used to search the Users table to find specific User
+           * @TABLE: Users
+           * @RETURNS: String value representing the UserSalt field
+           */
         public static String getSalt(String userID)
         {
             String salt = "";
@@ -371,10 +357,11 @@ namespace CPS410Final
             if (reader.HasRows)
             {
                 salt = reader["UserSalt"].ToString();
-                closeDB();
             }
+            closeDB();
             return salt;
         }
+
 
         /* GETs the password of a specified user based on UserID
          * @PARAM: "userID": UserID used to search the Users table to find specific User
@@ -396,9 +383,8 @@ namespace CPS410Final
                 {
                     password = reader["UserPassword"].ToString();
                 }
-                closeDB();
-
             }
+            closeDB();
             return password;
         }
         
@@ -431,12 +417,15 @@ namespace CPS410Final
                 updateName.Parameters.AddWithValue("@id",userID);
 
                 // Execute the UPDATE
-                if (updateName.ExecuteNonQuery() != 0)
+                openDB();
+                if (updateName.ExecuteNonQuery() == 1)
                 {
+                    closeDB();
                     return "Username successfully changed!";
                 }
 
                 // Should only be hit if the UPDATE does not work
+                closeDB();
                 return "ERROR: Could not change username at this time.";
             }
         } 
