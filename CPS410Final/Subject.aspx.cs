@@ -51,12 +51,19 @@ namespace CPS410Final
                 string subName = getInformation["SubjectName"].ToString();
                 string topicName = getInformation["topicName"].ToString();
 
+                //topicContainer = new HtmlGenericControl("div");
+                //topicContainer.Visible = false;
+
+                Button myButton = new Button();
+                myButton.Text = "expand";
+               
+
                 if (oldTopic.Equals(subID))
                 {
                     // add this topic to the same topic div
                     Label topicLbl = new Label();
                     topicLbl.Text = topicName;
-                    topicLbl.CssClass = "label";
+                    topicLbl.CssClass = "sublabel";
                     HtmlGenericControl topicDiv = new HtmlGenericControl("div");
                     topicDiv.Attributes.Add("class", "topicDiv");
                     topicDiv.Attributes.Add("id", topicName);
@@ -69,10 +76,11 @@ namespace CPS410Final
                     subjectDiv = new HtmlGenericControl("div");
                     subjectDiv.Attributes.Add("class", "subjectDiv");
                     subjectDiv.Attributes.Add("id", subName);
+                    subjectDiv.Controls.Add(myButton);
 
                     Label subjectLbl = new Label();
                     subjectLbl.Text = subName;
-                    subjectLbl.CssClass = "label";
+                    subjectLbl.CssClass = "sublabel";
 
                     subjectDiv.Controls.Add(subjectLbl);
                     mainDiv.Controls.Add(subjectDiv);
@@ -82,7 +90,7 @@ namespace CPS410Final
 
                     Label topicLbl = new Label();
                     topicLbl.Text = topicName;
-                    topicLbl.CssClass = "label";
+                    topicLbl.CssClass = "sublabel";
                     HtmlGenericControl topicDiv = new HtmlGenericControl("div");
                     topicDiv.Attributes.Add("class", "topicDiv");
                     topicDiv.Attributes.Add("id", topicName);

@@ -22,7 +22,17 @@
     margin-bottom: 20px;
 }
 
-.label{
+.sublabel {
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    vertical-align:middle;
+}
+.toplabel{
+    width:10%;
+    margin-bottom:45%;
+    margin-right:45%;
     text-align:center;
 }
 
