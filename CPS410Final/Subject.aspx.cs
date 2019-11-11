@@ -110,7 +110,8 @@ namespace CPS410Final
             // make the button and add it to the div
             Button b = new Button();
             b.Text = name;
-            b.Attributes.Add("CssClass", "invBtn");
+           // b.CssClass = "topicDiv";
+            b.Attributes.Add("class", "allMyBtn");
             sub.Controls.Add(b);
             // add method for this button here
 
