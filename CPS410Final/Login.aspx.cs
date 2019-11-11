@@ -11,12 +11,14 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //checks if user is already logged in, redirects to account page if they are
             if (Session["UserID"] != null)
             {
                 Response.Redirect("Account.aspx");
             }
             else
             {
+                //if user presses enter in text box, acts as though login button was pressed
                 txtboxUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
                 txtboxPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnLogin.ClientID + "')");
             }

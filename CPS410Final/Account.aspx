@@ -168,7 +168,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
    <div class="vertical-menu">
        <asp:Button ID="btnOverview" runat="server" Text="Account Overview" CssClass="buttonActive" OnClick="btnOverview_Click" />
        <asp:Button ID="btnUsername" runat="server" Text="Change Username" CssClass="Buttons" OnClick="btnUsername_Click" />

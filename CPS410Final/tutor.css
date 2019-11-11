@@ -6,6 +6,11 @@
     margin: 0 auto;
     text-align: center;
 }
+
+.empty{
+    width: 100%;
+    height: 50px;
+}
 .tutorsearch {
     background-color: black;
     width: 360px;
@@ -13,6 +18,7 @@
     align-content: center;
     position: center;
     margin: 0 auto;
+    margin-top: 50px;
     padding: 15px;
 }
 
@@ -75,7 +81,7 @@
         background: #f2f2f2;
         width: 100%;
         border: 0;
-        margin: 0 0 15px;
+        margin: 0 0 30px;
         padding: 15px;
         box-sizing: border-box;
         font-size: 14px;
@@ -111,6 +117,7 @@ label {
     cursor: pointer;
     margin-top: 30px;
 }
+
 
 .fTutor {
     font-family: "Roboto", sans-serif;
