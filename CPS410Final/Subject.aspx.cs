@@ -32,12 +32,12 @@ namespace CPS410Final
 
             SqlCommand informationCommand = new SqlCommand(getInfo, Database.connection);
             SqlDataReader getInformation;
-
+/*
             HtmlGenericControl mainDiv = new HtmlGenericControl("div");
             mainDiv.Attributes.Add("class", "mainDiv");
+            mainDiv.Attributes.Add("runat", "server");
             Form.Controls.Add(mainDiv);
-
-            HtmlGenericControl subjectDiv = new HtmlGenericControl("div");
+*/
             HtmlGenericControl topicContainer = new HtmlGenericControl("div");
 
             Database.openDB();
@@ -51,9 +51,6 @@ namespace CPS410Final
                 string subName = getInformation["SubjectName"].ToString();
                 string topicName = getInformation["topicName"].ToString();
 
-                
-               
-
                 if (oldSubject.Equals(subID))
                 {
                     // add this topic to the same topic div
@@ -63,13 +60,17 @@ namespace CPS410Final
                 {
                     // we have moved on to a new subject so make a new subject div
                     // add the div for the new subject
-                    mainDiv.Controls.Add(subJectDiv(subName));
+                    //Form.Controls.Add(subJectDiv(subName));
+                    this.Controls.Add(subJectDiv(subName));
 
                     topicContainer = new HtmlGenericControl("div");
-                    topicContainer.Attributes.Add("id", ("topicContainer " + subName));
+                    topicContainer.Attributes.Add("id", ("tp " + subName));
+                    topicContainer.Attributes.Add("runat", "server");
+                    topicContainer.Visible = true;
 
                     // add the topic container to the maindiv
-                    mainDiv.Controls.Add(topicContainer);
+                   // Form.Controls.Add(topicContainer);
+                    this.Controls.Add(topicContainer);
 
                     // add the first topic
                     topicContainer.Controls.Add(topicDiv(topicName));
@@ -80,6 +81,7 @@ namespace CPS410Final
                 }
             }
             Database.closeDB();
+
         }
 
         private HtmlGenericControl subJectDiv(String name)
@@ -87,14 +89,17 @@ namespace CPS410Final
             // make the div and add the css to the div
             HtmlGenericControl sub = new HtmlGenericControl("div");
             sub.Attributes.Add("class", "subjectDiv");
-            sub.Attributes.Add("id", name);
+            sub.Attributes.Add("id", "div"+ name);
+            sub.Attributes.Add("runat", "server");
 
             // make the button and add it to the div
             Button b = new Button();
             b.Text = name;
-            b.Attributes.Add("class", "invBtn");
+            b.ID = name;
+            b.Attributes.Add("class", "allMyBtn");
+            b.Attributes.Add("runat", "server");
+            b.Click += new EventHandler(Btn_Click);
             sub.Controls.Add(b);
-            // add method for this button here
 
             // return the div
             return sub;
@@ -106,13 +111,13 @@ namespace CPS410Final
             HtmlGenericControl sub = new HtmlGenericControl("div");
             sub.Attributes.Add("class", "topicDiv");
             sub.Attributes.Add("id", name);
+            sub.Attributes.Add("runat", "server");
 
             // make the button and add it to the div
             Button b = new Button();
-            b.Text = name;
-           // b.CssClass = "topicDiv";
             b.Attributes.Add("class", "allMyBtn");
             sub.Controls.Add(b);
+            b.Text = name;
             // add method for this button here
 
             // return the div
@@ -120,10 +125,21 @@ namespace CPS410Final
         }
 
 
-        protected void btnAddSubject_Click(object sender, EventArgs e)
+        protected void Btn_Click(object sender, EventArgs e)
         {
-            
-      
+            Button b = (Button)sender;
+            String controlToFind = "tp " + b.ID;
+
+            lbl1.Text = "";
+            int count = 0;
+            foreach (Control childControl in this.Controls)
+            {
+                lbl1.Text = lbl1.Text + " " + childControl.ClientID;
+               
+                count++;
+                
+            }
+            lbl1.Text += count;
         }
     }
 }
