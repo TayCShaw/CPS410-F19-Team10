@@ -2,11 +2,20 @@
     background-color: gray;
 }
 .everything{
-    background-color: gray;
+    background-color: black;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    padding: 3%;
 }
 .title{
     text-align: center;
     color: deepskyblue;
+    border-style: solid;
+    border-color: silver;
+   
+    width: 25%;
+    margin: auto;
 }
 
 .about{

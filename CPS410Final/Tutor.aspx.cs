@@ -11,6 +11,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if user presses enter in a textbox, treat it as if they clicked the find tutor button
             txtboxSubject.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutor.ClientID + "')");
             txtboxSchool.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutor.ClientID + "')");
             txtboxCommunication.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutor.ClientID + "')");
