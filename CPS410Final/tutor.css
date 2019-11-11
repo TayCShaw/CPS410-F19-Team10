@@ -133,3 +133,25 @@ label {
     margin-top: 30px;
 }
 
+.tutorlist {
+    background-color: black;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    width: 70%;
+    color:white;
+}
+
+.btnBack {
+    margin: auto;
+}
+
+.tutor {
+    border-style: solid;
+    border-color: silver;
+    margin: auto;
+}
+.tutorlbl{
+    
+}
+

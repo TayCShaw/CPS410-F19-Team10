@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="tutor.css" />
     
-    <div class="tutorsearch">
+    <div class="tutorsearch" id="tutorsearch" runat="server">
         <h1 class="title">Tutor Search</h1>
       
         <div class="inputFields">
@@ -22,11 +22,27 @@
             <asp:TextBox ID="txtboxCommunication" placeholder="Communication Method" runat="server"></asp:TextBox>
              </label>
             
-                <asp:Button ID="btnTutor" runat="server" Text="Find Tutor" CssClass="fTutor" Height="50px" />
+                <asp:Button ID="btnTutor" runat="server" Text="Find Tutor" CssClass="fTutor" Height="50px" OnClick="btnTutor_Click" />
             
         </form>
         </div>
         
+
+
+    </div> 
+
+    <div class="tutorlist" id="tutorlist" runat="server">
+        <asp:Button ID="back" runat="server" Text="&lt;&lt; Return To Search" BackColor="DeepSkyBlue" OnClick="back_Click" Width="25%" BorderStyle="None" CssClass="btnBack" />
+
+        <div class="tutor" id="tutor" runat="server">
+            <p><asp:Label CssClass="tutorlbl" id="name" Text="Tutor's Name" runat="server"></asp:Label></p>
+           <p> <asp:Label CssClass="tutorlbl" id="school" Text="Tutors School" runat="server"></asp:Label></p>
+           <p> <asp:Label CssClass="tutorlbl" id="degree" Text="Tutor's Degree" runat="server"></asp:Label></p>
+           <p> <asp:Label CssClass="tutorlbl" id="experience" Text="Tutors Experience" runat="server"></asp:Label></p>
+          <p>  <asp:Label CssClass="tutorlbl" id="contact" Text="Tutors Contact methods" runat="server"></asp:Label></p>
+
+
+        </div>
 
 
     </div>
