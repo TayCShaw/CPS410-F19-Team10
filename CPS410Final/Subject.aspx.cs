@@ -25,7 +25,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string oldTopic = "";
+            string oldSubject = "";
 
             string getInfo = "Select Subjects.SubjectID, Subjects.SubjectName, Topics.TopicID, Topics.TopicName, " +
                 "Topics.TopicSubject from Subjects INNER JOIN Topics ON Subjects.SubjectID = Topics.TopicSubject ORDER BY Subjects.SubjectID ASC";
@@ -51,58 +51,71 @@ namespace CPS410Final
                 string subName = getInformation["SubjectName"].ToString();
                 string topicName = getInformation["topicName"].ToString();
 
-                //topicContainer = new HtmlGenericControl("div");
-                //topicContainer.Visible = false;
-
-                Button myButton = new Button();
-                myButton.Text = "expand";
+                
                
 
-                if (oldTopic.Equals(subID))
+                if (oldSubject.Equals(subID))
                 {
                     // add this topic to the same topic div
-                    Label topicLbl = new Label();
-                    topicLbl.Text = topicName;
-                    topicLbl.CssClass = "sublabel";
-                    HtmlGenericControl topicDiv = new HtmlGenericControl("div");
-                    topicDiv.Attributes.Add("class", "topicDiv");
-                    topicDiv.Attributes.Add("id", topicName);
-                    topicDiv.Controls.Add(topicLbl);
-                    topicContainer.Controls.Add(topicDiv);
+                    topicContainer.Controls.Add(topicDiv(topicName));
                 }
                 else
                 {
                     // we have moved on to a new subject so make a new subject div
-                    subjectDiv = new HtmlGenericControl("div");
-                    subjectDiv.Attributes.Add("class", "subjectDiv");
-                    subjectDiv.Attributes.Add("id", subName);
-                    subjectDiv.Controls.Add(myButton);
-
-                    Label subjectLbl = new Label();
-                    subjectLbl.Text = subName;
-                    subjectLbl.CssClass = "sublabel";
-
-                    subjectDiv.Controls.Add(subjectLbl);
-                    mainDiv.Controls.Add(subjectDiv);
+                    // add the div for the new subject
+                    mainDiv.Controls.Add(subJectDiv(subName));
 
                     topicContainer = new HtmlGenericControl("div");
+                    topicContainer.Attributes.Add("id", ("topicContainer " + subName));
+
+                    // add the topic container to the maindiv
                     mainDiv.Controls.Add(topicContainer);
 
-                    Label topicLbl = new Label();
-                    topicLbl.Text = topicName;
-                    topicLbl.CssClass = "sublabel";
-                    HtmlGenericControl topicDiv = new HtmlGenericControl("div");
-                    topicDiv.Attributes.Add("class", "topicDiv");
-                    topicDiv.Attributes.Add("id", topicName);
-                    topicDiv.Controls.Add(topicLbl);
-                    topicContainer.Controls.Add(topicDiv);
-                    topicContainer.Attributes.Add("class", "topicContainer");
+                    // add the first topic
+                    topicContainer.Controls.Add(topicDiv(topicName));
 
-                    oldTopic = subID;
+
+                    oldSubject = subID;
 
                 }
             }
             Database.closeDB();
+        }
+
+        private HtmlGenericControl subJectDiv(String name)
+        {
+            // make the div and add the css to the div
+            HtmlGenericControl sub = new HtmlGenericControl("div");
+            sub.Attributes.Add("class", "subjectDiv");
+            sub.Attributes.Add("id", name);
+
+            // make the button and add it to the div
+            Button b = new Button();
+            b.Text = name;
+            b.Attributes.Add("class", "invBtn");
+            sub.Controls.Add(b);
+            // add method for this button here
+
+            // return the div
+            return sub;
+        }
+
+        private HtmlGenericControl topicDiv(String name)
+        {
+            // make the div and add the css to the div
+            HtmlGenericControl sub = new HtmlGenericControl("div");
+            sub.Attributes.Add("class", "topicDiv");
+            sub.Attributes.Add("id", name);
+
+            // make the button and add it to the div
+            Button b = new Button();
+            b.Text = name;
+            b.Attributes.Add("CssClass", "invBtn");
+            sub.Controls.Add(b);
+            // add method for this button here
+
+            // return the div
+            return sub;
         }
 
 
