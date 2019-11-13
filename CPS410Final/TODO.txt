@@ -1,7 +1,5 @@
 ﻿Security.cs Class
 -----------------
-DONE -- 1) Create a way to generate a salt, append that to the user's password, and hash it.
-1a) Can that same method be used to authenticate when logging in? If not, create another method
 2) Handle some sort of password requirements (length, character requirements, etc.)
 3) Handle changing passwords, forgotten passwords, forgotten usernames, etc.
 
@@ -14,36 +12,41 @@ Registration.aspx
 
 
 Login.aspx
-----------
+-----------------
 1) Display an option for forgotten username or password
-2) Display an error message based on invalid username and/or password
-3) Button that leads to the registration page
 
+
+
+-%-%-%-%-%-%-%-%-%-%DISCUSSION BOARD RELATED%-%-%-%-%-%-%-%-%-%-
 
 Subject.aspx
---------------
+-----------------
 **Refer to iFinal**
 1) Display a list of threads
 2) If a new subject is being created with a name as an already existing Subject, prompt user to confirm that they wish to create
 	a subject with the same name.
 
 Topic.aspx
-----------
+-----------------
 1) If a new topic is being created with a name as an already existing topic, prompt user to confirm that they wish to create
 	a topic with the same name.
 
 Thread.aspx
--------------
+-----------------
 **Refer to iFinal**
 1) Display the posts in order based on time
 2) 
 
+-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+
+
 
 Account.cs
-------------
-1) Allow for changing of outward facing username (have to implement database actions that changes the username everywhere)
-2) Allow for differentiation of high school students and college students. Probably have to have that upon registration initially.
-
+-----------------
+1) Possibly link to a new page showing an example of what to write for a tutor AND for a student
+2) DECIDE two things:
+	a) Decide on redirect to "Edit information" once a new account is registered
+	b) Decide if all fields on edit information should be required (for students)
 
 Database.cs/Login.aspx
 ----------------------
@@ -52,7 +55,7 @@ Database.cs/Login.aspx
 
 
 Admin Console
--------------
+-----------------
 1) Assign users new roles
 2) Create new Subjects (all users can create posts, only admins can create subjects)
 3) Delete/Ban users, delete/rename Subjects
@@ -65,3 +68,12 @@ FOR EACH DIV ON ACCOUNT PAGE
 2) If the user currently logged in is a tutor, at the bottom of the menu on the left side show a new div that is labeled
 	something like "Tutor Information". This is strictly for tutors to fill out their "tutor profile" (e.g., places of employment,
 	degrees earned, years of experience, etc.)
+
+
+TAYLOR
+------
+1) Think about creating a dropdownlist for selecting majors and binding it to a database table that is filled with possible majors
+	a) would have to allow nulls
+	b) would have to include an option for users to request a major to be added
+	c) talk to brad about only having one account information page based on student/tutor (i.e., a tutor account can only see the tutor information page)
+2) On Account.aspx page, when logged in, pull their data into the appropriate page control (if the data exists)

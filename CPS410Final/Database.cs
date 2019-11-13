@@ -34,6 +34,7 @@ namespace CPS410Final
             connection.Close();
         }
 
+
         /* Checks to see if a username already exists in the Users table
          * @PARAM: "username": Username to search Users table for 
          * @TABLE: Users
@@ -63,25 +64,6 @@ namespace CPS410Final
             }
         }
 
-        public static String grabRole(String userID)
-        {
-            SqlCommand search = new SqlCommand("SELECT * FROM Users WHERE UserID = @userID", connection);
-            search.Parameters.AddWithValue("@userID", userID);
-            SqlDataReader reader;
-            String role = "";
-
-            openDB();
-            reader = search.ExecuteReader();
-            reader.Read();
-
-            if (reader.HasRows)
-            {
-                role = reader["UserRole"].ToString();
-            }
-            closeDB();
-            return role;
-        }
-
 
         /* Adds a new user to the User table of the database
          * @PARAM: "email": Email address of the User
@@ -104,6 +86,15 @@ namespace CPS410Final
             {
                 // Username does not already exist
                 SqlCommand insertUser = new SqlCommand("INSERT INTO Users (UserID, Username, UserPassword, UserSalt, UserEmail, TimeCreated, UserRole) values (@userid, @username, @userpassword, @usersalt, @email, @time, @role)", connection);
+                SqlCommand secondaryTable = new SqlCommand();
+                if (role.Equals("Student"))
+                {
+                    secondaryTable = new SqlCommand("INSERT INTO Students (UserID) values (@userid)", connection);
+                }else if (role.Equals("Tutor"))
+                {
+                    secondaryTable = new SqlCommand("INSERT INTO Tutors (UserID) values (@userid)", connection);
+                }
+
                 SqlCommand count = new SqlCommand("Select max(UserID) from Users", connection);
                 String userSalt;
 
@@ -137,17 +128,28 @@ namespace CPS410Final
                 insertUser.Parameters.AddWithValue("@email", email);
                 insertUser.Parameters.AddWithValue("@time", DateTime.Now);
                 insertUser.Parameters.AddWithValue("@role", role);
-              
+
+                secondaryTable.Parameters.AddWithValue("@userid", newuserID);
+
                 /*
                  * Attempts to add the new user account to the database. If the addition is
                  * successful, the method returns "TRUE". If the addition is unsuccessful
                  * (in this case, for an error based on inserting to database), method returns
                  * "FALSE".
                  */
-                if (insertUser.ExecuteNonQuery() != 0)
+                if (insertUser.ExecuteNonQuery() == 1)
                 {
                     closeDB();
-                    return "TRUE,"+ newuserID;
+                    openDB();
+                    if (secondaryTable.ExecuteNonQuery() == 1)
+                    {
+                        closeDB();
+                        return "TRUE," + newuserID;
+                    }
+                    else
+                    {
+                        return "FALSE";
+                    }
                 }
                 else
                 {
@@ -156,6 +158,7 @@ namespace CPS410Final
                 }
             }
         }
+
 
         /* Adds a new subject to the Subjects table of the database
          * @PARAM: "UserID": UserID of the user creating the Subject, typically should be the UserID stored in session state
@@ -213,6 +216,7 @@ namespace CPS410Final
             }
         }
 
+
         /* Adds a new topic to the Topics table of the database
          * @PARAM: "UserID": UserID of the User creating the Topic, typically should be the UserID stored in session state 
          *      "SubjectID": SubjectID of the Subject the Topic is being created under (e.g., the topic Geometry could have 
@@ -262,6 +266,7 @@ namespace CPS410Final
             return false;
         }
 
+
         /*
          */
         public static Boolean addNewThread(String UserID, String TopicID)
@@ -270,6 +275,7 @@ namespace CPS410Final
 
             return false;
         }
+
 
         /* Primarily used for logging in to the website. Determines if the login credentials match an account AND are valid
          * @PARAM: "username": Username to be searched for in the Users database table
@@ -353,11 +359,11 @@ namespace CPS410Final
         }
 
 
-      /* GETs the salt of a specific user based on UserID
-         * @PARAM: "userID": UserID used to search the Users table to find specific User
-         * @TABLE: Users
-         * @RETURNS: String value representing the UserSalt field
-         */
+        /* GETs the salt of a specific user based on UserID
+           * @PARAM: "userID": UserID used to search the Users table to find specific User
+           * @TABLE: Users
+           * @RETURNS: String value representing the UserSalt field
+           */
         public static String getSalt(String userID)
         {
             String salt = "";
@@ -371,10 +377,11 @@ namespace CPS410Final
             if (reader.HasRows)
             {
                 salt = reader["UserSalt"].ToString();
-                closeDB();
             }
+            closeDB();
             return salt;
         }
+
 
         /* GETs the password of a specified user based on UserID
          * @PARAM: "userID": UserID used to search the Users table to find specific User
@@ -396,12 +403,61 @@ namespace CPS410Final
                 {
                     password = reader["UserPassword"].ToString();
                 }
-                closeDB();
-
             }
+            closeDB();
             return password;
         }
         
+
+        /* SETs the information of a specified 
+         */
+         public static String setStudentInformation(String userID, String userMajor, String userGradYear, String userSchool, String userAbout)
+        {
+            SqlCommand setInfo = new SqlCommand("UPDATE Students SET StudentGradYear = @gradyear, StudentMajor = @major, " +
+                "StudentSchool = @school, StudentAbout = @about WHERE UserID = @id", connection);
+            setInfo.Parameters.AddWithValue("@gradyear", userGradYear);
+            setInfo.Parameters.AddWithValue("@major", userMajor);
+            setInfo.Parameters.AddWithValue("@school", userSchool);
+            setInfo.Parameters.AddWithValue("@about", userAbout);
+            setInfo.Parameters.AddWithValue("@id", userID);
+
+            openDB();
+            if (setInfo.ExecuteNonQuery() == 1)
+            {
+                closeDB();
+                return "Information updated!";
+            }
+            else
+            {
+                closeDB();
+                return "ERROR: Information could not be changed at this time.";
+            }
+        }
+
+        public static String setTutorInformation(String userID, String gradDate, String degree, String experience, String contactInfo, String tutorSubjects)
+        {
+            SqlCommand setInfo = new SqlCommand("UPDATE Tutors SET TutorGraduationDate = @grad, TutorDegree = @deg, TutorExperience = @exp, " +
+                "TutorContactInfo = @info, TutorSubjects = @subjects WHERE UserID = @id", connection);
+            setInfo.Parameters.AddWithValue("@grad", gradDate);
+            setInfo.Parameters.AddWithValue("@deg", degree);
+            setInfo.Parameters.AddWithValue("@exp", experience);
+            setInfo.Parameters.AddWithValue("@info", contactInfo);
+            setInfo.Parameters.AddWithValue("@subjects", tutorSubjects);
+            setInfo.Parameters.AddWithValue("@id", userID);
+
+            openDB();
+            if (setInfo.ExecuteNonQuery() == 1)
+            {
+                closeDB();
+                return "Information updated!";
+            }
+            else
+            {
+                closeDB();
+                return "ERROR: Information could not be changed at this time.";
+            }
+        }
+
         /********** END USER INFORMATION **********/
 
 
@@ -431,12 +487,15 @@ namespace CPS410Final
                 updateName.Parameters.AddWithValue("@id",userID);
 
                 // Execute the UPDATE
-                if (updateName.ExecuteNonQuery() != 0)
+                openDB();
+                if (updateName.ExecuteNonQuery() == 1)
                 {
+                    closeDB();
                     return "Username successfully changed!";
                 }
 
                 // Should only be hit if the UPDATE does not work
+                closeDB();
                 return "ERROR: Could not change username at this time.";
             }
         } 
