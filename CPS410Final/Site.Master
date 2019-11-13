@@ -64,20 +64,19 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-           <p>
-        <img alt="" class="auto-style2" src="images/original-3201215-2.jpg" /><img alt="" class="auto-style3" src="images/cooltext339069065291136.png" />
-           </p>
+        <div id="divFormContent">
+            <p>
+                <img alt="" class="auto-style2" src="images/original-3201215-2.jpg" /><img alt="" class="auto-style3" src="images/cooltext339069065291136.png" />
+            </p>
 
-        <div class="nav">
-            <asp:Button ID="Home" runat="server" Text="Home" CssClass="button" OnClick="Home_Click" CausesValidation="False" />
-            <asp:Button ID="account" runat="server" Text="Account" CssClass="button" OnClick="account_Click" CausesValidation="False" />
-            <asp:Button ID="DiscussionBoard" runat="server" Text="Discussion Board"  CssClass="button" OnClick="DiscussionBoard_Click" CausesValidation="False"/>
-            <asp:Button ID="FindTutor" runat="server" Text="Find Tutor"  CssClass="button" OnClick="FindTutor_Click" CausesValidation="False"/>
-            <asp:Button ID="Login" runat="server" Text="Login / Register"  CssClass="button" OnClick="Login_Click" CausesValidation="False"/>
-        </div>
+            <div class="nav" id="divNavbar">
+                <asp:Button ID="Home" runat="server" Text="Home" CssClass="button" OnClick="Home_Click" />
+                <asp:Button ID="account" runat="server" Text="Account" CssClass="button" OnClick="account_Click" />
+                <asp:Button ID="DiscussionBoard" runat="server" Text="Discussion Board"  CssClass="button" OnClick="DiscussionBoard_Click"/>
+                <asp:Button ID="FindTutor" runat="server" Text="Find Tutor"  CssClass="button" OnClick="FindTutor_Click"/>
+                <asp:Button ID="Login" runat="server" Text="Login / Register"  CssClass="button" OnClick="Login_Click"/>
+            </div>
 
- 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 
             </asp:ContentPlaceHolder>

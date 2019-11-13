@@ -22,6 +22,13 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="fourmCss.css" />
+    
+    <asp:Label ID="lbl1" runat="server" Text="Label"></asp:Label>
+    <div id="myTest" runat="server">
+
+    </div>
+
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:siteDBConnectionString %>" SelectCommand="SELECT [SubjectName], [SubjectID] FROM [Subjects] WHERE ([SubjectVisibility] = @SubjectVisibility)">
         <SelectParameters>
@@ -41,5 +48,6 @@
     <asp:Button ID="btnAddSubject" runat="server" Text="Add New Subject" OnClick="btnAddSubject_Click" Visible="False" />
     <asp:CheckBox ID="chkboxVisibility" runat="server" Text="Set Public" Visible="False" />
     <asp:TextBox ID="txtboxSubjectName" runat="server"></asp:TextBox>
+
 </asp:Content>
 

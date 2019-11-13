@@ -13,7 +13,7 @@ namespace CPS410Final
 
 
         /************** DATABASE OPERATIONS **************/
-        
+
         /* Opens the database connection for any database operations
          * @PARAM: N/A
          * @TABLE: N/A
