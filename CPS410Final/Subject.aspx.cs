@@ -65,7 +65,7 @@ namespace CPS410Final
 
                     contAll = new HtmlGenericControl("div");
                     contAll.Attributes.Add("id", "subject_and_topic");
-                    contAll.Controls.Add(subJectDiv(subName));
+                    contAll.Controls.Add(subJectDiv(subName, topicContainer));
                     contAll.Controls.Add(topicContainer);
 
                     myTest.Controls.Add(contAll);
@@ -78,7 +78,7 @@ namespace CPS410Final
 
         }
 
-        private HtmlGenericControl subJectDiv(String name)
+        private HtmlGenericControl subJectDiv(String name,Control div)
         {
             // make the div and add the css to the div
             HtmlGenericControl sub = new HtmlGenericControl("div");
@@ -93,7 +93,7 @@ namespace CPS410Final
             b.Attributes.Add("class", "allMyBtn");
             b.Attributes.Add("runat", "server");
             b.Attributes.Add("id", "div " + name);
-            b.Click += new EventHandler(Btn_Click);
+            b.Click += new EventHandler((sender, e) => Btn_Click(sender, e, div));
             sub.Controls.Add(b);
 
             // return the div
@@ -123,14 +123,9 @@ namespace CPS410Final
         }
 
 
-        protected void Btn_Click(object sender, EventArgs e)
+        protected void Btn_Click(object sender, EventArgs e, Control div)
         {
-            lbl1.Text = "FUCK" + myTest.Controls.Count.ToString() + "  ";
-            Button b = (Button)sender;
-            for(int i = 0; i < myTest.Controls.Count; i++)
-            {
-                lbl1.Text += " " + myTest.Controls[i].GetType() + i;
-            }
+            div.Visible = !div.Visible;
         }
 
        
