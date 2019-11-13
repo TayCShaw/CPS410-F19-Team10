@@ -118,6 +118,9 @@ namespace CPS410Final
         {
             HtmlGenericControl m = new HtmlGenericControl("div");
             m.Attributes.Add("id", "resultDiv");
+            m.Attributes.Add("class", "results");
+            m.Attributes.Add("runat", "server");
+            
             Form.Controls.Add(m);
 
             SqlCommand getInfo = buildQueryString();

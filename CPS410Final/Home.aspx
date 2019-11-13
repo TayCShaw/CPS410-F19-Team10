@@ -17,7 +17,7 @@
         <h1 class="title">Contact Us
         </h1>
         <div class="about">
-        <p>If you have any questions or concerns regarding LeanQuick, you can contact us at the email listed below:<br />
+        <p>If you have any questions or concerns regarding LearnQuick, you can contact us at the email listed below:<br />
             learnquickassistance@gmail.com
         </p>
             </div>
