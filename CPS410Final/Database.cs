@@ -21,7 +21,7 @@ namespace CPS410Final
          */
         public static void openDB()
         {
-           connection.Open();
+            connection.Open();
         }
 
         /* Closes the database connection after database operations are complete
@@ -90,7 +90,8 @@ namespace CPS410Final
                 if (role.Equals("Student"))
                 {
                     secondaryTable = new SqlCommand("INSERT INTO Students (UserID) values (@userid)", connection);
-                }else if (role.Equals("Tutor"))
+                }
+                else if (role.Equals("Tutor"))
                 {
                     secondaryTable = new SqlCommand("INSERT INTO Tutors (UserID) values (@userid)", connection);
                 }
@@ -367,7 +368,7 @@ namespace CPS410Final
         public static String getSalt(String userID)
         {
             String salt = "";
-            SqlCommand grabSalt = new SqlCommand("SELECT UserSalt FROM Users WHERE UserID = @userID",connection);
+            SqlCommand grabSalt = new SqlCommand("SELECT UserSalt FROM Users WHERE UserID = @userID", connection);
             grabSalt.Parameters.AddWithValue("@userID", userID);
 
             openDB();
@@ -399,7 +400,7 @@ namespace CPS410Final
 
             if (reader.HasRows)
             {
-                while(reader.Read())
+                while (reader.Read())
                 {
                     password = reader["UserPassword"].ToString();
                 }
@@ -407,11 +408,11 @@ namespace CPS410Final
             closeDB();
             return password;
         }
-        
+
 
         /* SETs the information of a specified 
          */
-         public static String setStudentInformation(String userID, String userMajor, String userGradYear, String userSchool, String userAbout)
+        public static String setStudentInformation(String userID, String userMajor, String userGradYear, String userSchool, String userAbout)
         {
             SqlCommand setInfo = new SqlCommand("UPDATE Students SET StudentGradYear = @gradyear, StudentMajor = @major, " +
                 "StudentSchool = @school, StudentAbout = @about WHERE UserID = @id", connection);
@@ -484,7 +485,7 @@ namespace CPS410Final
             {
                 // Create the UPDATE command
                 updateName.Parameters.AddWithValue("@desiredname", desiredName);
-                updateName.Parameters.AddWithValue("@id",userID);
+                updateName.Parameters.AddWithValue("@id", userID);
 
                 // Execute the UPDATE
                 openDB();
@@ -498,9 +499,9 @@ namespace CPS410Final
                 closeDB();
                 return "ERROR: Could not change username at this time.";
             }
-        } 
+        }
 
-      
+
         /* Changes the UserPassword of an account
          * @PARAM: "desiredPassword": String value representing the newly desired password for a User account
          *                  "userID": UserID of the User account on the receiving end of the password change
@@ -549,7 +550,7 @@ namespace CPS410Final
             else
             {
                 return "ERROR: Incorrect password";
-            }          
+            }
         }
 
         /********** END ACCOUNT FUNCTIONS **********/
@@ -557,5 +558,4 @@ namespace CPS410Final
 
     }
 }
- 
- 
+

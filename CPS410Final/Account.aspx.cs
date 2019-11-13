@@ -24,12 +24,12 @@ namespace CPS410Final
 
                 txtboxNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
                 txtboxConfirmNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
-                
+
                 txtboxTypePassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
                 txtboxCurrentPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
                 txtboxNewPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
                 txtboxConfirmNewPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
-                
+
                 txtboxMajor.Attributes.Add("onkeypress", "return clickButton(event,'" + btnSubmitAccountInfo.ClientID + "')");
                 txtboxGraduationDate.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
                 txtboxDegree.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
@@ -50,7 +50,7 @@ namespace CPS410Final
             else
             {
                 Response.Redirect("Login.aspx");
-            }         
+            }
         }
 
         /********** SIDE NAVIGATION BAR **********/
@@ -72,8 +72,8 @@ namespace CPS410Final
             tutorInfo.Visible = false;
 
         }
-        
-        
+
+
         //show username div on click, hide all other divs
         //also highlight the button clicked on left side
         protected void btnUsername_Click(object sender, EventArgs e)
@@ -89,8 +89,8 @@ namespace CPS410Final
             info.Visible = false;
             tutorInfo.Visible = false;
         }
-        
-        
+
+
         /*
          * Show password change div on click, highlight password button
          */
@@ -107,8 +107,8 @@ namespace CPS410Final
             info.Visible = false;
             tutorInfo.Visible = false;
         }
-        
-        
+
+
         /*
          * Show Edit info div on click, highlight  info button
          */
@@ -229,7 +229,7 @@ namespace CPS410Final
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            String changed = Database.setStudentInformation(Session["UserID"].ToString(), txtboxMajor.Text, 
+            String changed = Database.setStudentInformation(Session["UserID"].ToString(), txtboxMajor.Text,
                 ddlGradYear.SelectedValue.ToString(), txtboxSchool.Text, txtboxAbout.Text);
 
             if (changed.Contains("ERROR"))

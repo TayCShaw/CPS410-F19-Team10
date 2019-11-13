@@ -66,7 +66,7 @@ namespace CPS410Final
                 whereAdded = 1;
             }
 
-            if (txtboxCommunication.Text.Length != 0&& whereAdded == 1)
+            if (txtboxCommunication.Text.Length != 0 && whereAdded == 1)
             {
                 getTutors.CommandText += " AND Tutors.TutorContactInfo LIKE '%' + @comm + '%'";
                 getTutors.Parameters.AddWithValue("@comm", txtboxCommunication.Text);
@@ -79,11 +79,11 @@ namespace CPS410Final
                 whereAdded = 1;
             }
 
-            
-            
+
+
             return getTutors;
         }
-        
+
         private HtmlGenericControl tutorDiv(String name, String school, String degree, String experience, String contact)
         {
             HtmlGenericControl tutor = new HtmlGenericControl("div");
@@ -120,7 +120,7 @@ namespace CPS410Final
             m.Attributes.Add("id", "resultDiv");
             m.Attributes.Add("class", "results");
             m.Attributes.Add("runat", "server");
-            
+
             Form.Controls.Add(m);
 
             SqlCommand getInfo = buildQueryString();

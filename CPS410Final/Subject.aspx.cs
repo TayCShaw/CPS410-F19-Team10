@@ -5,10 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -61,7 +58,7 @@ namespace CPS410Final
                     topicContainer = new HtmlGenericControl("div");
                     topicContainer.Attributes.Add("id", "topicContainer" + subName);
 
-                    topicContainer.Controls.Add(topicDiv(topicName,topicID));
+                    topicContainer.Controls.Add(topicDiv(topicName, topicID));
                     oldSubject = subID;
 
                     contAll = new HtmlGenericControl("div");
@@ -70,7 +67,7 @@ namespace CPS410Final
                     contAll.Controls.Add(topicContainer);
 
                     myTest.Controls.Add(contAll);
-                   
+
                 }
             }
             Database.closeDB();
@@ -79,12 +76,12 @@ namespace CPS410Final
 
         }
 
-        private HtmlGenericControl subJectDiv(String name,Control div)
+        private HtmlGenericControl subJectDiv(String name, Control div)
         {
             // make the div and add the css to the div
             HtmlGenericControl sub = new HtmlGenericControl("div");
             sub.Attributes.Add("class", "subjectDiv");
-            sub.Attributes.Add("id", "div "+ name);
+            sub.Attributes.Add("id", "div " + name);
             sub.Attributes.Add("runat", "server");
 
 
@@ -129,12 +126,12 @@ namespace CPS410Final
             div.Visible = !div.Visible;
         }
 
-       
+
 
 
         protected void Btn_topic(object sender, EventArgs e)
         {
-            Button s = (Button) sender;
+            Button s = (Button)sender;
             Response.Redirect("Thread.aspx?TopicID=" + s.CommandName);
         }
     }
