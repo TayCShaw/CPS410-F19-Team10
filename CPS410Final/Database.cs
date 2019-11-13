@@ -19,7 +19,7 @@ namespace CPS410Final
          * @TABLE: N/A
          * @RETURNS: N/A
          */
-        static void openDB()
+        public static void openDB()
         {
            connection.Open();
         }

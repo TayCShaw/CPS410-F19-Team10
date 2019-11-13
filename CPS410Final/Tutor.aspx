@@ -34,12 +34,10 @@
     <div class="tutorlist" id="tutorlist" runat="server">
         <asp:Button ID="back" runat="server" Text="&lt;&lt; Return To Search" BackColor="DeepSkyBlue" OnClick="back_Click" Width="25%" BorderStyle="None" CssClass="btnBack" />
 
+        <asp:Label ID="lblLiterally" runat="server"></asp:Label>
+
         <div class="tutor" id="tutor" runat="server">
-            <p><asp:Label CssClass="tutorlbl" id="name" Text="Tutor's Name" runat="server"></asp:Label></p>
-           <p> <asp:Label CssClass="tutorlbl" id="school" Text="Tutors School" runat="server"></asp:Label></p>
-           <p> <asp:Label CssClass="tutorlbl" id="degree" Text="Tutor's Degree" runat="server"></asp:Label></p>
-           <p> <asp:Label CssClass="tutorlbl" id="experience" Text="Tutors Experience" runat="server"></asp:Label></p>
-          <p>  <asp:Label CssClass="tutorlbl" id="contact" Text="Tutors Contact methods" runat="server"></asp:Label></p>
+            
 
 
         </div>
