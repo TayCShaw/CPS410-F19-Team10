@@ -9,7 +9,7 @@
     </div>
         <div class="about">
             <p> LearnQuick is an all-in-one destination for your academic needs. You can find tutors for specific
-                subjects, using our <a href="Tutor.aspx">Find Tutor</a> feature. You can also discuss with other students using our <a href="DBSubject.aspx">Discussion Board</a>
+                subjects, using our <a href="Tutor.aspx">Find Tutor</a> feature. You can also discuss with other students using our <a href="Subject.aspx">Discussion Board</a>
                 feature. You will find links to 
                 each feature up top along the navigation bar. <a href="Login.aspx">Register</a> today and get started on your academic journey!
             </p>
@@ -17,7 +17,7 @@
         <h1 class="title">Contact Us
         </h1>
         <div class="about">
-        <p>If you have any questions or concerns regarding LeanQuick, you can contact us at the email listed below:<br />
+        <p>If you have any questions or concerns regarding LearnQuick, you can contact us at the email listed below:<br />
             learnquickassistance@gmail.com
         </p>
             </div>

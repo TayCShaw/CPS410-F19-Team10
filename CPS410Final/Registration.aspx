@@ -20,8 +20,12 @@
                 <asp:TextBox ID="txtboxPassword" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:TextBox ID="TextBoxConfirmPass" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:TextBox ID="txtboxEmail" placeholder="Email" runat="server" TextMode="Email"></asp:TextBox>
-                <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Register" BackColor="#009933" Font-Size="X-Large" ForeColor="White" />
-                <p class="message">Already Registered? <a href="Login.aspx">Login</a></p>
+                <asp:RadioButtonList ID="rblRole" runat="server" RepeatDirection="Horizontal" Width="250px" OnSelectedIndexChanged="rblRole_SelectedIndexChanged">
+                    <asp:ListItem style="color:white" Text="Student">Student</asp:ListItem>
+                    <asp:ListItem style="color:white" Text="Tutor" Value="Tutor">Tutor</asp:ListItem>
+                </asp:RadioButtonList>
+                <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Register" BackColor="deepskyblue" Font-Size="X-Large" ForeColor="White" />
+                <p class="message">Already Registered? <a href="Login.aspx" style="color:yellow">Login</a></p>
             </form>
         </div>
     </div>
