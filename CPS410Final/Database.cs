@@ -86,6 +86,15 @@ namespace CPS410Final
             {
                 // Username does not already exist
                 SqlCommand insertUser = new SqlCommand("INSERT INTO Users (UserID, Username, UserPassword, UserSalt, UserEmail, TimeCreated, UserRole) values (@userid, @username, @userpassword, @usersalt, @email, @time, @role)", connection);
+                SqlCommand secondaryTable = new SqlCommand();
+                if (role.Equals("Student"))
+                {
+                    secondaryTable = new SqlCommand("INSERT INTO Students (UserID) values (@userid)", connection);
+                }else if (role.Equals("Tutor"))
+                {
+                    secondaryTable = new SqlCommand("INSERT INTO Tutors (UserID) values (@userid)", connection);
+                }
+
                 SqlCommand count = new SqlCommand("Select max(UserID) from Users", connection);
                 String userSalt;
 
@@ -119,17 +128,28 @@ namespace CPS410Final
                 insertUser.Parameters.AddWithValue("@email", email);
                 insertUser.Parameters.AddWithValue("@time", DateTime.Now);
                 insertUser.Parameters.AddWithValue("@role", role);
-              
+
+                secondaryTable.Parameters.AddWithValue("@userid", newuserID);
+
                 /*
                  * Attempts to add the new user account to the database. If the addition is
                  * successful, the method returns "TRUE". If the addition is unsuccessful
                  * (in this case, for an error based on inserting to database), method returns
                  * "FALSE".
                  */
-                if (insertUser.ExecuteNonQuery() != 0)
+                if (insertUser.ExecuteNonQuery() == 1)
                 {
                     closeDB();
-                    return "TRUE,"+ newuserID;
+                    openDB();
+                    if (secondaryTable.ExecuteNonQuery() == 1)
+                    {
+                        closeDB();
+                        return "TRUE," + newuserID;
+                    }
+                    else
+                    {
+                        return "FALSE";
+                    }
                 }
                 else
                 {
@@ -388,6 +408,56 @@ namespace CPS410Final
             return password;
         }
         
+
+        /* SETs the information of a specified 
+         */
+         public static String setStudentInformation(String userID, String userMajor, String userGradYear, String userSchool, String userAbout)
+        {
+            SqlCommand setInfo = new SqlCommand("UPDATE Students SET StudentGradYear = @gradyear, StudentMajor = @major, " +
+                "StudentSchool = @school, StudentAbout = @about WHERE UserID = @id", connection);
+            setInfo.Parameters.AddWithValue("@gradyear", userGradYear);
+            setInfo.Parameters.AddWithValue("@major", userMajor);
+            setInfo.Parameters.AddWithValue("@school", userSchool);
+            setInfo.Parameters.AddWithValue("@about", userAbout);
+            setInfo.Parameters.AddWithValue("@id", userID);
+
+            openDB();
+            if (setInfo.ExecuteNonQuery() == 1)
+            {
+                closeDB();
+                return "Information updated!";
+            }
+            else
+            {
+                closeDB();
+                return "ERROR: Information could not be changed at this time.";
+            }
+        }
+
+        public static String setTutorInformation(String userID, String gradDate, String degree, String experience, String contactInfo, String tutorSubjects)
+        {
+            SqlCommand setInfo = new SqlCommand("UPDATE Tutors SET TutorGraduationDate = @grad, TutorDegree = @deg, TutorExperience = @exp, " +
+                "TutorContactInfo = @info, TutorSubjects = @subjects WHERE UserID = @id", connection);
+            setInfo.Parameters.AddWithValue("@grad", gradDate);
+            setInfo.Parameters.AddWithValue("@deg", degree);
+            setInfo.Parameters.AddWithValue("@exp", experience);
+            setInfo.Parameters.AddWithValue("@info", contactInfo);
+            setInfo.Parameters.AddWithValue("@subjects", tutorSubjects);
+            setInfo.Parameters.AddWithValue("@id", userID);
+
+            openDB();
+            if (setInfo.ExecuteNonQuery() == 1)
+            {
+                closeDB();
+                return "Information updated!";
+            }
+            else
+            {
+                closeDB();
+                return "ERROR: Information could not be changed at this time.";
+            }
+        }
+
         /********** END USER INFORMATION **********/
 
 
