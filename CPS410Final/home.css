@@ -1,15 +1,25 @@
 ﻿body {
     background-color: gray;
 }
-.everything{
-    background-color: gray;
-}
-.title{
-    text-align: center;
-    color: deepskyblue;
+
+.everything {
+    background-color: black;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    padding: 3%;
 }
 
-.about{
+.title {
+    text-align: center;
+    color: deepskyblue;
+    border-style: solid;
+    border-color: silver;
+    width: 25%;
+    margin: auto;
+}
+
+.about {
     padding-left: 10%;
     padding-right: 10%;
     color: white;

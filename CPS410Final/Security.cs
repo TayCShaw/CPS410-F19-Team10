@@ -43,5 +43,21 @@ namespace CPS410Final
             }
         }
 
+        public static Boolean checkPassword(String enteredPass, String userID)
+        {
+            String storedPassword = Database.getPassword(userID);
+            String enteredPassword = Sha256(enteredPass + Database.getSalt(userID));
+
+            if (storedPassword.Equals(enteredPassword))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
     }
 }

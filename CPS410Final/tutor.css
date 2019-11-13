@@ -6,6 +6,12 @@
     margin: 0 auto;
     text-align: center;
 }
+
+.empty {
+    width: 100%;
+    height: 50px;
+}
+
 .tutorsearch {
     background-color: black;
     width: 360px;
@@ -13,6 +19,7 @@
     align-content: center;
     position: center;
     margin: 0 auto;
+    margin-top: 50px;
     padding: 15px;
 }
 
@@ -20,20 +27,20 @@
     text-align: center;
     overflow: visible;
 }
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: deepskyblue;
-    font-family: inherit;
-   
-    margin-top: 10%;
-    text-align: center;
-}
 
-.dropbtn{
+    .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: deepskyblue;
+        font-family: inherit;
+        margin-top: 10%;
+        text-align: center;
+    }
+
+.dropbtn {
     text-align: center;
     width: 70%;
     position: center;
@@ -47,7 +54,7 @@
     display: block;
 }
 
-.dropdown:hover .dropbtn{
+.dropdown:hover .dropbtn {
     background-color: deepskyblue;
 }
 
@@ -57,8 +64,8 @@
     margin-right: 15%;
     margin-top: 15%;
     text-align: center;
-    
 }
+
 .form {
     position: relative;
     z-index: 1;
@@ -68,6 +75,7 @@
     padding: 45px;
     text-align: center;
 }
+
     .form input {
         font-family: "Times New Roman", sans-serif;
         position: center;
@@ -75,7 +83,7 @@
         background: #f2f2f2;
         width: 100%;
         border: 0;
-        margin: 0 0 15px;
+        margin: 0 0 30px;
         padding: 15px;
         box-sizing: border-box;
         font-size: 14px;
@@ -94,6 +102,7 @@ label {
     margin-top: 10%;
     width: 80%;
 }
+
 .fTutor:hover, .fTutor:active {
     background: #43A047;
 }
@@ -112,6 +121,7 @@ label {
     margin-top: 30px;
 }
 
+
 .fTutor {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
@@ -126,3 +136,36 @@ label {
     margin-top: 30px;
 }
 
+.tutorlist {
+    background-color: black;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    width: 70%;
+    color: white;
+}
+
+.btnBack {
+    margin: auto;
+}
+
+.tutor {
+    border-style: solid;
+    border-color: silver;
+    margin: auto;
+}
+
+.tutorlbl {
+}
+
+.resultDiv {
+    background-color: yellow;
+    color: yellow;
+}
+
+.results {
+    position: center;
+    align-content: center;
+    color: black;
+    background-color: white;
+}

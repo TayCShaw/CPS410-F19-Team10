@@ -3,8 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="tutor.css" />
-    <h1 class="title">Tutor Search</h1>
-    <div class="tutorsearch">
+    
+    <div class="tutorsearch" id="tutorsearch" runat="server">
+        <h1 class="title">Tutor Search</h1>
       
         <div class="inputFields">
         <form class="form">
@@ -21,11 +22,25 @@
             <asp:TextBox ID="txtboxCommunication" placeholder="Communication Method" runat="server"></asp:TextBox>
              </label>
             
-                <asp:Button ID="btnTutor" runat="server" Text="Find Tutor" CssClass="fTutor" />
+                <asp:Button ID="btnTutor" runat="server" Text="Find Tutor" CssClass="fTutor" Height="50px" OnClick="btnTutor_Click" />
             
         </form>
         </div>
         
+
+
+    </div> 
+
+    <div class="tutorlist" id="tutorlist" runat="server">
+        <asp:Button ID="back" runat="server" Text="&lt;&lt; Return To Search" BackColor="DeepSkyBlue" OnClick="back_Click" Width="25%" BorderStyle="None" CssClass="btnBack" />
+
+        <asp:Label ID="lblLiterally" runat="server"></asp:Label>
+
+        <div class="tutor" id="tutor" runat="server">
+            
+
+
+        </div>
 
 
     </div>
