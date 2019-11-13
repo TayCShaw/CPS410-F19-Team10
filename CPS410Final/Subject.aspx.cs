@@ -26,6 +26,7 @@ namespace CPS410Final
         protected void Page_Load(object sender, EventArgs e)
         {
             string oldSubject = "";
+            lbl1.Text = "";
 
             string getInfo = "Select Subjects.SubjectID, Subjects.SubjectName, Topics.TopicID, Topics.TopicName, " +
                 "Topics.TopicSubject from Subjects INNER JOIN Topics ON Subjects.SubjectID = Topics.TopicSubject ORDER BY Subjects.SubjectID ASC";
@@ -134,7 +135,6 @@ namespace CPS410Final
         protected void Btn_topic(object sender, EventArgs e)
         {
             Button s = (Button) sender;
-            lbl1.Text = s.CommandName;
             Response.Redirect("Thread.aspx?TopicID=" + s.CommandName);
         }
     }
