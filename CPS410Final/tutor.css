@@ -165,5 +165,7 @@ label {
     align-content: center;
     color: black;
     background-color: white;
+    width: 50%;
+    margin-left: 25%;
 
 }
