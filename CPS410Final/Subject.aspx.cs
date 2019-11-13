@@ -32,14 +32,9 @@ namespace CPS410Final
 
             SqlCommand informationCommand = new SqlCommand(getInfo, Database.connection);
             SqlDataReader getInformation;
-            /*
-                        HtmlGenericControl mainDiv = new HtmlGenericControl("div");
-                        mainDiv.Attributes.Add("class", "mainDiv");
-                        mainDiv.Attributes.Add("runat", "server");
-                        Form.Controls.Add(mainDiv);
-            */
-            ContentPlaceHolder content = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
- 
+
+            HtmlGenericControl contAll = new HtmlGenericControl("div");
+
             HtmlGenericControl topicContainer = new HtmlGenericControl("div");
 
             Database.openDB();
@@ -61,20 +56,19 @@ namespace CPS410Final
                 }
                 else
                 {
-                    //Form.Controls.Add(subJectDiv(subName));
-                    //content.Controls.Add(subJectDiv(subName));
 
                     topicContainer = new HtmlGenericControl("div");
                     topicContainer.Attributes.Add("id", "topicContainer" + subName);
-                    //Form.Controls.Add(topicContainer);
-                    //content.Controls.Add(topicContainer);
-                    
+
                     topicContainer.Controls.Add(topicDiv(topicName,topicID));
                     oldSubject = subID;
 
-                    
-                        myTest.Controls.Add(subJectDiv(subName));
-                        myTest.Controls.Add(topicContainer);
+                    contAll = new HtmlGenericControl("div");
+                    contAll.Attributes.Add("id", "subject_and_topic");
+                    contAll.Controls.Add(subJectDiv(subName));
+                    contAll.Controls.Add(topicContainer);
+
+                    myTest.Controls.Add(contAll);
                    
                 }
             }
@@ -131,69 +125,15 @@ namespace CPS410Final
 
         protected void Btn_Click(object sender, EventArgs e)
         {
+            lbl1.Text = "FUCK" + myTest.Controls.Count.ToString() + "  ";
             Button b = (Button)sender;
-            lbl1.Text = "";
-
-            print(Form);
-            /*
-            ContentPlaceHolder content = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
-            foreach (Control childControl in content.Controls)
+            for(int i = 0; i < myTest.Controls.Count; i++)
             {
-                lbl1.Text += " " + childControl.ID;
-            }
-
-            */
-
-            //String controlToFind = "tp " + b.ID;
-
-            //lbl1.Text = "";
-
-            //int count = 0;
-            /*            foreach (Control childControl in this.Controls)
-                        {
-                            lbl1.Text = lbl1.Text + " " + childControl.ClientID;
-
-                            count++;
-
-                        }
-            */
-            //lbl1.Text += count;
-        }
-
-        private void print(Control level)
-        {
-
-            lbl1.Text = level.Controls.Count.ToString();
-       /*     foreach (Control child in level.Controls)
-            {
-                Control c = child;
-                lbl1.Text += " " + child.ID;
-                if (child.HasControls())
-                {
-                    print(child);
-
-                }
-                else
-                {
-                    child = child.Parent;
-                }
-            }
-            */
-            level = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
-            for (int i = 0; i < level.Controls.Count; i++)
-            {
-                Control ch = level.Controls[i];
-                lbl1.Text += " " + ch.ID;
-                /*if (ch.Controls[i].HasControls())
-                {
-                    for (int j = 0; j < ch.Controls[i].Controls.Count; j++)
-                    {
-                        lbl1.Text = ch.Controls[i].Controls[j].ID;
-                    }
-                */
-                
+                lbl1.Text += " " + myTest.Controls[i].GetType() + i;
             }
         }
+
+       
 
 
         protected void Btn_topic(object sender, EventArgs e)
