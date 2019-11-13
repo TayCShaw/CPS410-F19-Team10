@@ -44,7 +44,9 @@ Thread.aspx
 Account.cs
 -----------------
 1) Possibly link to a new page showing an example of what to write for a tutor AND for a student
-
+2) DECIDE two things:
+	a) Decide on redirect to "Edit information" once a new account is registered
+	b) Decide if all fields on edit information should be required (for students)
 
 Database.cs/Login.aspx
 ----------------------
@@ -66,3 +68,12 @@ FOR EACH DIV ON ACCOUNT PAGE
 2) If the user currently logged in is a tutor, at the bottom of the menu on the left side show a new div that is labeled
 	something like "Tutor Information". This is strictly for tutors to fill out their "tutor profile" (e.g., places of employment,
 	degrees earned, years of experience, etc.)
+
+
+TAYLOR
+------
+1) Think about creating a dropdownlist for selecting majors and binding it to a database table that is filled with possible majors
+	a) would have to allow nulls
+	b) would have to include an option for users to request a major to be added
+	c) talk to brad about only having one account information page based on student/tutor (i.e., a tutor account can only see the tutor information page)
+2) On Account.aspx page, when logged in, pull their data into the appropriate page control (if the data exists)
