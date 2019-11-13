@@ -19,6 +19,9 @@
     margin-bottom: 20px;
     border:ridge;
 }
+.test{
+    height: 200px;
+}
 
 .topicDiv {
     border-radius: 18px;

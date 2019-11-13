@@ -3,10 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="fourmCss.css" />
-    <div id ="masterDiv" class="masterDiv" runat="server">
-        <asp:Label ID="lbl1" runat="server" Text="Label"></asp:Label>
-        
+    
+    <asp:Label ID="lbl1" runat="server" Text="Label"></asp:Label>
+    <div id="myTest" runat="server">
+
     </div>
 
-    </asp:Content>
+</asp:Content>
 
