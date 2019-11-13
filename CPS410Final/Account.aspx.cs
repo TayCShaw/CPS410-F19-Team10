@@ -9,6 +9,9 @@ namespace CPS410Final
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        /* 
+         * Load in the account overview tab initially, hide all other divs
+         */
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserID"] != null)
@@ -21,24 +24,27 @@ namespace CPS410Final
 
                 txtboxNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
                 txtboxConfirmNewUsername.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
+                
                 txtboxTypePassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnUsername.ClientID + "')");
                 txtboxCurrentPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
                 txtboxNewPassword.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
                 txtboxConfirmNewPass.Attributes.Add("onkeypress", "return clickButton(event,'" + btnChangePass.ClientID + "')");
+                
                 txtboxMajor.Attributes.Add("onkeypress", "return clickButton(event,'" + btnSubmitAccountInfo.ClientID + "')");
                 txtboxGraduationDate.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
                 txtboxDegree.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
                 txtboxExperience.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
                 txtboxContactInformation.Attributes.Add("onkeypress", "return clickButton(event,'" + btnTutorInfo.ClientID + "')");
 
-                //hide tutorInfo edit button if user is a student, show if tutor
                 if (Session["UserRole"].ToString().Equals("Tutor"))
                 {
                     btnTutor.Visible = true;
+                    btnInfo.Visible = false;
                 }
                 else //student account, hide tutor button
                 {
                     btnTutor.Visible = false;
+                    btnInfo.Visible = true;
                 }
             }
             else
@@ -47,8 +53,11 @@ namespace CPS410Final
             }         
         }
 
-
         /********** SIDE NAVIGATION BAR **********/
+        /*
+         * Show Account overview div on button click, 
+         * highlight overview button
+         */
         protected void btnOverview_Click(object sender, EventArgs e)
         {
             btnUsername.CssClass = "Buttons";
@@ -63,7 +72,10 @@ namespace CPS410Final
             tutorInfo.Visible = false;
 
         }
-
+        
+        
+        //show username div on click, hide all other divs
+        //also highlight the button clicked on left side
         protected void btnUsername_Click(object sender, EventArgs e)
         {
             btnUsername.CssClass = "buttonActive";
@@ -77,7 +89,11 @@ namespace CPS410Final
             info.Visible = false;
             tutorInfo.Visible = false;
         }
-
+        
+        
+        /*
+         * Show password change div on click, highlight password button
+         */
         protected void btnPassword_Click(object sender, EventArgs e)
         {
             btnUsername.CssClass = "Buttons";
@@ -90,9 +106,12 @@ namespace CPS410Final
             password.Visible = true;
             info.Visible = false;
             tutorInfo.Visible = false;
-
         }
-
+        
+        
+        /*
+         * Show Edit info div on click, highlight  info button
+         */
         protected void btnInfo_Click(object sender, EventArgs e)
         {
             btnUsername.CssClass = "Buttons";
@@ -107,6 +126,9 @@ namespace CPS410Final
             tutorInfo.Visible = false;
         }
 
+        /*
+         * Show Tutor info on click, highlight tutor button
+         */
         protected void btnTutor_Click(object sender, EventArgs e)
         {
             btnUsername.CssClass = "Buttons";

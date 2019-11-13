@@ -171,12 +171,12 @@
         }
 
 
-
         .auto-style13 {
             width: 69%;
             margin-left: 130px;
             margin-right: 181px;
         }
+
 
 
 

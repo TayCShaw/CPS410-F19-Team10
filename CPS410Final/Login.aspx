@@ -17,8 +17,8 @@
                 </div>
                  <asp:TextBox ID="txtboxUsername" placeholder="Username" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtboxPassword" placeholder="Password" runat="server"></asp:TextBox>
-                <asp:Button ID="btnLogin" runat="server" Text="Login" BackColor="#009900" Font-Size="X-Large" OnClick="btnLogin_Click" />
-                <p class="message">Not Registered? <a href="Registration.aspx">Register</a></p>
+                <asp:Button ID="btnLogin" runat="server" Text="Login" BackColor="deepskyblue" ForeColor="White" Font-Size="X-Large" OnClick="btnLogin_Click" />
+                <p class="message">Not Registered? <a href="Registration.aspx" style="color: yellow">Register</a></p>
             </form>
         </div>
     </div>

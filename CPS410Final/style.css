@@ -67,9 +67,10 @@
     }
 
         .form .message a {
-            color: #4CAF50;
+            color: yellow;
             text-decoration: none;
         }
+        
 
     .form .register-form {
         background-color: black;
