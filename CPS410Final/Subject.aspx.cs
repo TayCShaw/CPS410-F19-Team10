@@ -71,9 +71,6 @@ namespace CPS410Final
                 }
             }
             Database.closeDB();
-
-
-
         }
 
         private HtmlGenericControl subJectDiv(String name, Control div)
@@ -125,9 +122,6 @@ namespace CPS410Final
         {
             div.Visible = !div.Visible;
         }
-
-
-
 
         protected void Btn_topic(object sender, EventArgs e)
         {

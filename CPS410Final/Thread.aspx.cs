@@ -22,8 +22,7 @@ namespace CPS410Final
             String TopicID = Request.QueryString["TopicID"];
 
             string search = "select * from Threads where Threads.ThreadTopic = " + TopicID;
-            HtmlGenericControl mainDiv = new HtmlGenericControl("div");
-            Form.Controls.Add(mainDiv);
+
             SqlCommand infoCommand = new SqlCommand(search, Database.connection);
             SqlDataReader getInfo;
 
@@ -71,10 +70,6 @@ namespace CPS410Final
             div.Controls.Add(info);
 
             return div;
-
-        }
-        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
-        {
 
         }
     }
