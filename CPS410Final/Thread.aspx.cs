@@ -72,5 +72,10 @@ namespace CPS410Final
             return div;
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
