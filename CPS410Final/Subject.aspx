@@ -12,7 +12,11 @@
     
     <asp:Label ID="lbl1" runat="server" Text="Label"></asp:Label>
     <div id="myTest" class="myclass" runat="server">
-
+        <table>
+        <tr>
+            <asp:Button ID="btnNewSubject" runat="server" Text="Make New Subject" Visible="False" onclick="btnNewSubject_Click"/>
+        </tr>
+        </table>
     </div>
 
 </asp:Content>
