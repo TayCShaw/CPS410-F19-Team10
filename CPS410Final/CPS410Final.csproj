@@ -84,6 +84,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Create.aspx" />
     <Content Include="fourmCss.css" />
     <Content Include="Subject.aspx" />
     <Content Include="Thread.aspx" />
@@ -148,6 +149,13 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="Subject.aspx.cs">
