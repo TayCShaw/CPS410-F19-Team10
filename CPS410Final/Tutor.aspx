@@ -40,6 +40,12 @@
             
 
 
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1">
+            </asp:GridView>
+            
+
+
         </div>
 
 

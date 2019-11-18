@@ -87,25 +87,37 @@ namespace CPS410Final
         private HtmlGenericControl tutorDiv(String name, String school, String degree, String experience, String contact)
         {
             HtmlGenericControl tutor = new HtmlGenericControl("div");
+            tutor.Attributes.Add("class", "atutor");
+            string newline = Environment.NewLine;
+            HtmlGenericControl l1 = new HtmlGenericControl("div");
             Label tName = new Label();
-            tName.Text = name;
-            tutor.Controls.Add(tName);
+            l1.Controls.Add(tName);
+            tName.Text = "Name: " + name;
+            tutor.Controls.Add(l1);
 
+            HtmlGenericControl l2 = new HtmlGenericControl("div");
             Label tSchool = new Label();
-            tSchool.Text = school;
-            tutor.Controls.Add(tSchool);
+            l2.Controls.Add(tSchool);
+            tSchool.Text = "School: " + school;
+            tutor.Controls.Add(l2);
 
+            HtmlGenericControl l3 = new HtmlGenericControl("div");
             Label tDegree = new Label();
-            tDegree.Text = degree;
-            tutor.Controls.Add(tDegree);
+            l3.Controls.Add(tDegree);
+            tDegree.Text = "Degree: " + degree;
+            tutor.Controls.Add(l3);
 
+            HtmlGenericControl l4 = new HtmlGenericControl("div");
             Label tExperience = new Label();
-            tExperience.Text = experience;
-            tutor.Controls.Add(tExperience);
+            l4.Controls.Add(tExperience);
+            tExperience.Text = "Experience: " + experience;
+            tutor.Controls.Add(l4);
 
+            HtmlGenericControl l5 = new HtmlGenericControl("div");
             Label tContact = new Label();
-            tContact.Text = contact;
-            tutor.Controls.Add(tContact);
+            l5.Controls.Add(tContact);
+            tContact.Text = "Contact: " + contact;
+            tutor.Controls.Add(l5);
             return tutor;
 
         }
