@@ -42,47 +42,82 @@ namespace CPS410Final
                     string name = getInfo["ThreadName"].ToString();
                     string timeCreated = getInfo["TimeCreated"].ToString();
                     string replies = getInfo["ThreadReplies"].ToString();
+                    string views = getInfo["ThreadViews"].ToString();
 
-                    mainDiv.Controls.Add(messagediv(name, timeCreated, replies));
+                    HtmlGenericControl threadDiv = new HtmlGenericControl("div");
+                    threadDiv.Controls.Add(genName(name, timeCreated));
+                    threadDiv.Controls.Add(genRpV(replies, views));
+
+                    mainDiv.Controls.Add(threadDiv);
+                    
                 }
                 Database.closeDB();
             }
             
         }
 
-
-
-        private HtmlGenericControl messagediv(string name, string time, string replies)
+        private Control genRpV(string replies, string views)
         {
+            // holds labels for replies and views
+            HtmlGenericControl labels = new HtmlGenericControl("div");
+
+            HtmlGenericControl l1 = new HtmlGenericControl("div");
+            Label rep = new Label();
+            rep.Text = "Replies";
+            l1.Controls.Add(rep);
+
+            HtmlGenericControl l2 = new HtmlGenericControl("div");
+            Label vie = new Label();
+            vie.Text = "Views";
+            l2.Controls.Add(l2);
+
+            labels.Controls.Add(l1);
+            labels.Controls.Add(l2);
+
+            // make the data side
+            HtmlGenericControl viewDiv = new HtmlGenericControl("div");
+            Label dataV = new Label();
+            dataV.Text = views;
+            viewDiv.Controls.Add(dataV);
+
+            HtmlGenericControl replDiv = new HtmlGenericControl("div");
+            Label dataRpl = new Label();
+            dataRpl.Text = replies;
+            replDiv.Controls.Add(replDiv);
+
+            HtmlGenericControl dataSide = new HtmlGenericControl("div");
+            dataSide.Controls.Add(replDiv);
+            dataSide.Controls.Add(viewDiv);
+
+            //combine them
+            HtmlGenericControl total = new HtmlGenericControl("div");
+            total.Controls.Add(labels);
+            total.Controls.Add(dataSide);
+
+            return total;
+        }
+
+        private Control genName(string name, string timeCreated)
+        {
+
+            // create the name label
+            HtmlGenericControl l1 = new HtmlGenericControl("div");
+            Label lblName = new Label();
+            lblName.Text = name;
+            l1.Controls.Add(lblName);
+
+            // create the time label
+            HtmlGenericControl l2 = new HtmlGenericControl("div");
+            Label lblD = new Label();
+            lblD.Text = timeCreated;
+            l2.Controls.Add(lblD);
+
+            // package both into a div
             HtmlGenericControl div = new HtmlGenericControl("div");
-
-            // add css to get next two divs horzontal
-
-            HtmlGenericControl but = new HtmlGenericControl("div");
-            Button b = new Button();
-            b.Text = name;
-
-            div.Controls.Add(but);
-
-            HtmlGenericControl info = new HtmlGenericControl("div");
-            // add info here
-            HtmlGenericControl rep = new HtmlGenericControl("div");
-            info.Controls.Add(rep);
-            Label l = new Label();
-            l.Text = replies;
-            rep.Controls.Add(l);
-
-            HtmlGenericControl tim = new HtmlGenericControl("div");
-            info.Controls.Add(rep);
-            Label t = new Label();
-            t.Text = time;
-            rep.Controls.Add(t);
-
-
-            div.Controls.Add(info);
+            div.Controls.Add(l1);
+            div.Controls.Add(l2);
 
             return div;
-
         }
 
         protected void btnNewThread_Click(object sender, EventArgs e)
