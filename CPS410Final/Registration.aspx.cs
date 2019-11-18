@@ -41,10 +41,11 @@ namespace CPS410Final
 
                     Response.Redirect("Account.aspx");
                 }
-                else if(userAdded.Contains("Username"))
+                else if (userAdded.Contains("Username"))
                 {
                     lblError.Text = userAdded;
-                }else if (userAdded.Contains("FALSE"))
+                }
+                else if (userAdded.Contains("FALSE"))
                 {
                     lblError.Text = "ERROR: Failed account creation. Please contact an Administrator.";
                 }
@@ -55,7 +56,7 @@ namespace CPS410Final
                 {
                     lblError.Text = "Please enter an email";
                 }
-                else if(txtboxUsername.Text.Equals(""))
+                else if (txtboxUsername.Text.Equals(""))
                 {
                     lblError.Text = "Please enter a username";
                 }

@@ -36,6 +36,3 @@
         }
     </script>
 </asp:Content>
-
-
-
