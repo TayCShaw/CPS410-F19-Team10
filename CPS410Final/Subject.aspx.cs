@@ -22,6 +22,18 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] != null)
+            {
+                if (Session["UserRole"].ToString().Equals("Administrator"))
+                {
+                    btnNewSubject.Visible = true;
+                }
+                else
+                {
+                    btnNewSubject.Visible = false;
+                }
+            }
+
             string oldSubject = "";
             lbl1.Text = "";
 
@@ -127,6 +139,11 @@ namespace CPS410Final
         {
             Button s = (Button)sender;
             Response.Redirect("Thread.aspx?TopicID=" + s.CommandName);
+        }
+
+        protected void btnNewSubject_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Create.aspx?Create=Subject");
         }
     }
 }
