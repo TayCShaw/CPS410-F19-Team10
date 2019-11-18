@@ -8,7 +8,6 @@ Registration.aspx
 -----------------
 1) Handle the page elements depending on if the user will be a student or a tutor.
 	I.E., show/hide different elements depending on the user selection (methods based on the first selection of a tutor or student that only show specific elements)
-2) Handle calls to creating an account, checking password validation, CHECKING IF EMAIL ACCOUNT ALREADY REGISTERED, adding to database, etc.
 
 
 Login.aspx
@@ -22,14 +21,8 @@ Login.aspx
 Subject.aspx
 -----------------
 **Refer to iFinal**
-1) Display a list of threads
-2) If a new subject is being created with a name as an already existing Subject, prompt user to confirm that they wish to create
-	a subject with the same name.
 
-Topic.aspx
------------------
-1) If a new topic is being created with a name as an already existing topic, prompt user to confirm that they wish to create
-	a topic with the same name.
+
 
 Thread.aspx
 -----------------
@@ -50,14 +43,10 @@ Account.cs
 
 Database.cs/Login.aspx
 ----------------------
-1) Set an error message when, upon login attempt, no user with that information is found\
-2) ON DATABASE FILES, comment each one and explain what the fields are supposed to be
 
 
 Admin Console
 -----------------
-1) Assign users new roles
-2) Create new Subjects (all users can create posts, only admins can create subjects)
 3) Delete/Ban users, delete/rename Subjects
 
 
@@ -65,9 +54,7 @@ FOR EACH DIV ON ACCOUNT PAGE
 ----------------------------
 1) Add a status label. So for passwords, it would be a label with id "lblPasswordStatus". Check the Account.aspx.cs class for what the labels
 	should be called.
-2) If the user currently logged in is a tutor, at the bottom of the menu on the left side show a new div that is labeled
-	something like "Tutor Information". This is strictly for tutors to fill out their "tutor profile" (e.g., places of employment,
-	degrees earned, years of experience, etc.)
+2) 
 
 
 TAYLOR
@@ -77,3 +64,4 @@ TAYLOR
 	b) would have to include an option for users to request a major to be added
 	c) talk to brad about only having one account information page based on student/tutor (i.e., a tutor account can only see the tutor information page)
 2) On Account.aspx page, when logged in, pull their data into the appropriate page control (if the data exists)
+3) Change the topicExists() so it searches for all topic repeats, not just a repeat within a subject
