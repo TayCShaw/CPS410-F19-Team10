@@ -19,28 +19,40 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String TopicID = Request.QueryString["TopicID"];
-
-            string search = "select * from Threads where Threads.ThreadTopic = " + TopicID;
-
-            SqlCommand infoCommand = new SqlCommand(search, Database.connection);
-            SqlDataReader getInfo;
-
-            Database.openDB();
-            getInfo = infoCommand.ExecuteReader();
-
-            while (getInfo.Read())
+            threadsTable.Visible = false;
+            selectedThreadPosts.Visible = false;
+            if (Request.QueryString["Viewing"] != null)
             {
-                string name = getInfo["ThreadName"].ToString();
-                string timeCreated = getInfo["TimeCreated"].ToString();
-                string replies = getInfo["ThreadReplies"].ToString();
-
-                mainDiv.Controls.Add(mesasgediv(name, timeCreated, replies));
+                selectedThreadPosts.Visible = true;
             }
-            Database.closeDB();
+            else
+            {
+                threadsTable.Visible = true;
+
+                String TopicID = Request.QueryString["TopicID"];
+                SqlCommand infoCommand = new SqlCommand("SELECT * FROM Threads WHERE Threads.ThreadTopic = @topic", Database.connection);
+                infoCommand.Parameters.AddWithValue("@topic", TopicID);
+                SqlDataReader getInfo;
+
+                Database.openDB();
+                getInfo = infoCommand.ExecuteReader();
+
+                while (getInfo.Read())
+                {
+                    string name = getInfo["ThreadName"].ToString();
+                    string timeCreated = getInfo["TimeCreated"].ToString();
+                    string replies = getInfo["ThreadReplies"].ToString();
+
+                    mainDiv.Controls.Add(messagediv(name, timeCreated, replies));
+                }
+                Database.closeDB();
+            }
+            
         }
 
-        private HtmlGenericControl mesasgediv(string name, string time, string replies)
+
+
+        private HtmlGenericControl messagediv(string name, string time, string replies)
         {
             HtmlGenericControl div = new HtmlGenericControl("div");
 
@@ -73,9 +85,19 @@ namespace CPS410Final
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnNewThread_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Create.aspx?Create=Thread&TopicID=" + Request.QueryString["TopicID"]);
+        }
+
+        protected void btnBackToThreads_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnReply_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Create.apsx?Create=Reply&Thread=" + Request.QueryString["ThreadID"]);
         }
     }
 }
