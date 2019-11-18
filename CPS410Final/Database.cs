@@ -12,7 +12,7 @@ namespace CPS410Final
 
 
 
-        /************** DATABASE OPERATIONS **************/
+        /************** BEGIN DATABASE OPERATIONS **************/
 
         /* Opens the database connection for any database operations
          * @PARAM: N/A
@@ -23,6 +23,7 @@ namespace CPS410Final
         {
             connection.Open();
         }
+
 
         /* Closes the database connection after database operations are complete
          * @PARAM: N/A
@@ -35,22 +36,21 @@ namespace CPS410Final
         }
 
 
+                    /***** CHECK EXISTENCE *****/
+
         /* Checks to see if a username already exists in the Users table
          * @PARAM: "username": Username to search Users table for 
          * @TABLE: Users
          * @RETURNS: True if name is found in Users table, False otherwise
          */
-        public static Boolean nameExists(String username)
+        protected static Boolean nameExists(String username)
         {
-            SqlDataReader reader;
-            SqlCommand search = new SqlCommand("SELECT * FROM Users WHERE userName = @username", connection);
+            SqlCommand search = new SqlCommand("SELECT * FROM Users WHERE Username = @username", connection);
             search.Parameters.AddWithValue("@username", username);
 
             openDB();
-
-            reader = search.ExecuteReader();
+            SqlDataReader reader = search.ExecuteReader();
             reader.Read();
-
             if (reader.HasRows)
             {
                 closeDB();
@@ -58,12 +58,96 @@ namespace CPS410Final
             }
             else
             {
-                // Username doesn't exist
+                // Username doesn't already exist
                 closeDB();
                 return false;
             }
         }
 
+
+        /* Checks to see if a subject name already exists in the Subjects table
+         * @PARAM: "subjectName": Name to search for in Subjects table
+         * @TABLE: Subjects
+         * @RETURNS: True if subject is found in Subjects table, False otherwise
+         */
+        protected static Boolean subjectExists(String subjectName)
+        {
+            SqlCommand searchSubj = new SqlCommand("SELECT * FROM Subjects WHERE SubjectName = @subj", connection);
+            searchSubj.Parameters.AddWithValue("@subj",subjectName);
+
+            openDB();
+            SqlDataReader reader = searchSubj.ExecuteReader();
+            reader.Read();
+            if (reader.HasRows)
+            {
+                closeDB();
+                return true;
+            }
+            else
+            {
+                // Subject doesn't already exist
+                closeDB();
+                return false;
+            }
+        }
+
+
+        /* Checks to see if a topic name already exists in the Topics table WITHIN A SPECIFIC SUBJECT
+         * @PARAM: "topicName": Name to search for in Topics table
+         *      "topicSubject": SubjectID to search for in Topics table (under column TopicSubject)
+         * @TABLE: Topics
+         * @RETURNS: True if topic is found in Topics table WITHIN A SPECIFIC SUBJECT, False otherwise
+         */
+        protected static Boolean topicExists(String topicName, String topicSubject)
+        {
+            SqlCommand searchTopic = new SqlCommand("SELECT * FROM Topics WHERE TopicName = @topic AND TopicSubject = @topsub", connection);
+            searchTopic.Parameters.AddWithValue("@topic", topicName);
+            searchTopic.Parameters.AddWithValue("@topsub", topicSubject);
+
+            openDB();
+            SqlDataReader reader = searchTopic.ExecuteReader();
+            reader.Read();
+            if (reader.HasRows)
+            {
+                closeDB();
+                return true;
+            }
+            else
+            {
+                // Topic doesn't already exist WITHIN Subject
+                closeDB();
+                return false;
+            }
+        }
+
+
+        /*
+         * 
+         */
+        protected static Boolean topicExists(String topicID)
+        {
+            SqlCommand searchTopic = new SqlCommand("SELECT * FROM Topics WHERE TopicID = @topic", connection);
+            searchTopic.Parameters.AddWithValue("@topic", topicID);
+
+            openDB();
+            SqlDataReader reader = searchTopic.ExecuteReader();
+            reader.Read();
+            if (reader.HasRows)
+            {
+                closeDB();
+                return true;
+            }
+            else
+            {
+                // Topic doesn't already exist
+                closeDB();
+                return false;
+            }
+        }
+                    /***** END EXISTENCE *****/
+
+
+                    /***** CREATE NEW OBJECTS *****/
 
         /* Adds a new user to the User table of the database
          * @PARAM: "email": Email address of the User
@@ -170,51 +254,57 @@ namespace CPS410Final
          */
         public static Boolean addNewSubject(String UserID, String SubjName, Boolean chkbox)
         {
-
-            // Once created, take to a page OR Show something that will let the user create a new Subject
-            SqlCommand createSubject = new SqlCommand("INSERT INTO Subjects (SubjectID, SubjectName, SubjectCreator, SubjectVisibility) values(@SubjectID, @SubjectName, @SubjectCreator, @SubjectVisibility)", Database.connection);
-            SqlCommand count = new SqlCommand("Select max(SubjectID) from Subjects", connection);
-
-            int intID;
-
-            // Assigning Subject visibility
-            String visible = "F";
-            if (chkbox)
+            if (subjectExists(SubjName))
             {
-                visible = "T";
-            }
-
-            try
-            {
-                openDB();
-
-                intID = (int)count.ExecuteScalar() + 1;
-            }
-            catch (InvalidCastException)
-            {
-                intID = 0;
-            }
-            closeDB();
-
-            // Set INSERT parameters
-            createSubject.Parameters.AddWithValue("@SubjectID", intID);
-            createSubject.Parameters.AddWithValue("@SubjectName", SubjName);
-            createSubject.Parameters.AddWithValue("@SubjectCreator", UserID);
-            createSubject.Parameters.AddWithValue("@SubjectVisibility", visible);
-
-
-            // Execute INSERT command
-            openDB();
-            if (createSubject.ExecuteNonQuery() == 0)
-            {
-                closeDB();
                 return false;
             }
             else
             {
+                // Once created, take to a page OR Show something that will let the user create a new Subject
+                SqlCommand createSubject = new SqlCommand("INSERT INTO Subjects (SubjectID, SubjectName, SubjectCreator, SubjectVisibility) values(@SubjectID, @SubjectName, @SubjectCreator, @SubjectVisibility)", Database.connection);
+                SqlCommand count = new SqlCommand("Select max(SubjectID) from Subjects", connection);
+
+                int intID;
+
+                // Assigning Subject visibility
+                String visible = "F";
+                if (chkbox)
+                {
+                    visible = "T";
+                }
+
+                try
+                {
+                    openDB();
+
+                    intID = (int)count.ExecuteScalar() + 1;
+                }
+                catch (InvalidCastException)
+                {
+                    intID = 0;
+                }
                 closeDB();
-                return true;
-            }
+
+                // Set INSERT parameters
+                createSubject.Parameters.AddWithValue("@SubjectID", intID);
+                createSubject.Parameters.AddWithValue("@SubjectName", SubjName);
+                createSubject.Parameters.AddWithValue("@SubjectCreator", UserID);
+                createSubject.Parameters.AddWithValue("@SubjectVisibility", visible);
+
+
+                // Execute INSERT command
+                openDB();
+                if (createSubject.ExecuteNonQuery() == 0)
+                {
+                    closeDB();
+                    return false;
+                }
+                else
+                {
+                    closeDB();
+                    return true;
+                }
+            }       
         }
 
 
@@ -229,17 +319,62 @@ namespace CPS410Final
          */
         public static Boolean addNewTopic(String UserID, String SubjectID, String TopicName, Boolean chkbox)
         {
-            SqlCommand createTopic = new SqlCommand("INSERT into Topics (TopicID, TopicName, TopicSubject, TopicCreator) " +
-                "values(@ID, @name, @subj, @creator, @visible)", connection);
-            SqlCommand count = new SqlCommand("Select max(TopicID) from Topics", connection);
-            int intID;
-
-            String visible = "F";
-            if (chkbox)
+            if (topicExists(TopicName, SubjectID))
             {
-                visible = "T";
+                return false;
             }
+            else
+            {
+                SqlCommand createTopic = new SqlCommand("INSERT into Topics (TopicID, TopicName, TopicSubject, TopicCreator, TopicVisibility) " +
+                "values(@ID, @name, @subj, @creator, @visible)", connection);
+                SqlCommand count = new SqlCommand("Select max(TopicID) from Topics", connection);
+                int intID;
 
+                String visible = "F";
+                if (chkbox)
+                {
+                    visible = "T";
+                }
+
+                try
+                {
+                    openDB();
+                    intID = (int)count.ExecuteScalar() + 1;
+                }
+                catch (InvalidCastException)
+                {
+                    intID = 0;
+                }
+                closeDB();
+
+                createTopic.Parameters.AddWithValue("@ID", intID);
+                createTopic.Parameters.AddWithValue("@name", TopicName);
+                createTopic.Parameters.AddWithValue("@subj", SubjectID);
+                createTopic.Parameters.AddWithValue("@creator", UserID);
+                createTopic.Parameters.AddWithValue("@visible", visible);
+
+                openDB();
+                if (createTopic.ExecuteNonQuery() != 0)
+                {
+                    closeDB();
+                    return true;
+                }
+                closeDB();
+                return false;
+            }          
+        }
+
+
+        /*
+         * 
+         */
+        public static String addNewThread(String UserID, String TopicID, String ThreadName, String SubjectID)
+        {
+            SqlCommand createThread = new SqlCommand("INSERT into Threads (ThreadID, ThreadName, TimeCreated, UserID, ThreadTopic, ThreadSubject) " +
+                "values (@threadid, @threadname, @time, @userid, @threadtopic, @threadsubject)", connection);
+            SqlCommand count = new SqlCommand("Select max(ThreadID) from Threads", connection);
+
+            int intID;
             try
             {
                 openDB();
@@ -251,32 +386,126 @@ namespace CPS410Final
             }
             closeDB();
 
-            createTopic.Parameters.AddWithValue("@ID", intID);
-            createTopic.Parameters.AddWithValue("@name", TopicName);
-            createTopic.Parameters.AddWithValue("@subj", SubjectID);
-            createTopic.Parameters.AddWithValue("@creator", UserID);
-            createTopic.Parameters.AddWithValue("@visible", visible);
+
+            createThread.Parameters.AddWithValue("@threadid", intID);
+            createThread.Parameters.AddWithValue("@threadname", ThreadName);
+            createThread.Parameters.AddWithValue("@time", System.DateTime.Now);
+            createThread.Parameters.AddWithValue("@userid", UserID);
+            createThread.Parameters.AddWithValue("@threadtopic", TopicID);
+            createThread.Parameters.AddWithValue("@threadsubject", SubjectID);
 
             openDB();
-            if (createTopic.ExecuteNonQuery() != 0)
-            {
-                closeDB();
-                return true;
-            }
+            int response = createThread.ExecuteNonQuery();
             closeDB();
-            return false;
+            if (response == 1)
+            {
+                return "true," + intID;
+            }
+            else if(response == 0)
+            {
+                return "false,ERROR: Thread was not created.";
+            }
+            else
+            {
+                return "false,ERROR: Multiple rows were edited. Contact administrator to check for DBTable consistency.";
+            }
         }
 
 
         /*
+         * 
          */
-        public static Boolean addNewThread(String UserID, String TopicID)
+         // Need to also add threadID
+         public static String addNewPost(String userID, String threadID, String postContent)
         {
-            // TO-DO
+            SqlCommand createPost = new SqlCommand("INSERT into Posts (PostID, PostContent, TimeCreated, ThreadID, UserID) " +
+                "values (@postid, @postcontent, @timecreated, @threadid, @userid)", connection);
+            SqlCommand count = new SqlCommand("Select max(PostID) from Posts", connection);
 
-            return false;
+            int intID;
+            try
+            {
+                openDB();
+                intID = (int)count.ExecuteScalar() + 1;
+            }
+            catch (InvalidCastException)
+            {
+                intID = 0;
+            }
+            closeDB();
+
+            createPost.Parameters.AddWithValue("@postid", intID);
+            createPost.Parameters.AddWithValue("@postcontent", postContent);
+            createPost.Parameters.AddWithValue("@timecreated", System.DateTime.Now);
+            createPost.Parameters.AddWithValue("@threadid", threadID);
+            createPost.Parameters.AddWithValue("@userid", userID);
+
+            openDB();
+            int response = createPost.ExecuteNonQuery();
+
+            if (response == 1)
+            {
+                return "true";
+            }
+            else if (response == 0)
+            {
+                return "false,ERROR: No rows were modified, meaning that the post was not created.";
+            }
+            else
+            {
+                return "false,ERROR: Multiple rows were modified. Contact an administrator to check for database consistency.";
+            }
+        }
+        
+                    /***** END CREATION *****/
+
+
+                    /***** DESTROY OBJECTS *****/
+
+        /* DELETEs a Subject from the Subjects table
+         * @PARAM: "subjName": The name of the Subject to be removed from the Subjects table, found under column SubjectName
+         * @TABLE: Subjects
+         * @RETURNS: String representation of status.
+         *           Either A) Message stating successful removal of Subject from database
+         *                  B) An "ERROR: ..." message stating that an invalid SubjectName was passed in
+         *                  C) A "POSSIBLE ERROR: ..." message stating that an error may be present within the database
+         */
+        public static String removeSubject(String subjName)
+        {
+            if (subjectExists(subjName))
+            {
+                SqlCommand destroy = new SqlCommand("DELETE FROM Subjects WHERE SubjectName = @subj", connection);
+                destroy.Parameters.AddWithValue("@subj", subjName);
+
+                openDB();
+                if (destroy.ExecuteNonQuery() == 1)
+                {
+                    closeDB();
+                    return "Subject successfully removed.";
+                }
+                else if(destroy.ExecuteNonQuery() == 0)
+                {
+                    // Should not be reached
+                    closeDB();
+                    return "POSSIBLE ERROR: No rows were modified, therefore no Subjects were removed.";
+                }
+                else
+                {
+                    closeDB();
+                    return "POSSIBLE ERROR: More than one row modified, " +
+                        "meaning there were duplicate Subjects of the same name. Check database for consistency errors.";
+                }                   
+            }
+            else
+            {
+                return "ERROR: Subject name does not match any existing subject.";
+            }
         }
 
+                    /***** END DESTORY *****/
+
+
+                    /***** VALIDATION *****/
 
         /* Primarily used for logging in to the website. Determines if the login credentials match an account AND are valid
          * @PARAM: "username": Username to be searched for in the Users database table
@@ -329,7 +558,11 @@ namespace CPS410Final
             }
         }
 
+                    /***** END VALIDATION *****/
+
         /********** END DATABASE OPERATIONS **********/
+
+
 
 
 
@@ -460,6 +693,78 @@ namespace CPS410Final
         }
 
         /********** END USER INFORMATION **********/
+
+
+
+
+
+        /********** BEGIN DISCUSSION INFORMATION **********/
+
+        /* GETs the SubjectID of a specified Subject
+         * @PARAM:
+         * @TABLE:
+         * @RETURNS: String representation of result.
+         *           Either A) String representation of the requested SubjectID or
+         *                  B) An "ERROR: ..." message
+         */
+        public static String getSubjectID(String subjectName)
+        {
+            if (subjectExists(subjectName))
+            {
+                SqlCommand grabID = new SqlCommand("SELECT SubjectID FROM Subjects WHERE SubjectName = @subj", connection);
+                grabID.Parameters.AddWithValue("@subj", subjectName);
+
+                openDB();
+                SqlDataReader reader = grabID.ExecuteReader();
+
+
+                /* Since there is a strict limit on Subjects having nonduplicate names, 
+                 * should only be one row present, so just grab that data
+                 */
+                reader.Read();
+                String result = reader["SubjectID"].ToString();
+
+                closeDB();
+                return result;
+            }
+            else
+            {
+                return "ERROR: Subject does not exist.";
+            }
+        }
+
+
+        /*
+         * 
+         */
+        public static String getTopicSubject(String TopicID)
+        {
+            if (topicExists(TopicID))
+            {
+                SqlCommand getSubj = new SqlCommand("SELECT TopicSubject FROM Topics WHERE TopicID = @topicID", connection);
+                getSubj.Parameters.AddWithValue("@topicID", TopicID);
+
+                openDB();
+                SqlDataReader reader = getSubj.ExecuteReader();
+
+                reader.Read();
+                String result = reader["TopicSubject"].ToString();
+
+                closeDB();
+                return result;
+            }
+            else
+            {
+                return "ERROR: Error getting Topic's Subject. Topic does not exist with given TopicID.";
+            }
+
+        }
+
+        /********** END DISCUSSION INFORMATION **********/
+
+
+
+
 
 
         /********** ACCOUNT FUNCTIONS **********/
