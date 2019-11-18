@@ -70,11 +70,11 @@
             </p>
 
             <div class="nav" id="divNavbar">
-                <asp:Button ID="Home" runat="server" Text="Home" CssClass="button" OnClick="Home_Click" />
-                <asp:Button ID="account" runat="server" Text="Account" CssClass="button" OnClick="account_Click" />
-                <asp:Button ID="DiscussionBoard" runat="server" Text="Discussion Board"  CssClass="button" OnClick="DiscussionBoard_Click"/>
-                <asp:Button ID="FindTutor" runat="server" Text="Find Tutor"  CssClass="button" OnClick="FindTutor_Click"/>
-                <asp:Button ID="Login" runat="server" Text="Login / Register"  CssClass="button" OnClick="Login_Click"/>
+                <asp:Button ID="Home" runat="server" Text="Home" CssClass="button" OnClick="Home_Click" CausesValidation="False" />
+                <asp:Button ID="account" runat="server" Text="Account" CssClass="button" OnClick="account_Click" CausesValidation="False" />
+                <asp:Button ID="DiscussionBoard" runat="server" Text="Discussion Board"  CssClass="button" OnClick="DiscussionBoard_Click" CausesValidation="False"/>
+                <asp:Button ID="FindTutor" runat="server" Text="Find Tutor"  CssClass="button" OnClick="FindTutor_Click" CausesValidation="False"/>
+                <asp:Button ID="Login" runat="server" Text="Login / Register"  CssClass="button" OnClick="Login_Click" CausesValidation="False"/>
             </div>
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
