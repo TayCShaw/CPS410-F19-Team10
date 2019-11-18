@@ -68,6 +68,7 @@ namespace CPS410Final
                 {
 
                     topicContainer = new HtmlGenericControl("div");
+                    topicContainer.Visible = false;
                     topicContainer.Attributes.Add("id", "topicContainer" + subName);
                     topicContainer.Visible = false;
                     topicContainer.Controls.Add(topicDiv(topicName, topicID));
