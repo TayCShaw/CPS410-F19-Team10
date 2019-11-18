@@ -35,7 +35,15 @@ namespace CPS410Final
             connection.Close();
         }
 
+        public static void updateThreadViewCount(String threadID)
+        {
 
+        }
+
+        public static void updateThreadReplyCount()
+        {
+
+        }
                     /***** CHECK EXISTENCE *****/
 
         /* Checks to see if a username already exists in the Users table
@@ -144,6 +152,7 @@ namespace CPS410Final
                 return false;
             }
         }
+        
                     /***** END EXISTENCE *****/
 
 
