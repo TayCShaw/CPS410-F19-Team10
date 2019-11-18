@@ -58,6 +58,7 @@ namespace CPS410Final
             else
             {
                 Session["UserID"] = null;
+                Session["UserRole"] = null;
                 Response.Redirect(Request.RawUrl);
             }
            
