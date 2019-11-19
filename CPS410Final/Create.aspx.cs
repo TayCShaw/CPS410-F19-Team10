@@ -29,10 +29,6 @@ namespace CPS410Final
                 {
                     ThreadInfo.Visible = true;
                 }
-                else if (Request.QueryString["Create"].Equals("Reply"))
-                {
-                    ReplyInfo.Visible = true;
-                }
             }
             else
             {
@@ -50,7 +46,6 @@ namespace CPS410Final
             SubjectInfo.Visible = false;
             TopicInfo.Visible = false;
             ThreadInfo.Visible = false;
-            ReplyInfo.Visible = false;
         }
 
 
@@ -111,12 +106,19 @@ namespace CPS410Final
                 chunk = response.Split(',');
                 if (response.Contains("true"))
                 {
-                    Response.Redirect("/Thread.aspx?Viewing=" + threadID);
+                    Response.Redirect("/Thread.aspx?Viewing=" + threadID + "&Topic=" + TopicID);
                 }
                 else
                 {
-                    String errorMessage = chunk[1];
-                    lblThreadError.Text = errorMessage;
+                    String removeResponse = Database.removeThread(threadID);
+                    if (removeResponse.Contains("ERROR"))
+                    {
+                        lblThreadError.Text = chunk[1] + "\n" + removeResponse;
+                    }
+                    else
+                    {
+                        lblThreadError.Text = "Error attempting to create the thread. Thread not created.";
+                    }
                 }
             }
             else
@@ -124,15 +126,6 @@ namespace CPS410Final
                 String errorMessage = chunk[1];
                 lblThreadError.Text = errorMessage;
             }
-        }
-
-
-        /*
-         * 
-         */
-        protected void btnSubmitReply_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
