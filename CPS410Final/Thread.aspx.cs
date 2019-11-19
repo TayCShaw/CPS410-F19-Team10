@@ -23,12 +23,15 @@ namespace CPS410Final
             selectedThreadPosts.Visible = false;
             if (Request.QueryString["Viewing"] != null)
             {
+                String threadID = Request.QueryString["Viewing"];
                 selectedThreadPosts.Visible = true;
+                threadPosts.Visible = true;
+                generatePosts(threadID);
             }
             else
             {
                 threadsTable.Visible = true;
-
+                threadPosts.Visible = false;
                 String TopicID = Request.QueryString["TopicID"];
                 SqlCommand infoCommand = new SqlCommand("SELECT * FROM Threads WHERE Threads.ThreadTopic = @topic", Database.connection);
                 infoCommand.Parameters.AddWithValue("@topic", TopicID);
@@ -42,47 +45,141 @@ namespace CPS410Final
                     string name = getInfo["ThreadName"].ToString();
                     string timeCreated = getInfo["TimeCreated"].ToString();
                     string replies = getInfo["ThreadReplies"].ToString();
+                    string id = getInfo["ThreadID"].ToString();
+                    string views = getInfo["ThreadViews"].ToString();
 
-                    mainDiv.Controls.Add(messagediv(name, timeCreated, replies));
+                    HtmlGenericControl divTest = new HtmlGenericControl("div");
+                    divTest.Controls.Add(genName(name, timeCreated, id));
+                    divTest.Controls.Add(genRpV(replies, views));
+
+                    mainDiv.Controls.Add(divTest);
                 }
                 Database.closeDB();
             }
             
         }
 
-
-
-        private HtmlGenericControl messagediv(string name, string time, string replies)
+        private void generatePosts(string id)
         {
+            SqlCommand infoCommand = new SqlCommand("SELECT Posts.PostID, Posts.PostContent, Users.Username, Posts.TimeCreated, Users.UserRole" +
+                                    " FROM Posts INNER JOIN Users ON Posts.UserID = Users.UserID AND Posts.ThreadID = @ThreadID", Database.connection);
+            infoCommand.Parameters.AddWithValue("@ThreadID", id);
+            SqlDataReader getInfo;
+
+            Database.openDB();
+            getInfo = infoCommand.ExecuteReader();
+
+            while (getInfo.Read())
+            {
+                string name = getInfo["Username"].ToString();
+                string degree = "NULL F TESTING";//getInfo["Tutors.TutorDegree"].ToString();
+                string role = getInfo["UserRole"].ToString();
+                string msg = getInfo["PostContent"].ToString();
+
+                HtmlGenericControl postDiv = new HtmlGenericControl("div");
+
+                HtmlGenericControl userInfo = new HtmlGenericControl("div");
+
+                // user name
+                HtmlGenericControl l1 = new HtmlGenericControl("div");
+                Label uName = new Label();
+                uName.Text = name;
+                l1.Controls.Add(uName);
+                userInfo.Controls.Add(l1);
+
+                //degree
+                HtmlGenericControl l2 = new HtmlGenericControl("div");
+                Label lblDegree = new Label();
+                lblDegree.Text = degree;
+                l2.Controls.Add(lblDegree);
+                userInfo.Controls.Add(l2);
+
+                // role
+                HtmlGenericControl l3 = new HtmlGenericControl("div");
+                Label lblrole = new Label();
+                lblrole.Text = degree;
+                l3.Controls.Add(lblrole);
+                userInfo.Controls.Add(l3);
+
+
+
+                // msg
+                HtmlGenericControl msgDiv = new HtmlGenericControl("div");
+                Label lblmsg = new Label();
+                lblmsg.Text = msg; 
+                msgDiv.Controls.Add(lblmsg);
+
+                postDiv.Controls.Add(userInfo);
+                postDiv.Controls.Add(msgDiv);
+
+                postsMainDiv.Controls.Add(postDiv);
+
+            }
+
+        }
+
+        private Control genRpV(string replies, string views)
+        {
+            // holds labels for replies and views
+            HtmlGenericControl labels = new HtmlGenericControl("div");
+
+            HtmlGenericControl l1 = new HtmlGenericControl("div");
+            Label rep = new Label();
+            rep.Text = "Replies";
+            l1.Controls.Add(rep);
+
+            HtmlGenericControl l2 = new HtmlGenericControl("div");
+            Label vie = new Label();
+            vie.Text = "Views";
+            l2.Controls.Add(vie);
+
+            labels.Controls.Add(l1);
+            labels.Controls.Add(l2);
+
+            // make the data side
+            HtmlGenericControl viewDiv = new HtmlGenericControl("div");
+            Label dataV = new Label();
+            dataV.Text = views;
+            viewDiv.Controls.Add(dataV);
+
+            HtmlGenericControl replDiv = new HtmlGenericControl("div");
+            Label dataRpl = new Label();
+            dataRpl.Text = replies;
+            replDiv.Controls.Add(dataRpl);
+
+            HtmlGenericControl dataSide = new HtmlGenericControl("div");
+            dataSide.Controls.Add(replDiv);
+            dataSide.Controls.Add(viewDiv);
+
+            //combine them
+            HtmlGenericControl total = new HtmlGenericControl("div");
+            total.Controls.Add(labels);
+            total.Controls.Add(dataSide);
+
+            return total;
+        }
+
+        private Control genName(string name, string timeCreated, string threadID)
+        {
+
+            // create the name label
+            HtmlGenericControl l1 = new HtmlGenericControl("div");
+            Label lblName = new Label();
+            lblName.Text = "<a href=\"/Thread.aspx?Viewing=" + threadID + "\">" + name +"</a>";
+            l1.Controls.Add(lblName);
+
+            // create the time label
+            HtmlGenericControl l2 = new HtmlGenericControl("div");
+            Label lblD = new Label();
+            lblD.Text = timeCreated;
+            l2.Controls.Add(lblD);
+
+            // package both into a div
             HtmlGenericControl div = new HtmlGenericControl("div");
-
-            // add css to get next two divs horzontal
-
-            HtmlGenericControl but = new HtmlGenericControl("div");
-            Button b = new Button();
-            b.Text = name;
-
-            div.Controls.Add(but);
-
-            HtmlGenericControl info = new HtmlGenericControl("div");
-            // add info here
-            HtmlGenericControl rep = new HtmlGenericControl("div");
-            info.Controls.Add(rep);
-            Label l = new Label();
-            l.Text = replies;
-            rep.Controls.Add(l);
-
-            HtmlGenericControl tim = new HtmlGenericControl("div");
-            info.Controls.Add(rep);
-            Label t = new Label();
-            t.Text = time;
-            rep.Controls.Add(t);
-
-
-            div.Controls.Add(info);
+            div.Controls.Add(l1);
+            div.Controls.Add(l2);
 
             return div;
-
         }
 
         protected void btnNewThread_Click(object sender, EventArgs e)
@@ -91,7 +188,7 @@ namespace CPS410Final
         }
 
         protected void btnBackToThreads_Click(object sender, EventArgs e)
-        {
+        {   
 
         }
 

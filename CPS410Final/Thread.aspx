@@ -37,6 +37,15 @@
         </table>
     </div>
 
+
+
+    <div id ="threadPosts" runat="server">
+
+    </div>
+
+
+
+
     <table id="selectedThreadPosts" style="width:100%;" runat="server">
         <tr>
             <td>
@@ -60,4 +69,8 @@
             </td>
         </tr>
     </table>
+
+    <div id ="postsMainDiv" runat="server">
+
+    </div>
 </asp:Content>
