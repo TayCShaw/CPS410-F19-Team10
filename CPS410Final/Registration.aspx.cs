@@ -65,7 +65,6 @@ namespace CPS410Final
                     lblError.Text = "Passwords do not match";
                 }
             }
-
         }
 
         protected void rblRole_SelectedIndexChanged(object sender, EventArgs e)
