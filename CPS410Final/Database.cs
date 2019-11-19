@@ -451,7 +451,7 @@ namespace CPS410Final
 
             openDB();
             int response = createPost.ExecuteNonQuery();
-
+            closeDB();
             if (response == 1)
             {
                 return "true";
