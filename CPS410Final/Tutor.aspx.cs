@@ -13,6 +13,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["Redirect"] = null;
             //show tutor search box when page loads, after search button is pressed
             //hide the tutorsearch div, and populate page with list of potential tutors
             tutorsearch.Visible = true;
@@ -30,7 +31,8 @@ namespace CPS410Final
         protected SqlCommand buildQueryString()
         {
             int whereAdded = 0;
-            String baseQuery = "SELECT * FROM Tutors";
+            String baseQuery = "SELECT Tutors.TutorDegree, Tutors.TutorContactInfo, Tutors.TutorSchool, Tutors.TutorExperience, " +
+                "Users.Username FROM Tutors INNER JOIN Users on Tutors.UserID = Users.UserID";
             SqlCommand getTutors = new SqlCommand(baseQuery, Database.connection);
 
             if (txtboxSubject.Text.Length != 0)
@@ -143,7 +145,7 @@ namespace CPS410Final
             //lblLiterally.Text = getInfo.CommandText;
             while (reader.Read())
             {
-                string name = reader["UserID"].ToString();
+                string name = reader["Username"].ToString();
                 string school = reader["TutorSchool"].ToString();
                 string degree = reader["TutorDegree"].ToString();
                 string experience = reader["TutorExperience"].ToString();

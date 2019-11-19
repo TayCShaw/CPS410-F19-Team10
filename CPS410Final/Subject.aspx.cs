@@ -22,6 +22,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["Redirect"] = null;
             if (Session["UserRole"] != null)
             {
                 if (Session["UserRole"].ToString().Equals("Administrator"))
