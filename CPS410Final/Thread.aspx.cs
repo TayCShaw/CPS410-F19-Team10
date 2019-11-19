@@ -115,7 +115,7 @@ namespace CPS410Final
                 postsMainDiv.Controls.Add(postDiv);
 
             }
-
+            Database.closeDB();
         }
 
         private Control genRpV(string replies, string views)
