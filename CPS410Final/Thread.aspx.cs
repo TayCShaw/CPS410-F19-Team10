@@ -19,6 +19,8 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
             threadsTable.Visible = false;
             selectedThreadPosts.Visible = false;
             if (Request.QueryString["Viewing"] != null)
@@ -56,7 +58,7 @@ namespace CPS410Final
                 }
                 Database.closeDB();
             }
-            
+
         }
 
         private void generatePosts(string id)
@@ -106,7 +108,7 @@ namespace CPS410Final
                 // msg
                 HtmlGenericControl msgDiv = new HtmlGenericControl("div");
                 Label lblmsg = new Label();
-                lblmsg.Text = msg; 
+                lblmsg.Text = msg;
                 msgDiv.Controls.Add(lblmsg);
 
                 postDiv.Controls.Add(userInfo);
@@ -165,7 +167,7 @@ namespace CPS410Final
             // create the name label
             HtmlGenericControl l1 = new HtmlGenericControl("div");
             Label lblName = new Label();
-            lblName.Text = "<a href=\"/Thread.aspx?Viewing=" + threadID + "\">" + name +"</a>";
+            lblName.Text = "<a href=\"/Thread.aspx?Viewing=" + threadID + "\">" + name + "</a>";
             l1.Controls.Add(lblName);
 
             // create the time label
@@ -184,17 +186,32 @@ namespace CPS410Final
 
         protected void btnNewThread_Click(object sender, EventArgs e)
         {
+            if (Session["UserID"] == null)
+            {
+                String page = Request.RawUrl;
+                Session["Redirect"] = page;
+               
+            }
             Response.Redirect("Create.aspx?Create=Thread&TopicID=" + Request.QueryString["TopicID"]);
         }
 
         protected void btnBackToThreads_Click(object sender, EventArgs e)
-        {   
+        {
 
         }
 
         protected void btnReply_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Create.apsx?Create=Reply&Thread=" + Request.QueryString["ThreadID"]);
+            if (Session["UserID"] == null)
+            {
+                String page = Request.RawUrl;
+                Session["Redirect"] = page;
+                Response.Redirect("login.aspx");
+            }
+            else
+            {
+                Response.Redirect("Create.apsx?Create=Reply&Thread=" + Request.QueryString["ThreadID"]);
+            }
         }
     }
 }

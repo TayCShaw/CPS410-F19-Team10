@@ -13,6 +13,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["Redirect"] = null;
             //show tutor search box when page loads, after search button is pressed
             //hide the tutorsearch div, and populate page with list of potential tutors
             tutorsearch.Visible = true;
