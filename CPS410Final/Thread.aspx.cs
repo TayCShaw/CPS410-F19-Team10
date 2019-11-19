@@ -20,7 +20,9 @@ namespace CPS410Final
         protected void Page_Load(object sender, EventArgs e)
         {
             threadsTable.Visible = false;
+            ReplyInfo.Visible = false;
             selectedThreadPosts.Visible = false;
+
             if (Request.QueryString["Viewing"] != null)
             {
                 selectedThreadPosts.Visible = true;
@@ -127,12 +129,53 @@ namespace CPS410Final
 
         protected void btnBackToThreads_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Thread.aspx?TopicID=" + Request.QueryString["Topic"]);
         }
 
         protected void btnReply_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Create.apsx?Create=Reply&Thread=" + Request.QueryString["ThreadID"]);
+            if (Session["UserID"] != null)
+            {
+                if (!ReplyInfo.Visible)
+                {
+                    ReplyInfo.Visible = true;
+                    btnReply.Visible = false;
+                }
+            }
+            else
+            {
+                //User not logged in
+                Response.Redirect("Login.aspx");
+            }
+
+        }
+
+        protected void btnSubmitReply_Click(object sender, EventArgs e)
+        {
+            String response = Database.addNewPost(Session["UserID"].ToString(), Request.QueryString["Viewing"], txtboxThreadReply.Text);
+
+            if (response.Contains("ERROR"))
+            {
+                lblReplyError.Text = response;
+            }
+            else
+            {
+                Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+            }
+        }
+
+        protected void btnCancelReply_Click(object sender, EventArgs e)
+        {
+            if (txtboxThreadReply.Text.Length > 0)
+            {
+                txtboxThreadReply.Text = "";
+            }
+            ReplyInfo.Visible = false;
+        }
+
+        protected void btnBackToSubjects_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Subject.aspx");
         }
     }
 }
