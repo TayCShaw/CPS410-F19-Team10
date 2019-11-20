@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel ="stylesheet" href ="Thread.css" />
     <div id="mainDiv" runat="server">
 
         <table id="threadsTable" style="width: 100%;" runat="server">
@@ -39,8 +40,8 @@
 
 
 
-    <div id ="threadPosts" runat="server">
-
+    <div id ="threadPosts" runat="server" class="g  ">
+        
     </div>
 
 
@@ -70,7 +71,7 @@
         </tr>
     </table>
 
-    <div id ="postsMainDiv" runat="server">
+    <div id ="postsMainDiv" runat="server" class ="PostsMainDiv">
 
     </div>
 </asp:Content>
