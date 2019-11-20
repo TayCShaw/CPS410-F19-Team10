@@ -119,7 +119,7 @@ namespace CPS410Final
 
             // make the button and add it to the div
             Button b = new Button();
-            b.Attributes.Add("class", "allMyBtn");
+            b.Attributes.Add("class", "topicBTN");
             b.Attributes.Add("ID", "topic " + id);
             b.CommandName = id;
             sub.Controls.Add(b);

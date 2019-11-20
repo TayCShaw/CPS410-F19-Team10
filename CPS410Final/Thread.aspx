@@ -11,12 +11,12 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="threads.css" />
     <div id="mainDiv" runat="server">
 
-        <table id="threadsTable" style="width: 100%;" runat="server">
+        <table id="threadsTable" Class="topicTable" runat="server">
             <tr>
                 <td>
-                    <asp:Button ID="btnNewThread" runat="server" Text="New Thread" OnClick="btnNewThread_Click" />
 
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:siteDBConnectionString %>" SelectCommand="SELECT Threads.ThreadID, Threads.ThreadTopic, Threads.ThreadName, 
 Threads.ThreadViews, Threads.ThreadReplies, Users.Username , Threads.TimeModified
@@ -30,7 +30,7 @@ WHERE ThreadTopic = @ThreadTopic">
             </tr>
             <tr>
                 <td>
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="ThreadID">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="ThreadID"  Width="100%">
                         <Columns>
                             <asp:HyperLinkField DataTextField="ThreadName" 
                                 DataNavigateUrlFields="ThreadID, ThreadTopic"
@@ -44,17 +44,19 @@ WHERE ThreadTopic = @ThreadTopic">
                         </Columns>
                     </asp:GridView>
 
-                    <asp:Button ID="btnBackToSubjects" runat="server" OnClick="btnBackToSubjects_Click" Text="Back to Subjects" />
+                    <asp:Button ID="btnBackToSubjects" runat="server" OnClick="btnBackToSubjects_Click" Text="Back to Subjects" CssClass="topicButton" />
+
+                    <asp:Button ID="btnNewThread" runat="server" Text="New Thread" OnClick="btnNewThread_Click" CssClass="topicButton" />
 
                 </td>
             </tr>
         </table>
     </div>
 
-    <table id="selectedThreadPosts" style="width:100%;" runat="server">
+    <table id="selectedThreadPosts" class="postsTable" runat="server">
         <tr>
             <td>
-                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="PostID" DataSourceID="sqldsPosts">
+                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="PostID" DataSourceID="sqldsPosts" Style="width:100%">
                     <Columns>
                         <asp:BoundField DataField="PostContent" HeaderText="PostContent" SortExpression="PostContent" />
                         <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
@@ -69,8 +71,8 @@ WHERE ThreadTopic = @ThreadTopic">
         </tr>
         <tr>
             <td>
-                <asp:Button ID="btnReply" runat="server" OnClick="btnReply_Click" Text="Reply" />
-                <asp:Button ID="btnBackToThreads" runat="server" CausesValidation="False" OnClick="btnBackToThreads_Click" Text="Back To Threads" />
+                <asp:Button ID="btnReply" runat="server" OnClick="btnReply_Click" Text="Reply" CssClass="postsButton" />
+                <asp:Button ID="btnBackToThreads" runat="server" CausesValidation="False" OnClick="btnBackToThreads_Click" Text="Back To Threads" CssClass="postsButton" />
             </td>
         </tr>
     </table>
@@ -88,7 +90,7 @@ WHERE ThreadTopic = @ThreadTopic">
                 <asp:Label ID="lblYourReply" runat="server" Text="Your Reply"></asp:Label>
             </td>
             <td class="auto-style13">
-                <asp:TextBox ID="txtboxThreadReply" runat="server" TextMode="MultiLine" Height="97px" Width="476px"></asp:TextBox>
+                <asp:TextBox ID="txtboxThreadReply" runat="server" TextMode="MultiLine" Height="97px" Width="100%"></asp:TextBox>
             </td>
             <td>
                 <asp:RequiredFieldValidator ID="rfvThreadReply" runat="server" ErrorMessage="Required Field" ControlToValidate="txtboxThreadReply"></asp:RequiredFieldValidator>
