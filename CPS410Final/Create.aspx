@@ -146,39 +146,4 @@
         </tr>
     </table>
 
-    <table id="ReplyInfo" style="width:100%;" runat="server">
-        <tr>
-            <td class="auto-style4">&nbsp;</td>
-            <td class="auto-style14">
-                <asp:Label ID="Label4" runat="server" Text="PLACEHOLDER"></asp:Label>
-            </td>
-            <td class="auto-style13">
-                <asp:Label ID="Label5" runat="server" Text="PLACEHOLDER, possibly put the OP here"></asp:Label>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style4">&nbsp;</td>
-            <td class="auto-style14">
-                <asp:Label ID="lblYourReply" runat="server" Text="Your Reply"></asp:Label>
-            </td>
-            <td class="auto-style13">
-                <asp:TextBox ID="txtboxThreadReply" runat="server" TextMode="MultiLine"></asp:TextBox>
-            </td>
-            <td>
-                <asp:RequiredFieldValidator ID="rfvThreadReply" runat="server" ErrorMessage="Required Field" ControlToValidate="txtboxThreadReply"></asp:RequiredFieldValidator>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style4">&nbsp;</td>
-            <td class="auto-style14">&nbsp;</td>
-            <td class="auto-style13">
-                <asp:Button ID="btnSubmitReply" runat="server" OnClick="btnSubmitReply_Click" Text="Submit Reply" />
-            </td>
-            <td>
-                <asp:Label ID="lblReplyError" runat="server" Visible="False"></asp:Label>
-            </td>
-        </tr>
-    </table>
-
-</asp:Content>
+    </asp:Content>

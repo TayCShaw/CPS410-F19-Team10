@@ -64,4 +64,5 @@ TAYLOR
 	b) would have to include an option for users to request a major to be added
 	c) talk to brad about only having one account information page based on student/tutor (i.e., a tutor account can only see the tutor information page)
 2) On Account.aspx page, when logged in, pull their data into the appropriate page control (if the data exists)
-3) Change the topicExists() so it searches for all topic repeats, not just a repeat within a subject
+3) fix account overview, add the information the account has in the database
+4) double check the edit information tab under account page to see if the information actually gets processed

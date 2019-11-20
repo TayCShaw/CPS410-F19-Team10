@@ -129,6 +129,8 @@ namespace CPS410Final
         }
 
 
+
+
         /*
          * 
          */
@@ -153,6 +155,29 @@ namespace CPS410Final
             }
         }
         
+
+        /*
+         * 
+         */
+        protected static Boolean threadExists(String threadID)
+        {
+            SqlCommand search = new SqlCommand("SELECT * FROM Threads WHERE ThreadID = @thread", connection);
+            search.Parameters.AddWithValue("@thread", threadID);
+
+            openDB();
+            SqlDataReader reader = search.ExecuteReader();
+            reader.Read();
+            if (reader.HasRows)
+            {
+                closeDB();
+                return true;
+            }
+            else
+            {
+                closeDB();
+                return false;
+            }
+        }
                     /***** END EXISTENCE *****/
 
 
@@ -422,9 +447,13 @@ namespace CPS410Final
 
 
         /*
-         * 
+         * Adds a new post to the Posts table of the database.
+         * @PARAM: "userID": 
+         *       "threadID":
+         *    "postContent":
+         * @TABLE:
+         * @RETURNS:
          */
-         // Need to also add threadID
          public static String addNewPost(String userID, String threadID, String postContent)
         {
             SqlCommand createPost = new SqlCommand("INSERT into Posts (PostID, PostContent, TimeCreated, ThreadID, UserID) " +
@@ -454,11 +483,11 @@ namespace CPS410Final
             closeDB();
             if (response == 1)
             {
-                return "true";
+                return "true,Post successfully created.";
             }
             else if (response == 0)
             {
-                return "false,ERROR: No rows were modified, meaning that the post was not created.";
+                return "false,ERROR: No rows were modified meaning the post was not created.";
             }
             else
             {
@@ -487,20 +516,19 @@ namespace CPS410Final
                 destroy.Parameters.AddWithValue("@subj", subjName);
 
                 openDB();
-                if (destroy.ExecuteNonQuery() == 1)
+                int response = destroy.ExecuteNonQuery();
+                closeDB();
+                if (response == 1)
                 {
-                    closeDB();
                     return "Subject successfully removed.";
                 }
-                else if(destroy.ExecuteNonQuery() == 0)
+                else if(response == 0)
                 {
                     // Should not be reached
-                    closeDB();
                     return "POSSIBLE ERROR: No rows were modified, therefore no Subjects were removed.";
                 }
                 else
                 {
-                    closeDB();
                     return "POSSIBLE ERROR: More than one row modified, " +
                         "meaning there were duplicate Subjects of the same name. Check database for consistency errors.";
                 }                   
@@ -511,8 +539,38 @@ namespace CPS410Final
             }
         }
 
-                    /***** END DESTORY *****/
 
+        public static String removeThread(string threadID)
+        {
+            if (threadExists(threadID))
+            {
+                SqlCommand destroy = new SqlCommand("DELETE FROM Threads WHERE ThreadID = @thread", connection);
+                destroy.Parameters.AddWithValue("@thread", threadID);
+
+                openDB();
+                int response = destroy.ExecuteNonQuery();
+                closeDB();
+                if (response == 1)
+                {
+                    return "Thread successfully removed.";
+                }
+                else if (response == 0)
+                {
+                    return "POSSIBLE ERROR: No rows were modified, therefore no Threads were removed.";
+                }
+                else
+                {
+                    return "POSSIBLE ERROR: More than one row modified, " +
+                        "meaning there were duplicate Threads of the same ThreadID. Check database for consistency errors.";
+                }
+            }
+            else
+            {
+                return "ERROR: ThreadID does not match any existing thread.";
+            }
+        }
+                    /***** END DESTORY *****/
+        
 
                     /***** VALIDATION *****/
 
@@ -538,7 +596,8 @@ namespace CPS410Final
                 reader.Read();
 
                 if (!reader.HasRows)
-                { // No user found
+                { 
+                    // No user found
                     closeDB();
                     return "";
                 }
@@ -548,20 +607,23 @@ namespace CPS410Final
                     String inputBased = Security.Sha256(password + userSalt);
 
                     if (inputBased.Equals(reader["UserPassword"]))
-                    { // Correct login information
+                    { 
+                        // Correct login information
                         String userID = reader["userID"].ToString();
                         closeDB();
                         return userID;
                     }
                     else
-                    { // Incorrect password
+                    { 
+                        // Incorrect password
                         closeDB();
                         return "";
                     }
                 }
             }
             else
-            { // Not registered
+            { 
+                // Not registered
                 closeDB();
                 return "";
             }
@@ -665,14 +727,18 @@ namespace CPS410Final
             setInfo.Parameters.AddWithValue("@id", userID);
 
             openDB();
-            if (setInfo.ExecuteNonQuery() == 1)
+            int response = setInfo.ExecuteNonQuery();
+            closeDB();
+            if (response == 1)
             {
-                closeDB();
                 return "Information updated!";
+            }
+            else if (response > 1)
+            {
+                return "POSSIBLE ERROR: Multiple rows changed, check database for consistency.";
             }
             else
             {
-                closeDB();
                 return "ERROR: Information could not be changed at this time.";
             }
         }

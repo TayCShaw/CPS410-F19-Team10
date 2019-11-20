@@ -14,8 +14,11 @@ namespace CPS410Final
          */
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            //String page = Request.RawUrl;
             if (Session["UserID"] != null)
             {
+                Session["Redirect"] = null;
                 username.Visible = false;
                 password.Visible = false;
                 info.Visible = false;
@@ -49,7 +52,12 @@ namespace CPS410Final
             }
             else
             {
+                String page = Request.RawUrl;
+                Session["Redirect"] = page;
+
                 Response.Redirect("Login.aspx");
+                
+
             }
         }
 

@@ -22,6 +22,7 @@ namespace CPS410Final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["Redirect"] = null;
             if (Session["UserRole"] != null)
             {
                 if (Session["UserRole"].ToString().Equals("Administrator"))
@@ -70,7 +71,6 @@ namespace CPS410Final
                     topicContainer = new HtmlGenericControl("div");
                     topicContainer.Visible = false;
                     topicContainer.Attributes.Add("id", "topicContainer" + subName);
-                    topicContainer.Visible = false;
                     topicContainer.Controls.Add(topicDiv(topicName, topicID));
                     oldSubject = subID;
 
