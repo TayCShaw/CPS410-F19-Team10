@@ -305,16 +305,29 @@
         <div class="overview" id="overview" runat="server">
             <h1>Account Overview</h1>
             <p>
-                Account Type: 
-                <asp:Label ID="Label1" runat="server" Text="Student/Tutor"></asp:Label>
+                <asp:Label ID="lblAccountLabel" runat="server" Text="Account Type" Font-Underline="True"></asp:Label>
+                : 
+                <asp:Label ID="lblAccountType" runat="server"></asp:Label>
             </p>
-            <p>Major:   
-                <asp:Label ID="Label2" runat="server" Text="Major"></asp:Label></p>
-            <p>Expected Graduation Date:   
-                <asp:Label ID="Label3" runat="server" Text="Graduation Date"></asp:Label></p>
-            <p>Biography and entire life story:    
-                <asp:Label ID="Label4" runat="server" Text="Biography"></asp:Label></p>
+            <p>
+                <asp:Label ID="lblDegreeLabel" runat="server" Text="Degree" Font-Underline="True"></asp:Label>
+                :   
+                <asp:Label ID="lblMajor" runat="server"></asp:Label></p>
+            <p>
+                <asp:Label ID="lblGradDateLabel" runat="server" Text="Expected Graduation Date" Font-Underline="True"></asp:Label>
+                :   
+                <asp:Label ID="lblGradDate" runat="server"></asp:Label></p>
+            <p>
+                <asp:Label ID="lblAboutLabel" runat="server" Text="About" Font-Underline="True"></asp:Label>
+                : <asp:Label ID="lblAboutSection" runat="server"></asp:Label></p>
+            <p>
 
+                <asp:Label ID="lblTutorContact" runat="server" Text="Contact Information:" Font-Underline="True"></asp:Label>
+                &nbsp;<asp:Label ID="lblTutorContactInfo" runat="server"></asp:Label></p>
+            <p>
+                <asp:Label ID="lblTutorSubjectsLabel" runat="server" Font-Underline="True" Text="Subjects You Help With:"></asp:Label>
+&nbsp;<asp:Label ID="lblTutorSubjOverview" runat="server"></asp:Label>
+            </p>
         </div>
         <%-- -------------------------------------------------------------------------------- --%><%-- -------------------EDIT USERNAME SIDE NAV-BAR------------------- --%>
         <div class="username" id="username" runat="server">
@@ -336,7 +349,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style35">
-                        <asp:TextBox ID="txtboxTypePassword" placeholder="Password" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtboxTypePassword" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox></td>
                     <td class="tdalign2">
                         <asp:RequiredFieldValidator ID="rfvTypePassword" runat="server" ErrorMessage="Required Field" ControlToValidate="txtboxTypePassword"></asp:RequiredFieldValidator>
                     </td>
@@ -352,7 +365,7 @@
             <table class="auto-style13" style="margin-left: 175px;">
                 <tr>
                     <td class="auto-style35">
-                        <asp:TextBox ID="txtboxCurrentPassword" placeholder="Current Password" runat="server" CssClass="auto-style5"></asp:TextBox>
+                        <asp:TextBox ID="txtboxCurrentPassword" placeholder="Current Password" runat="server" CssClass="auto-style5" TextMode="Password"></asp:TextBox>
                     </td>
                     <td class="tdalign2">
                         <asp:RequiredFieldValidator ID="rfvCurrentPass" runat="server" ControlToValidate="txtboxCurrentPassword" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
@@ -360,7 +373,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style35">
-                        <asp:TextBox ID="txtboxNewPassword" placeholder="New Password" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtboxNewPassword" placeholder="New Password" runat="server" TextMode="Password"></asp:TextBox>
                     </td>
                     <td class="tdalign2">
                         <asp:RequiredFieldValidator ID="rfvNewPass" runat="server" ControlToValidate="txtboxNewPassword" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
@@ -368,7 +381,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style35">
-                        <asp:TextBox ID="txtboxConfirmNewPass" placeholder="Confirm New Password" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtboxConfirmNewPass" placeholder="Confirm New Password" runat="server" TextMode="Password"></asp:TextBox>
                     </td>
                     <td class="tdalign2">
                         <asp:RequiredFieldValidator class="" ID="rfvConfirmPass" runat="server" ControlToValidate="txtboxConfirmNewPass" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
@@ -391,7 +404,8 @@
                         <asp:Label ID="lblDegree" runat="server" Text="Degree" CssClass="labelalign"></asp:Label>
                     </td>
                     <td style="text-align: left" class="auto-style33">
-                        <asp:TextBox ID="txtboxMajor" placeholder="Major" runat="server" Width="80%"></asp:TextBox></td>
+                        <asp:TextBox ID="txtboxMajor" runat="server" Width="80%"></asp:TextBox>
+                    </td>
                     <td></td>
                 </tr>
                 <tr>
@@ -425,8 +439,9 @@
                         <asp:Label ID="lblAbout" CssClass="labelalign" runat="server" Text="About"></asp:Label>
                     </td>
                     <td style="text-align: left" class="auto-style28" colspan="2">
+                        <asp:TextBox ID="txtboxAbout" runat="server" Height="53px" TextMode="MultiLine"></asp:TextBox>
                         <br />
-                        <asp:TextBox CssClass="about" TextMode="MultiLine" ID="txtboxAbout" placeholder="About" runat="server" Width="98%" Height="65px" Style="resize: none"></asp:TextBox></td>
+                        </td>
                 </tr>
             </table>
             <p>

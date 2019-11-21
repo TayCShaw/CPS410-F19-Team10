@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,10 +15,17 @@ namespace CPS410Final
          */
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             //String page = Request.RawUrl;
             if (Session["UserID"] != null)
             {
+
+                if (!IsPostBack)
+                {
+                    setAccountOverview(Session["UserID"].ToString());
+                    clearAllFields();
+                }
+
                 Session["Redirect"] = null;
                 username.Visible = false;
                 password.Visible = false;
@@ -44,10 +52,14 @@ namespace CPS410Final
                     btnTutor.Visible = true;
                     btnInfo.Visible = false;
                 }
-                else //student account, hide tutor button
+                else if(Session["UserRole"].ToString().Equals("Student"))
                 {
                     btnTutor.Visible = false;
                     btnInfo.Visible = true;
+                }else if (Session["UserRole"].ToString().Equals("Administrator"))
+                {
+                    btnTutor.Visible = false;
+                    btnInfo.Visible = false;
                 }
             }
             else
@@ -56,8 +68,6 @@ namespace CPS410Final
                 Session["Redirect"] = page;
 
                 Response.Redirect("Login.aspx");
-                
-
             }
         }
 
@@ -73,6 +83,8 @@ namespace CPS410Final
             btnOverview.CssClass = "buttonActive";
             btnInfo.CssClass = "Buttons";
             btnTutor.CssClass = "Buttons";
+            clearAllFields();
+            setAccountOverview(Session["UserID"].ToString());
             overview.Visible = true;
             username.Visible = false;
             password.Visible = false;
@@ -91,6 +103,7 @@ namespace CPS410Final
             btnOverview.CssClass = "Buttons";
             btnInfo.CssClass = "Buttons";
             btnTutor.CssClass = "Buttons";
+            clearAllFields();
             overview.Visible = false;
             username.Visible = true;
             password.Visible = false;
@@ -109,6 +122,7 @@ namespace CPS410Final
             btnOverview.CssClass = "Buttons";
             btnInfo.CssClass = "Buttons";
             btnTutor.CssClass = "Buttons";
+            clearAllFields();
             overview.Visible = false;
             username.Visible = false;
             password.Visible = true;
@@ -127,12 +141,14 @@ namespace CPS410Final
             btnOverview.CssClass = "Buttons";
             btnInfo.CssClass = "buttonActive";
             btnTutor.CssClass = "Buttons";
+            clearAllFields();
             overview.Visible = false;
             username.Visible = false;
             password.Visible = false;
             info.Visible = true;
             tutorInfo.Visible = false;
         }
+
 
         /*
          * Show Tutor info on click, highlight tutor button
@@ -144,17 +160,15 @@ namespace CPS410Final
             btnOverview.CssClass = "Buttons";
             btnInfo.CssClass = "Buttons";
             btnTutor.CssClass = "buttonActive";
+            clearAllFields();
             overview.Visible = false;
             username.Visible = false;
             password.Visible = false;
             info.Visible = false;
             tutorInfo.Visible = true;
         }
+        /**********END SIDE NAVIGATION BAR***********/
 
-
-        /*****************************************/
-
-        /********** NAVIGATION BAR FUNCTIONALITY **********/
 
         protected void btnChangeUsername_Click(object sender, EventArgs e)
         {
@@ -191,10 +205,12 @@ namespace CPS410Final
             {
                 lblUsernameStatus.ForeColor = System.Drawing.Color.Red;
                 lblUsernameStatus.Text = "Incorrect password";
+
             }
 
             overview.Visible = false;
             username.Visible = true;
+            txtboxTypePassword.Text = "";
         }
 
 
@@ -238,7 +254,8 @@ namespace CPS410Final
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             String changed = Database.setStudentInformation(Session["UserID"].ToString(), txtboxMajor.Text,
-                ddlGradYear.SelectedValue.ToString(), txtboxSchool.Text, txtboxAbout.Text);
+                 ddlGradYear.SelectedValue, txtboxSchool.Text, txtboxAbout.Text);
+
 
             if (changed.Contains("ERROR"))
             {
@@ -249,7 +266,6 @@ namespace CPS410Final
                 lblAccountStatus.ForeColor = System.Drawing.Color.Black;
             }
             lblAccountStatus.Text = changed;
-
 
             overview.Visible = false;
             info.Visible = true;
@@ -278,6 +294,166 @@ namespace CPS410Final
 
         /********* HELPER METHODS ********/
 
+        protected void clearAllFields()
+        {
+            clearChangeUsername();
+            clearChangePassword();
+
+            if (Session["UserRole"].ToString().Equals("Tutor"))
+            {
+                clearTutorInfo();
+            }
+            else
+            {
+                clearAccountInfo();
+            }
+        }
+
+        protected void clearChangeUsername()
+        {
+            txtboxNewUsername.Text = "";
+            txtboxConfirmNewUsername.Text = "";
+            txtboxTypePassword.Text = "";
+            lblUsernameStatus.Text = "";
+        }
+
+        protected void clearChangePassword()
+        {
+            txtboxCurrentPassword.Text = "";
+            txtboxNewPassword.Text = "";
+            txtboxConfirmNewPass.Text = "";
+            lblPasswordStatus.Text = "";
+        }
+
+        protected void clearAccountInfo()
+        {
+            txtboxMajor.Text = "";
+            ddlGradYear.SelectedValue = "2019";
+            txtboxSchool.Text = "";
+            txtboxAbout.Text = "";
+            lblAccountStatus.Text = "";
+        }
+
+        protected void clearTutorInfo()
+        {
+            txtboxGraduationDate.Text = "";
+            txtboxDegree.Text = "";
+            txtboxExperience.Text = "";
+            txtboxContactInformation.Text = "";
+            txtboxTutorSubjects.Text = "";
+            lblTutorStatus.Text = "";
+        }
+
+        protected void setAccountOverview(String userID){
+            SqlDataReader reader = Database.getAccountInformation(userID);
+
+            while (reader.Read())
+            {
+                if (Session["UserRole"].ToString().Equals("Tutor"))
+                {
+                    lblAccountType.Text = "Tutor";
+                    lblTutorContact.Visible = true;
+                    lblTutorContactInfo.Visible = true;
+                    lblTutorSubjectsLabel.Visible = true;
+                    lblTutorSubjOverview.Visible = true;
+
+                    if (reader["TutorDegree"].ToString() != "")
+                    {
+                        setAffirmative(lblMajor, reader["TutorDegree"].ToString());
+                    }
+                    else
+                    {
+                        setNegative(lblMajor);
+                    }
+
+                    if (reader["TutorGraduationDate"].ToString() != "")
+                    {
+                        setAffirmative(lblGradDate, reader["TutorGraduationDate"].ToString());
+                    }
+                    else
+                    {
+                        setNegative(lblGradDate);
+                    }
+
+                    if (reader["TutorExperience"].ToString() != "")
+                    {
+                        setAffirmative(lblAboutSection, reader["TutorExperience"].ToString());
+                    }
+                    else
+                    {
+                        setNegative(lblAboutSection);
+                    }
+
+                    if (reader["TutorSubjects"].ToString() != "")
+                    {
+                        setAffirmative(lblTutorSubjOverview, reader["TutorSubjects"].ToString());
+                    }
+                    else
+                    {
+                        setNegative(lblTutorSubjOverview);
+                    }
+
+                    if (reader["TutorContactInfo"].ToString() != "")
+                    {
+                        setAffirmative(lblTutorContactInfo, reader["TutorContactInfo"].ToString());
+                    }
+                    else
+                    {
+                        setNegative(lblTutorContactInfo);
+                    }
+
+                    if (reader["TutorSubjects"].ToString() != "")
+                    {
+                        setAffirmative(lblTutorSubjOverview, reader["TutorSubjects"].ToString());
+                    }
+                    else
+                    {
+                        setNegative(lblTutorSubjOverview);
+                    }
+                }
+                else if (Session["UserRole"].ToString().Equals("Student"))
+                {
+                    lblAccountType.Text = "Student";
+                    lblTutorContact.Visible = false;
+                    lblTutorContactInfo.Visible = false;
+                    lblTutorSubjectsLabel.Visible = false;
+                    lblTutorSubjOverview.Visible = false;
+
+                    if (reader["StudentMajor"].ToString() != "")
+                    {
+                        setAffirmative(lblMajor, reader["StudentMajor"].ToString());
+                    }
+                    else
+                    {
+                        setNegativeStudent(lblMajor);
+                    }
+
+                    if (reader["StudentGradYear"].ToString() != "")
+                    {
+                        setAffirmative(lblGradDate, reader["StudentGradYear"].ToString());
+                    }
+                    else
+                    {
+                        setNegativeStudent(lblGradDate);
+                    }
+
+                    if (reader["StudentAbout"].ToString() != "")
+                    {
+                        setAffirmative(lblAboutSection, reader["StudentAbout"].ToString());
+                    }
+                    else
+                    {
+                        setNegativeStudent(lblAboutSection);
+                    }
+                }
+                else if(Session["UserRole"].ToString().Equals("Administrator"))
+                {
+                    lblAccountType.Text = "Administrator";
+                }
+            }
+            Database.closeDB();
+        }
+
         protected Boolean passwordFieldsEmpty()
         {
             if ((txtboxCurrentPassword.Text.Length != 0) && (txtboxNewPassword.Text.Length != 0) && (txtboxConfirmNewPass.Text.Length != 0))
@@ -296,5 +472,23 @@ namespace CPS410Final
             return true;
         }
 
+
+        protected void setAffirmative(Label label, String text)
+        {
+            label.ForeColor = System.Drawing.Color.Black;
+            label.Text = text;
+        }
+
+        protected void setNegative(Label label)
+        {
+            label.ForeColor = System.Drawing.Color.Red;
+            label.Text = "Information needed! Head over to the\"Edit Tutor Information\" tab to finish filling out your profile!";
+        }
+
+        protected void setNegativeStudent(Label label)
+        {
+            label.ForeColor = System.Drawing.Color.Red;
+            label.Text = "Missing information! Head over to \"Edit Information\" tab to finish filling out your profile!";
+        }
     }
 }
