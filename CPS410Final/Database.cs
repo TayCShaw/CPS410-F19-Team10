@@ -729,16 +729,59 @@ namespace CPS410Final
             return reader;
         }
 
+
         /* SETs the information of a specified 
          */
         public static String setStudentInformation(String userID, String userMajor, String userGradYear, String userSchool, String userAbout)
         {
-            SqlCommand setInfo = new SqlCommand("UPDATE Students SET StudentGradYear = @gradyear, StudentMajor = @major, " +
-                "StudentSchool = @school, StudentAbout = @about WHERE UserID = @id", connection);
-            setInfo.Parameters.AddWithValue("@gradyear", userGradYear);
-            setInfo.Parameters.AddWithValue("@major", userMajor);
-            setInfo.Parameters.AddWithValue("@school", userSchool);
-            setInfo.Parameters.AddWithValue("@about", userAbout);
+            SqlCommand setInfo = new SqlCommand("UPDATE Students SET", connection);
+            int added = 0;
+
+            // If there is something in the userMajor field, update it
+            if (userMajor.Length != 0)
+            {
+                setInfo.CommandText += " StudentMajor = @major";
+                setInfo.Parameters.AddWithValue("@major", userMajor);
+                added = 1;
+            }
+
+            if (userGradYear.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " StudentGradYear = @gradyear";
+                setInfo.Parameters.AddWithValue("@gradyear", userGradYear);
+                added = 1;
+            }
+            else if(userGradYear.Length != 0 && added == 1)
+            {
+                setInfo.CommandText += ", StudentGradYear = @gradyear";
+                setInfo.Parameters.AddWithValue("@gradyear", userGradYear);
+            }
+
+            if (userSchool.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " StudentSchool = @school";
+                setInfo.Parameters.AddWithValue("@school", userSchool);
+                added = 1;
+            }
+            else if (userSchool.Length != 0 && added == 1)
+            {
+                setInfo.CommandText += ", StudentSchool = @school";
+                setInfo.Parameters.AddWithValue("@school", userSchool);
+            }
+
+            if (userAbout.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " StudentAbout = @about";
+                setInfo.Parameters.AddWithValue("@about", userAbout);
+                added = 1;
+            }
+            else if (userAbout.Length != 0 && added == 1)
+            {
+                setInfo.CommandText += ", StudentAbout = @about";
+                setInfo.Parameters.AddWithValue("@about", userAbout);
+            }
+
+            setInfo.CommandText += " WHERE UserID = @id";
             setInfo.Parameters.AddWithValue("@id", userID);
 
             openDB();
@@ -759,15 +802,79 @@ namespace CPS410Final
             }
         }
 
-        public static String setTutorInformation(String userID, String gradDate, String degree, String experience, String contactInfo, String tutorSubjects)
+        public static String setTutorInformation(String userID, String gradDate, String degree, String school, String experience, String contactInfo, String tutorSubjects)
         {
-            SqlCommand setInfo = new SqlCommand("UPDATE Tutors SET TutorGraduationDate = @grad, TutorDegree = @deg, TutorExperience = @exp, " +
-                "TutorContactInfo = @info, TutorSubjects = @subjects WHERE UserID = @id", connection);
-            setInfo.Parameters.AddWithValue("@grad", gradDate);
-            setInfo.Parameters.AddWithValue("@deg", degree);
-            setInfo.Parameters.AddWithValue("@exp", experience);
-            setInfo.Parameters.AddWithValue("@info", contactInfo);
-            setInfo.Parameters.AddWithValue("@subjects", tutorSubjects);
+            SqlCommand setInfo = new SqlCommand("UPDATE Tutors SET", connection);
+            int added = 0;
+
+            if (gradDate.Length != 0)
+            {
+                setInfo.CommandText += " TutorGraduationDate = @grad";
+                setInfo.Parameters.AddWithValue("@grad", gradDate);
+                added = 1;
+            }
+
+            if (degree.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " TutorDegree = @deg";
+                setInfo.Parameters.AddWithValue("@deg", degree);
+                added = 1;
+            }
+            else if (degree.Length !=0 && added == 1)
+            {
+                setInfo.CommandText += ", TutorDegree = @deg";
+                setInfo.Parameters.AddWithValue("@deg", degree);
+            }
+
+            if (school.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " TutorSchool = @school";
+                setInfo.Parameters.AddWithValue("@school", school);
+                added = 1;
+            }
+            else if (school.Length != 0 && added == 1)
+            {
+                setInfo.CommandText += ", TutorSchool = @school";
+                setInfo.Parameters.AddWithValue("@school", school);
+            }
+
+            if (experience.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " TutorExperience = @exp";
+                setInfo.Parameters.AddWithValue("@exp", experience);
+                added = 1;
+            }
+            else if (experience.Length != 0 && added == 1)
+            {
+                setInfo.CommandText += ", TutorExperience = @exp";
+                setInfo.Parameters.AddWithValue("@exp", experience);
+            }
+
+            if (contactInfo.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " TutorContactInfo = @info";
+                setInfo.Parameters.AddWithValue("@info", contactInfo);
+                added = 1;
+            }
+            else if (contactInfo.Length != 0 && added == 1)
+            {
+                setInfo.CommandText += ", TutorContactInfo = @info";
+                setInfo.Parameters.AddWithValue("@info", contactInfo);
+            }
+
+            if (tutorSubjects.Length != 0 && added == 0)
+            {
+                setInfo.CommandText += " TutorSubjects = @subj";
+                setInfo.Parameters.AddWithValue("@subj", tutorSubjects);
+                added = 1;
+            }
+            else if (tutorSubjects.Length != 0 && added == 1)
+            {
+                setInfo.CommandText += ", TutorSubjects = @subj";
+                setInfo.Parameters.AddWithValue("@subj", tutorSubjects);
+            }
+
+            setInfo.CommandText += " WHERE UserID = @id";
             setInfo.Parameters.AddWithValue("@id", userID);
 
             openDB();
@@ -1029,4 +1136,3 @@ namespace CPS410Final
 
     }
 }
-
