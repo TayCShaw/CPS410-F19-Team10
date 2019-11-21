@@ -35,15 +35,6 @@ namespace CPS410Final
             connection.Close();
         }
 
-        public static void updateThreadViewCount(String threadID)
-        {
-
-        }
-
-        public static void updateThreadReplyCount()
-        {
-
-        }
                     /***** CHECK EXISTENCE *****/
 
         /* Checks to see if a username already exists in the Users table
@@ -404,8 +395,8 @@ namespace CPS410Final
          */
         public static String addNewThread(String UserID, String TopicID, String ThreadName, String SubjectID)
         {
-            SqlCommand createThread = new SqlCommand("INSERT into Threads (ThreadID, ThreadName, TimeCreated, UserID, ThreadTopic, ThreadSubject) " +
-                "values (@threadid, @threadname, @time, @userid, @threadtopic, @threadsubject)", connection);
+            SqlCommand createThread = new SqlCommand("INSERT into Threads (ThreadID, ThreadName, TimeCreated, TimeModified, UserID, ThreadTopic, ThreadSubject) " +
+                "values (@threadid, @threadname, @time, @time2, @userid, @threadtopic, @threadsubject)", connection);
             SqlCommand count = new SqlCommand("Select max(ThreadID) from Threads", connection);
 
             int intID;
@@ -424,6 +415,7 @@ namespace CPS410Final
             createThread.Parameters.AddWithValue("@threadid", intID);
             createThread.Parameters.AddWithValue("@threadname", ThreadName);
             createThread.Parameters.AddWithValue("@time", System.DateTime.Now);
+            createThread.Parameters.AddWithValue("@time2", System.DateTime.Now);
             createThread.Parameters.AddWithValue("@userid", UserID);
             createThread.Parameters.AddWithValue("@threadtopic", TopicID);
             createThread.Parameters.AddWithValue("@threadsubject", SubjectID);
@@ -713,6 +705,29 @@ namespace CPS410Final
             return password;
         }
 
+        public static SqlDataReader getAccountInformation(String userID)
+        {
+            SqlCommand getInfo = new SqlCommand();
+
+            // Create the command based on UserRole
+            String role = getRole(userID);
+            if (role.Equals("Tutor"))
+            {
+                getInfo = new SqlCommand("SELECT * FROM Tutors WHERE UserID = @user", connection);
+            }
+            else if(role.Equals("Student"))
+            {
+                getInfo = new SqlCommand("SELECT * FROM Students WHERE UserID = @user", connection);
+            }else if (role.Equals("Administrator"))
+            {
+                return null;
+            }
+            getInfo.Parameters.AddWithValue("@user", userID);
+
+            openDB();
+            SqlDataReader reader = getInfo.ExecuteReader();
+            return reader;
+        }
 
         /* SETs the information of a specified 
          */
@@ -735,10 +750,11 @@ namespace CPS410Final
             }
             else if (response > 1)
             {
-                return "POSSIBLE ERROR: Multiple rows changed, check database for consistency.";
+                return "POSSIBLE ERROR: Multiple rows changed. Contact administrators to check for consistency.";
             }
             else
             {
+                // response = 0, only other possible option
                 return "ERROR: Information could not be changed at this time.";
             }
         }
@@ -755,14 +771,14 @@ namespace CPS410Final
             setInfo.Parameters.AddWithValue("@id", userID);
 
             openDB();
-            if (setInfo.ExecuteNonQuery() == 1)
+            int response = setInfo.ExecuteNonQuery();
+            closeDB();
+            if (response == 1)
             {
-                closeDB();
                 return "Information updated!";
             }
             else
             {
-                closeDB();
                 return "ERROR: Information could not be changed at this time.";
             }
         }
@@ -835,6 +851,81 @@ namespace CPS410Final
 
         }
 
+
+        /*
+         * 
+         */
+        public static Boolean updateThreadViews(String threadID)
+        {
+            int views;
+
+            SqlCommand grabViews = new SqlCommand("SELECT ThreadViews FROM Threads WHERE ThreadID = @thread", connection);
+            grabViews.Parameters.AddWithValue("@thread", threadID);
+
+            SqlCommand updateViews = new SqlCommand("UPDATE Threads SET ThreadViews = @views WHERE ThreadID = @thread", connection);
+            updateViews.Parameters.AddWithValue("@thread", threadID);
+
+            if (threadExists(threadID))
+            {
+                // Grab number of views for the thread
+                openDB();
+                views = (Int32)grabViews.ExecuteScalar();
+                closeDB();
+
+                // Increase the views, store in command
+                views = views + 1;
+                updateViews.Parameters.AddWithValue("@views", views);
+
+                // Update the views number
+                openDB();
+                int response = updateViews.ExecuteNonQuery();
+                closeDB();
+
+                if (response == 1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        /*
+         * 
+         */
+        public static Boolean updateThreadReplies(String threadID)
+        {
+            int replies;
+
+            SqlCommand grabReplies = new SqlCommand("SELECT ThreadReplies FROM Threads WHERE ThreadID = @thread", connection);
+            grabReplies.Parameters.AddWithValue("@thread", threadID);
+
+            SqlCommand updateReplies = new SqlCommand("UPDATE Threads SET ThreadReplies = @replies WHERE ThreadID = @thread", connection);
+            updateReplies.Parameters.AddWithValue("@thread", threadID);
+
+            if (threadExists(threadID))
+            {
+                // Grab number of replies for the thread
+                openDB();
+                replies = (Int32)grabReplies.ExecuteScalar();
+                closeDB();
+
+                // Increase the replies, store in command
+                replies = replies + 1;
+                updateReplies.Parameters.AddWithValue("@replies", replies);
+
+                // Update the replies number
+                openDB();
+                int response = updateReplies.ExecuteNonQuery();
+                closeDB();
+
+                if (response == 1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         /********** END DISCUSSION INFORMATION **********/
 
 
