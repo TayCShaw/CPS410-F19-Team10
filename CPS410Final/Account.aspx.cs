@@ -22,8 +22,8 @@ namespace CPS410Final
 
                 if (!IsPostBack)
                 {
-                    setAccountOverview(Session["UserID"].ToString());
                     clearAllFields();
+                    setAccountOverview(Session["UserID"].ToString());
                 }
 
                 Session["Redirect"] = null;
@@ -142,6 +142,7 @@ namespace CPS410Final
             btnInfo.CssClass = "buttonActive";
             btnTutor.CssClass = "Buttons";
             clearAllFields();
+            setAccountOverview(Session["UserID"].ToString());
             overview.Visible = false;
             username.Visible = false;
             password.Visible = false;
@@ -161,6 +162,7 @@ namespace CPS410Final
             btnInfo.CssClass = "Buttons";
             btnTutor.CssClass = "buttonActive";
             clearAllFields();
+            setAccountOverview(Session["UserID"].ToString());
             overview.Visible = false;
             username.Visible = false;
             password.Visible = false;
@@ -274,7 +276,7 @@ namespace CPS410Final
         protected void btnSubmitTutor_Click(object sender, EventArgs e)
         {
             String changed = Database.setTutorInformation(Session["UserID"].ToString(), txtboxGraduationDate.Text,
-                txtboxDegree.Text, txtboxExperience.Text, txtboxContactInformation.Text, txtboxTutorSubjects.Text);
+                txtboxDegree.Text, txtboxTutorSchool.Text, txtboxExperience.Text, txtboxContactInformation.Text, txtboxTutorSubjects.Text);
 
             if (changed.Contains("ERROR"))
             {
@@ -289,7 +291,6 @@ namespace CPS410Final
             overview.Visible = false;
             tutorInfo.Visible = true;
         }
-
 
 
         /********* HELPER METHODS ********/
@@ -347,6 +348,11 @@ namespace CPS410Final
         protected void setAccountOverview(String userID){
             SqlDataReader reader = Database.getAccountInformation(userID);
 
+            if (reader == null)
+            {
+                return;
+            }
+
             while (reader.Read())
             {
                 if (Session["UserRole"].ToString().Equals("Tutor"))
@@ -360,15 +366,27 @@ namespace CPS410Final
                     if (reader["TutorDegree"].ToString() != "")
                     {
                         setAffirmative(lblMajor, reader["TutorDegree"].ToString());
+                        txtboxDegree.Text = reader["TutorDegree"].ToString();
                     }
                     else
                     {
                         setNegative(lblMajor);
                     }
 
+                    if (reader["TutorSchool"].ToString() != "")
+                    {
+                        setAffirmative(lblACSchoolLabel, reader["TutorSchool"].ToString());
+                        txtboxTutorSchool.Text = reader["TutorSchool"].ToString();
+                    }
+                    else
+                    {
+                        setNegative(lblACSchoolLabel);
+                    }
+
                     if (reader["TutorGraduationDate"].ToString() != "")
                     {
                         setAffirmative(lblGradDate, reader["TutorGraduationDate"].ToString());
+                        txtboxGraduationDate.Text = reader["TutorGraduationDate"].ToString();
                     }
                     else
                     {
@@ -378,6 +396,7 @@ namespace CPS410Final
                     if (reader["TutorExperience"].ToString() != "")
                     {
                         setAffirmative(lblAboutSection, reader["TutorExperience"].ToString());
+                        txtboxExperience.Text = reader["TutorExperience"].ToString();
                     }
                     else
                     {
@@ -387,6 +406,7 @@ namespace CPS410Final
                     if (reader["TutorSubjects"].ToString() != "")
                     {
                         setAffirmative(lblTutorSubjOverview, reader["TutorSubjects"].ToString());
+                        txtboxTutorSubjects.Text = reader["TutorSubjects"].ToString();
                     }
                     else
                     {
@@ -396,19 +416,11 @@ namespace CPS410Final
                     if (reader["TutorContactInfo"].ToString() != "")
                     {
                         setAffirmative(lblTutorContactInfo, reader["TutorContactInfo"].ToString());
+                        txtboxContactInformation.Text = reader["TutorContactInfo"].ToString();
                     }
                     else
                     {
                         setNegative(lblTutorContactInfo);
-                    }
-
-                    if (reader["TutorSubjects"].ToString() != "")
-                    {
-                        setAffirmative(lblTutorSubjOverview, reader["TutorSubjects"].ToString());
-                    }
-                    else
-                    {
-                        setNegative(lblTutorSubjOverview);
                     }
                 }
                 else if (Session["UserRole"].ToString().Equals("Student"))
@@ -422,6 +434,7 @@ namespace CPS410Final
                     if (reader["StudentMajor"].ToString() != "")
                     {
                         setAffirmative(lblMajor, reader["StudentMajor"].ToString());
+                        txtboxMajor.Text = reader["StudentMajor"].ToString();
                     }
                     else
                     {
@@ -431,15 +444,27 @@ namespace CPS410Final
                     if (reader["StudentGradYear"].ToString() != "")
                     {
                         setAffirmative(lblGradDate, reader["StudentGradYear"].ToString());
+                        ddlGradYear.SelectedValue = reader["StudentGradYear"].ToString();
                     }
                     else
                     {
                         setNegativeStudent(lblGradDate);
                     }
 
+                    if (reader["StudentSchool"].ToString() != "")
+                    {
+                        setAffirmative(lblACSchoolLabel, reader["StudentSchool"].ToString());
+                        txtboxSchool.Text = reader["StudentSchool"].ToString();
+                    }
+                    else
+                    {
+                        setNegativeStudent(lblACSchoolLabel);
+                    }
+
                     if (reader["StudentAbout"].ToString() != "")
                     {
                         setAffirmative(lblAboutSection, reader["StudentAbout"].ToString());
+                        txtboxAbout.Text = reader["StudentAbout"].ToString();
                     }
                     else
                     {
@@ -453,6 +478,7 @@ namespace CPS410Final
             }
             Database.closeDB();
         }
+
 
         protected Boolean passwordFieldsEmpty()
         {
