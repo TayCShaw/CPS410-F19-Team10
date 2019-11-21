@@ -83,6 +83,7 @@ namespace CPS410Final
             else
             {
                 Database.updateThreadReplies(Request.QueryString["Viewing"]);
+                Database.updateTimeModified(Request.QueryString["Viewing"]);
                 Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
             }
         }

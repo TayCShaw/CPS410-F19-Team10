@@ -1033,6 +1033,23 @@ namespace CPS410Final
             }
             return false;
         }
+        
+        public static Boolean updateTimeModified(String threadID)
+        {
+            SqlCommand time = new SqlCommand("UPDATE Threads SET TimeModified = @time WHERE ThreadID = @id", connection);
+            time.Parameters.AddWithValue("@time", DateTime.Now);
+            time.Parameters.AddWithValue("@id", threadID);
+            
+            openDB();
+            int response = time.ExecuteNonQuery();
+            closeDB();
+
+            if (response == 1)
+            {
+                return true;
+            }
+            return false;
+        }
         /********** END DISCUSSION INFORMATION **********/
 
 
