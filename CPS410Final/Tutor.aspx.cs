@@ -50,7 +50,7 @@ namespace CPS410Final
             }
             else if (txtboxSchool.Text.Length != 0 && whereAdded == 0)
             {
-                getTutors.CommandText += " WHERE AND Tutors.TutorSchool LIKE '%' + @school + '%'";
+                getTutors.CommandText += " WHERE Tutors.TutorSchool LIKE '%' + @school + '%'";
                 getTutors.Parameters.AddWithValue("@school", txtboxSchool.Text);
                 whereAdded = 1;
             }
