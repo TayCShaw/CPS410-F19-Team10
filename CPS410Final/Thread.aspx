@@ -88,7 +88,7 @@ WHERE ThreadTopic = @ThreadTopic">
                 <asp:Label ID="lblYourReply" runat="server" Text="Your Reply"></asp:Label>
             </td>
             <td class="auto-style13">
-                <asp:TextBox ID="txtboxThreadReply" runat="server" TextMode="MultiLine" Height="97px" Width="476px"></asp:TextBox>
+                <asp:TextBox ID="txtboxThreadReply" runat="server" TextMode="MultiLine" Height="97px" Width="476px" Font-Names="Arial" Font-Size="12px"></asp:TextBox>
             </td>
             <td>
                 <asp:RequiredFieldValidator ID="rfvThreadReply" runat="server" ErrorMessage="Required Field" ControlToValidate="txtboxThreadReply"></asp:RequiredFieldValidator>
