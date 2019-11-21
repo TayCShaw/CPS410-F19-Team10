@@ -27,6 +27,10 @@ namespace CPS410Final
             {
                 String threadID = Request.QueryString["Viewing"];
                 selectedThreadPosts.Visible = true;
+                if (!IsPostBack)
+                {
+                    Database.updateThreadViews(threadID);
+                }
             }
             else
             {
@@ -78,6 +82,7 @@ namespace CPS410Final
             }
             else
             {
+                Database.updateThreadReplies(Request.QueryString["Viewing"]);
                 Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
             }
         }
