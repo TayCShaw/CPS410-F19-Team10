@@ -116,6 +116,7 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="threads.css" />
     <Content Include="Topic.aspx" />
     <Content Include="Tutor.aspx" />
     <Content Include="Account.aspx" />

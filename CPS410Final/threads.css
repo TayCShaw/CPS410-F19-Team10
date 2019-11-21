@@ -1,0 +1,16 @@
+﻿body {
+    
+}
+.topicTable{
+    width: 50%;
+    margin-left: 25%;
+    background-color: white;
+    margin-top: 75px;
+}
+
+.postsTable{
+    width: 30%;
+    margin-left: 35%;
+    background-color: white;
+    margin-top: 75px;
+}
