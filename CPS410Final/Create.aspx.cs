@@ -101,7 +101,7 @@ namespace CPS410Final
             if (response.Contains("true"))
             {
                 String threadID = chunk[1];
-
+                System.Threading.Thread.Sleep(1000);
                 response = Database.addNewPost(Session["UserID"].ToString(), threadID, txtboxThreadOP.Text);
                 chunk = response.Split(',');
                 if (response.Contains("true"))
