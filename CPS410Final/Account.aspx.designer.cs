@@ -114,6 +114,24 @@ namespace CPS410Final
         protected global::System.Web.UI.WebControls.Label lblMajor;
 
         /// <summary>
+        /// lblACSchool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblACSchool;
+
+        /// <summary>
+        /// lblACSchoolLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblACSchoolLabel;
+
+        /// <summary>
         /// lblGradDateLabel control.
         /// </summary>
         /// <remarks>
@@ -472,6 +490,24 @@ namespace CPS410Final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtboxGraduationDate;
+
+        /// <summary>
+        /// lblTutorSchoolLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTutorSchoolLabel;
+
+        /// <summary>
+        /// txtboxTutorSchool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtboxTutorSchool;
 
         /// <summary>
         /// lblDegreeReceived control.
