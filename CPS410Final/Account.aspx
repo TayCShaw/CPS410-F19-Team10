@@ -244,24 +244,25 @@
 
 
         .auto-style37 {
-            width: 479px;
+            width: 467px;
             margin-right: 181px;
+            margin-left: 176px;
         }
                 
 
 
         .auto-style43 {
-            width: 200px;
+            width: 198px;
         }
         
 
 
         .auto-style44 {
-            width: 200px;
+            width: 198px;
             height: 40px;
         }
         .auto-style45 {
-            width: 200px;
+            width: 198px;
             height: 70px;
         }
         
@@ -314,11 +315,16 @@
                 :   
                 <asp:Label ID="lblMajor" runat="server"></asp:Label></p>
             <p>
+                <asp:Label ID="lblACSchool" runat="server" Font-Underline="True" Text="School"></asp:Label>
+                :
+                <asp:Label ID="lblACSchoolLabel" runat="server"></asp:Label>
+            </p>
+            <p>
                 <asp:Label ID="lblGradDateLabel" runat="server" Text="Expected Graduation Date" Font-Underline="True"></asp:Label>
                 :   
                 <asp:Label ID="lblGradDate" runat="server"></asp:Label></p>
             <p>
-                <asp:Label ID="lblAboutLabel" runat="server" Text="About" Font-Underline="True"></asp:Label>
+                <asp:Label ID="lblAboutLabel" runat="server" Text="About / Experience" Font-Underline="True"></asp:Label>
                 : <asp:Label ID="lblAboutSection" runat="server"></asp:Label></p>
             <p>
 
@@ -413,7 +419,7 @@
                         <asp:Label ID="lblGradYear" runat="server" Text="Graduation Year" CssClass="labelalign"></asp:Label>
                     </td>
                     <td style="text-align: left" class="auto-style33">
-                        <asp:DropDownList ID="ddlGradYear" runat="server" Width="34%" Height="16px">
+                        <asp:DropDownList ID="ddlGradYear" runat="server" Width="40%" Height="16px">
                             <asp:ListItem>2019</asp:ListItem>
                             <asp:ListItem>2020</asp:ListItem>
                             <asp:ListItem>2021</asp:ListItem>
@@ -439,7 +445,7 @@
                         <asp:Label ID="lblAbout" CssClass="labelalign" runat="server" Text="About"></asp:Label>
                     </td>
                     <td style="text-align: left" class="auto-style28" colspan="2">
-                        <asp:TextBox ID="txtboxAbout" runat="server" Height="53px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtboxAbout" runat="server" Height="53px" TextMode="MultiLine" Width="276px" Font-Names="Arial" Font-Size="12px"></asp:TextBox>
                         <br />
                         </td>
                 </tr>
@@ -454,13 +460,21 @@
         <%-- -------------------------------------------------------------------------------- --%><%-- -------------------EDIT (TUTOR) ACCOUNT INFORMATION SIDE NAV-BAR------------------- --%>
         <div class="tutorInfo" id="tutorInfo" runat="server">
             <h1>Tutor Information</h1>
-                <table style="margin-left: 175px;" class="auto-style37">
+                <table class="auto-style37">
                     <tr>
                         <td style="text-align: right" class="auto-style43">
                             <asp:Label ID="lblGraduationDate" runat="server" Text="Graduation Date"></asp:Label>
                         </td>
                         <td class="auto-style47" style="text-align: left">
                             <asp:TextBox ID="txtboxGraduationDate" placeholder="Graduation Date" runat="server" Width="120%"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right" class="auto-style43">
+                            <asp:Label ID="lblTutorSchoolLabel" runat="server" Text="School"></asp:Label>
+                        </td>
+                        <td class="auto-style47" style="text-align: left">
+                            <asp:TextBox ID="txtboxTutorSchool" runat="server" Width="120%"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td style="text-align: right" class="auto-style43">
@@ -474,21 +488,21 @@
                             <asp:Label ID="lblExperience" runat="server" Text="Experience"></asp:Label>
                         </td>
                         <td class="auto-style48" style="text-align: left">
-                            <asp:TextBox ID="txtboxExperience" TextMode="MultiLine" placeholder="Work Experience" runat="server" Width="120%" Height="50px" Style="resize: none"></asp:TextBox></td>
+                            <asp:TextBox ID="txtboxExperience" TextMode="MultiLine" placeholder="Work Experience" runat="server" Width="120%" Height="50px" Style="resize: none" Font-Names="Arial" Font-Size="12px"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td style="text-align: right" class="auto-style44">
                             <asp:Label ID="lblContactInformation" runat="server" Text="Contact Information"></asp:Label>
                         </td>
                         <td class="auto-style47" style="text-align: left">
-                            <asp:TextBox ID="txtboxContactInformation" TextMode="MultiLine" placeholder="Ways to contact you" runat="server" Width="120%" Height="50px" Style="resize: none"></asp:TextBox></td>
+                            <asp:TextBox ID="txtboxContactInformation" TextMode="MultiLine" placeholder="Ways to contact you" runat="server" Width="120%" Height="50px" Style="resize: none" Font-Names="Arial" Font-Size="12px"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td style="text-align: right" class="auto-style44">
-                            <asp:Label ID="lblTutorSubjects" runat="server" Text="Subjects/Topics You Can Help With"></asp:Label>
+                            <asp:Label ID="lblTutorSubjects" runat="server" Text="Subjects/Topics You Can Help"></asp:Label>
                         </td>
                         <td class="auto-style47" style="text-align: left">
-                            <asp:TextBox ID="txtboxTutorSubjects" TextMode="MultiLine" placeholder="Ways to contact you" runat="server" Width="120%" Height="50px" Style="resize: none"></asp:TextBox></td>
+                            <asp:TextBox ID="txtboxTutorSubjects" TextMode="MultiLine" placeholder="Ways to contact you" runat="server" Width="120%" Height="50px" Style="resize: none" Font-Names="Arial" Font-Size="12px"></asp:TextBox></td>
                     </tr>
                 </table>
             <p>
