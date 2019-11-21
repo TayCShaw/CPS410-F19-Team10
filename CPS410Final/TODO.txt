@@ -22,7 +22,7 @@ Subject.aspx
 -----------------
 **Refer to iFinal**
 
-
+    CONSTRAINT [FK_PostsThreadID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Threads] ([ThreadID]),    CONSTRAINT [FK_PostsThreadID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Threads] ([ThreadID]),    CONSTRAINT [FK_PostsThreadID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Threads] ([ThreadID]),    CONSTRAINT [FK_PostsThreadID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Threads] ([ThreadID]),    CONSTRAINT [FK_PostsThreadID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Threads] ([ThreadID]),    CONSTRAINT [FK_PostsThreadID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Threads] ([ThreadID]),    CONSTRAINT [FK_PostsThreadID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Threads] ([ThreadID]),
 
 Thread.aspx
 -----------------
